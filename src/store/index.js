@@ -3,7 +3,7 @@ import Vuex from "vuex"
 
 // import common from "./common"
 
-// import auth from "./modules/auth"
+import auth from "./modules/auth"
 // import user from "./modules/user"
 
 Vue.use(Vuex)
@@ -11,7 +11,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   modules: {
     // common,
-    // auth,
+    auth
     // user
   },
   state: {},

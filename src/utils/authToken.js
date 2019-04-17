@@ -1,7 +1,7 @@
 import Vue from "vue"
-import { KEYS } from "@/config/constant"
+import { STORAGE_KEYS } from "@/utils/constant"
 
-const key = KEYS.auth_token
+const key = STORAGE_KEYS.auth_token
 
 export function getToken() {
   return Vue.ls.get(key)

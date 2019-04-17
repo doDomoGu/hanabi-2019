@@ -1,18 +1,19 @@
 import axios from "axios"
 import qs from "qs"
 import { getToken } from "@/utils/authToken"
-import { KEYS } from "@/config/constant"
+import { STORAGE_KEYS } from "@/utils/constant"
 
-//axios.defaults.headers.post["Content-Type"] =
-//  "application/x-www-form-urlencoded"
+axios.defaults.headers.post["Content-Type"] =
+  "application/x-www-form-urlencoded"
 
 //api接口地址前缀
 axios.defaults.baseURL = process.env.VUE_APP_API_PREFIX
 
 axios.interceptors.request.use(
   config => {
+    console.log(config)
     //鉴权 Token传参
-    config.headers[KEYS.auth_token] = getToken()
+    config.headers[STORAGE_KEYS.auth_token] = getToken()
     // POST传参序列化
     if (
       config.method === "post" &&
