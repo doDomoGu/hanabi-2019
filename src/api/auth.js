@@ -1,11 +1,11 @@
 import axios from "@/utils/axios"
 
-export function login(account, password) {
+export function login(username, password) {
   const data = {
-    account,
+    username,
     password
   }
-  return axios.post("/auth/login", data)
+  return axios.post("/login", data)
 }
 
 export function checkToken(key) {
@@ -16,9 +16,9 @@ export function checkToken(key) {
 }
 
 export function getUserInfo() {
-  return axios.get("/auth/info")
+  return axios.get("/auth")
 }
 
 export function logout() {
-  return axios.delete("/auth/logout")
+  return axios.delete("/logout")
 }
