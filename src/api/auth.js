@@ -12,7 +12,7 @@ export function checkToken(key) {
   const data = {
     key
   }
-  return axios.post("/auth/token-verification", data)
+  return axios.post("/auth", data)
 }
 
 export function getUserInfo() {
