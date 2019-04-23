@@ -11,7 +11,7 @@ axios.defaults.baseURL = process.env.VUE_APP_API_PREFIX
 
 axios.interceptors.request.use(
   config => {
-    console.log(config)
+    // console.log(config)
     //鉴权 Token传参
     config.headers[STORAGE_KEYS.auth_token] = getToken()
     // POST传参序列化

@@ -8,9 +8,9 @@ const state = {
 }
 
 const actions = {
-  Login({ commit }, [account, password]) {
+  Login({ commit }, [username, password]) {
     return new Promise((resolve, reject) => {
-      login(account, password)
+      login(username, password)
         .then(res => {
           if (res.data) {
             const data = res.data
