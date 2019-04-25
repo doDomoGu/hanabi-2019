@@ -3,7 +3,7 @@
     <mt-field
       label="用户名"
       placeholder="请输入用户名"
-      @keydown.enter.native="onSubmit"
+      @keydown.enter.native="login"
       v-model="form.username"
     ></mt-field>
 
@@ -12,7 +12,7 @@
       placeholder="请输入密码"
       type="password"
       v-model="form.password"
-      @keydown.enter.native="onSubmit"
+      @keydown.enter.native="login"
     ></mt-field>
 
     <mt-button type="default" size="large" @click.native="login"

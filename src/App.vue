@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <login v-if="!$store.getters['auth/loginState']" />
+    <login v-if="!loginState" />
   </div>
 </template>
 
@@ -10,6 +10,11 @@ export default {
   name: "app",
   components: {
     Login
+  },
+  computed: {
+    loginState() {
+      return this.$store.getters["auth/loginState"]
+    }
   }
 }
 </script>
