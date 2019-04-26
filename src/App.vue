@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <login v-if="!loginState" />
+    <room-list v-else-if="!isInRoom" />
   </div>
 </template>
 
@@ -14,6 +15,9 @@ export default {
   computed: {
     loginState() {
       return this.$store.getters["auth/loginState"]
+    },
+    isInRoom() {
+      return this.$store.getters["my-room/roomId"] > 0
     }
   }
 }
