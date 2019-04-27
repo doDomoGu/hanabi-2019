@@ -7,10 +7,12 @@
 
 <script>
 import Login from "./components/Login.vue"
+import RoomList from "./components/RoomList.vue"
 export default {
   name: "app",
   components: {
-    Login
+    Login,
+    RoomList
   },
   computed: {
     loginState() {
