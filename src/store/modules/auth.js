@@ -16,7 +16,7 @@ const actions = {
             const data = res.data
             if (data.code === 0) {
               const _data = data.data
-              setToken(_data.api_key)
+              setToken(_data.token)
               commit("setLoginState")
               commit("removeLoginErrorMsg")
             } else {
