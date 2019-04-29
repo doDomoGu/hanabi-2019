@@ -1,11 +1,14 @@
 <template>
   <div id="app">
-    <login v-if="!loginState" />
-    <room-list v-else-if="!isInRoom" />
+    <login v-if="loginState === false" />
+    <template v-else-if="loginState === true">
+      <room-list v-if="!isInRoom" />
+    </template>
   </div>
 </template>
 
 <script>
+import { getToken } from "@/utils/authToken"
 import Login from "./components/Login.vue"
 import RoomList from "./components/RoomList.vue"
 export default {
@@ -15,7 +18,11 @@ export default {
     RoomList
   },
   created() {
-    this.$store.dispatch("auth/CheckToken")
+    if (getToken()) {
+      this.$store.dispatch("auth/CheckToken")
+    } else {
+      this.$store.commit("auth/setLoginState", false)
+    }
   },
   computed: {
     loginState() {

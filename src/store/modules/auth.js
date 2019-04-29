@@ -2,7 +2,7 @@ import { login, logout, checkToken, getUserInfo } from "@/api/auth"
 import { getToken, setToken, removeToken } from "@/utils/authToken"
 
 const state = {
-  loginState: false,
+  loginState: null,
   loginErrorMsg: null,
   userInfo: {}
 }
@@ -17,11 +17,11 @@ const actions = {
             if (data.code === 0) {
               const _data = data.data
               setToken(_data.token)
-              commit("setLoginState")
+              commit("setLoginState", true)
               commit("removeLoginErrorMsg")
             } else {
               removeToken()
-              commit("removeLoginState")
+              commit("setLoginState", false)
               commit("setLoginErrorMsg", data.msg)
             }
             resolve()
@@ -41,11 +41,11 @@ const actions = {
           if (res.data) {
             const data = res.data
             if (data.code === 0) {
-              commit("setLoginState")
+              commit("setLoginState", true)
             } else {
               // 提交的token 错误
               removeToken()
-              commit("removeLoginState")
+              commit("setLoginState", false)
             }
             resolve()
           } else {
@@ -102,11 +102,11 @@ const getters = {
 }
 
 const mutations = {
-  setLoginState: state => {
-    state.loginState = true
+  setLoginState: (state, data) => {
+    state.loginState = data
   },
   removeLoginState: state => {
-    state.loginState = false
+    state.loginState = null
   },
   setLoginErrorMsg: (state, msg) => {
     state.loginErrorMsg = msg
