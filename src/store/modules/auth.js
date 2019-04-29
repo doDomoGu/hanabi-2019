@@ -41,13 +41,11 @@ const actions = {
           if (res.data) {
             const data = res.data
             if (data.code === 0) {
-              // setToken(token)
               commit("setLoginState")
             } else {
               // 提交的token 错误
               removeToken()
               commit("removeLoginState")
-              // commit('removeUserInfo')
             }
             resolve()
           } else {
@@ -61,7 +59,7 @@ const actions = {
   },
   GetInfo({ commit }) {
     return new Promise((resolve, reject) => {
-      getUserInfo()
+      getUserInfo(getToken())
         .then(res => {
           if (res.data) {
             const _data = res.data

@@ -9,14 +9,21 @@ export function login(username, password) {
 }
 
 export function checkToken(key) {
-  const data = {
-    key
+  const params = {
+    params: {
+      accessToken: key
+    }
   }
-  return axios.post("/auth", data)
+  return axios.get("/auth", params)
 }
 
-export function getUserInfo() {
-  return axios.get("/auth")
+export function getUserInfo(key) {
+  const params = {
+    params: {
+      accessToken: key
+    }
+  }
+  return axios.get("/auth", params)
 }
 
 export function logout() {

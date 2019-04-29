@@ -14,6 +14,9 @@ export default {
     Login,
     RoomList
   },
+  created() {
+    this.$store.dispatch("auth/CheckToken")
+  },
   computed: {
     loginState() {
       return this.$store.getters["auth/loginState"]
