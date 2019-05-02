@@ -10,8 +10,11 @@ const actions = {
     return new Promise((resolve, reject) => {
       getList(params)
         .then(res => {
-          if (res.data) {
-            commit("SetRoomList", res.data.data.list)
+          if (res.data && res.data.code === 0) {
+            const _data = res.data.data
+            if (!_data.noUpdate) {
+              commit("SetRoomList", _data.list)
+            }
           } else {
             commit("ClearRoomList")
           }
