@@ -6,12 +6,12 @@ const state = {
 }
 
 const actions = {
-  GetList({ commit }) {
+  GetList({ commit }, params) {
     return new Promise((resolve, reject) => {
-      getList()
+      getList(params)
         .then(res => {
           if (res.data) {
-            commit("SetRoomList", res.data)
+            commit("SetRoomList", res.data.data.list)
           } else {
             commit("ClearRoomList")
           }

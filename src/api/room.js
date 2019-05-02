@@ -1,5 +1,5 @@
 import axios from "@/utils/axios"
 
-export function getList() {
-  return axios.get("/room/list")
+export function getList(params) {
+  return axios.get("/room/list", params)
 }

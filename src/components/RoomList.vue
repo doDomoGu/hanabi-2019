@@ -1,9 +1,5 @@
 <template>
-  <ul id="room_list">
-    <li v-for="l in list" :key="l.id">
-      {{ l }}
-    </li>
-  </ul>
+  <canvas id="room-list"></canvas>
 </template>
 
 <script>
@@ -15,7 +11,7 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch("room/GetList")
+    this.$store.dispatch("room/GetList", { params: { force: true } })
   }
 }
 </script>
