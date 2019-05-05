@@ -1,6 +1,6 @@
-import MyCanvas from "../index"
+import CanvasLib from "../lib"
 
-const dpr = MyCanvas.getDevicePixelRatio()
+const dpr = CanvasLib.getDevicePixelRatio()
 
 let _ = {}
 
@@ -43,6 +43,6 @@ _.item.margin = Math.floor((height - _.padding * 2 - _.item.rect.h * 10) / 9)
 
 _.item.margin = _.item.margin > 120 ? 120 : _.item.margin
 
-_.item.fontSize = MyCanvas.px2Rem(22)
+_.item.fontSize = CanvasLib.px2Rem(22)
 
 export default _

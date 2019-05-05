@@ -3,10 +3,10 @@
 </template>
 
 <script>
-import MyCanvas from "@/utils/canvas/index"
-import RLCParam from "@/utils/canvas/config/roomList.js"
-import CommonDraw from "@/utils/canvas/draw/common.js"
-import RoomListDraw from "@/utils/canvas/draw/roomList.js"
+import { RoomListDraw } from "@/utils/canvas/index"
+// import RLCParam from "@/utils/canvas/config/roomList.js"
+// import CommonDraw from "@/utils/canvas/draw/common.js"
+// import RoomListDraw from "@/utils/canvas/draw/roomList.js"
 
 export default {
   name: "room_list",
@@ -23,6 +23,7 @@ export default {
   },
   watch: {
     list(newVal) {
+      console.log(RoomListDraw)
       RoomListDraw.list(this.ctx, newVal)
     }
   },

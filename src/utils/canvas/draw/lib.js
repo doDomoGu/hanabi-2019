@@ -1,10 +1,12 @@
 /* 基础绘制方法库 */
-import MyCanvas from "../index"
+import CanvasLib from "../lib"
 
-const dpr = MyCanvas.getDevicePixelRatio()
+// dpr：设备像素比
+const dpr = CanvasLib.getDevicePixelRatio()
 
 let _ = {}
 
+// 清空画布方法
 _.clear = canvas => {
   canvas.width = window.innerWidth * dpr
   canvas.height = window.innerHeight * dpr
@@ -13,12 +15,14 @@ _.clear = canvas => {
 //font-size
 // _.fontSize = window.innerWidth / 6.4
 
-_.px2Rem = px => {
+// 单位转换像素转为rem
+/* _.px2Rem = px => {
   return (px / 375) * window.innerWidth
-}
+} */
 
 // 函数：绘制圆角矩形
-export function fillRoundedRect(ctx, rect, radius) {
+// export function fillRoundedRect(ctx, rect, radius) {
+_.fillRoundedRect = (ctx, rect, radius) => {
   const point = (x, y) => {
     return { x: x, y: y }
   }
@@ -41,14 +45,16 @@ export function fillRoundedRect(ctx, rect, radius) {
   ctx.fill()
 }
 
-export function fillRect(ctx, config) {
+// export function fillRect(ctx, config) {
+_.fillRect = (ctx, config) => {
   const rect = config.rect
   ctx.clearRect(rect.x, rect.y, rect.w, rect.h)
   ctx.fillStyle = config.color
   ctx.fillRect(rect.x, rect.y, rect.w, rect.h)
 }
 
-export function fillText(ctx, config) {
+// export function fillText(ctx, config) {
+_.fillText = (ctx, config) => {
   const rect = config.rect
   ctx.clearRect(rect.x, rect.y, rect.w, rect.h)
 
