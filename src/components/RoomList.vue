@@ -4,6 +4,8 @@
 
 <script>
 import { RoomListDraw } from "@/utils/canvas/index"
+import CanvasLib from "@/utils/canvas/lib"
+import RoomListEventListener from "@/utils/canvas/eventListener/roomList"
 // import RLCParam from "@/utils/canvas/config/roomList.js"
 // import CommonDraw from "@/utils/canvas/draw/common.js"
 // import RoomListDraw from "@/utils/canvas/draw/roomList.js"
@@ -12,6 +14,8 @@ export default {
   name: "room_list",
   data() {
     return {
+      canvas: null,
+      ctx: null,
       intervalId: 0,
       itemIndex: -1
     }
@@ -23,7 +27,6 @@ export default {
   },
   watch: {
     list(newVal) {
-      console.log(RoomListDraw)
       RoomListDraw.list(this.ctx, newVal)
     }
   },
@@ -37,8 +40,26 @@ export default {
       this.$store.dispatch("room/GetList")
     }, 3000)
 
-    // this.canvas.addEventListener("touchstart", this.eventListener, false)
-    // this.canvas.addEventListener("touchend", this.eventListener, false)
+    this.canvas.addEventListener(
+      "touchstart",
+      e => {
+        RoomListEventListener(this, e)
+      },
+      false
+    )
+    this.canvas.addEventListener(
+      "touchend",
+      e => {
+        RoomListEventListener(this, e)
+      },
+      false
+    )
+  },
+  methods: {
+    async enter(index) {
+      await this.$store.dispatch("myRoom/Enter", index)
+      await this.$store.dispatch("myRoom/GetInfo", { force: true })
+    }
   },
   destroyed() {
     clearInterval(this.intervalId)
