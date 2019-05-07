@@ -4,7 +4,7 @@
 
 <script>
 import { RoomListDraw } from "@/utils/canvas/index"
-import CanvasLib from "@/utils/canvas/lib"
+// import CanvasLib from "@/utils/canvas/lib"
 import RoomListEventListener from "@/utils/canvas/eventListener/roomList"
 // import RLCParam from "@/utils/canvas/config/roomList.js"
 // import CommonDraw from "@/utils/canvas/draw/common.js"
@@ -31,15 +31,11 @@ export default {
     }
   },
   mounted() {
+    // 定义canvas
     this.canvas = document.querySelector("#room-list")
     this.ctx = this.canvas.getContext("2d")
 
-    this.$store.dispatch("room/GetList", { params: { force: true } })
-
-    this.intervalId = setInterval(() => {
-      this.$store.dispatch("room/GetList")
-    }, 3000)
-
+    // 绑定触摸事件 touchstart 和 touchend
     this.canvas.addEventListener(
       "touchstart",
       e => {
@@ -54,14 +50,23 @@ export default {
       },
       false
     )
+
+    // 执行一次获取房间列表（参数：强制更新）
+    this.$store.dispatch("room/GetList", { params: { force: true } })
+
+    // 设置定时器：获取房间列表数据
+    this.intervalId = setInterval(() => {
+      this.$store.dispatch("room/GetList")
+    }, 3000)
   },
   methods: {
     async enter(index) {
       await this.$store.dispatch("myRoom/Enter", index)
-      await this.$store.dispatch("myRoom/GetInfo", { force: true })
+      // await this.$store.dispatch("myRoom/GetInfo", { force: true })
     }
   },
   destroyed() {
+    // 离开页面 清除定时器
     clearInterval(this.intervalId)
   }
 }

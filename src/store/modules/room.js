@@ -6,7 +6,19 @@ const state = {
 }
 
 const actions = {
-  GetList({ commit }, params) {
+  async GetList({ commit }, params) {
+    await getList(params).then(res => {
+      if (res.data && res.data.code === 0) {
+        const _data = res.data.data
+        if (!_data.noUpdate) {
+          commit("SetRoomList", _data.list)
+        }
+      } else {
+        commit("ClearRoomList")
+      }
+    })
+  }
+  /*  GetList({ commit }, params) {
     return new Promise((resolve, reject) => {
       getList(params)
         .then(res => {
@@ -24,7 +36,7 @@ const actions = {
           reject(error)
         })
     })
-  }
+  } */
 }
 
 const getters = {

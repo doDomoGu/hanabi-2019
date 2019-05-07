@@ -1,3 +1,5 @@
+/* 房间列表绘制参数配置 */
+
 import CanvasLib from "../lib"
 
 const dpr = CanvasLib.getDevicePixelRatio()
