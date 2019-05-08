@@ -1,4 +1,4 @@
-//暴露方法
+import DrawLib from "./draw/lib"
 import RoomListDraw from "./draw/roomList"
 
-export { RoomListDraw }
+export { DrawLib, RoomListDraw }

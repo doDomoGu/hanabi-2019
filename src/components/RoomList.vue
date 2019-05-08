@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { RoomListDraw } from "@/utils/canvas/index"
+import { DrawLib, RoomListDraw } from "@/utils/canvas/index"
 // import CanvasLib from "@/utils/canvas/lib"
 import RoomListEventListener from "@/utils/canvas/eventListener/roomList"
 // import RLCParam from "@/utils/canvas/config/roomList.js"
@@ -35,6 +35,9 @@ export default {
     this.canvas = document.querySelector("#room-list")
     this.ctx = this.canvas.getContext("2d")
 
+    //清除画布
+    DrawLib.clear(this.canvas)
+
     // 绑定触摸事件 touchstart 和 touchend
     this.canvas.addEventListener(
       "touchstart",
@@ -52,7 +55,7 @@ export default {
     )
 
     // 执行一次获取房间列表（参数：强制更新）
-    this.$store.dispatch("room/GetList", { params: { force: true } })
+    this.$store.dispatch("room/GetList", { force: true })
 
     // 设置定时器：获取房间列表数据
     this.intervalId = setInterval(() => {
