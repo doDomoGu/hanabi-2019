@@ -2,6 +2,7 @@
   <div id="app">
     <login v-if="loginState === false" />
     <template v-else-if="loginState === true">
+      <logout />
       <room-list v-if="!isInRoom" />
       <my-room v-else-if="isInRoom" />
     </template>
@@ -10,20 +11,24 @@
 
 <script>
 import { getToken } from "@/utils/authToken"
-import Login from "./components/Login.vue"
-import RoomList from "./components/RoomList.vue"
+import LoginCom from "./components/Login"
+import LogoutCom from "./components/Logout"
+import RoomListCom from "./components/RoomList"
+import MyRoomCom from "./components/MyRoom"
 export default {
   name: "app",
   components: {
-    Login,
-    RoomList
+    login: LoginCom,
+    logout: LogoutCom,
+    roomList: RoomListCom,
+    myRoom: MyRoomCom
   },
   created() {
     if (getToken()) {
       //本地(localstorage)有token 验证token
       this.$store.dispatch("auth/CheckToken").then(() => {
         if (this.loginState) {
-          //验证成功 获取用户信息
+          //验证成功 获取用户信息/房间信息/游戏信息
           this.$store.dispatch("auth/GetInfo")
           this.$store.dispatch("myRoom/GetInfo", { force: true })
         }

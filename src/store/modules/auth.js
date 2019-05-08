@@ -49,20 +49,12 @@ const actions = {
       }
     }
   },
-  Logout({ commit }) {
-    return new Promise((resolve, reject) => {
-      logout()
-        .then(res => {
-          if (res.data && res.data.code === 0) {
-            removeToken()
-            commit("removeLoginState")
-          }
-          resolve()
-        })
-        .catch(error => {
-          reject(error)
-        })
-    })
+  async Logout({ commit }) {
+    const res = await logout()
+    if (res.data && res.data.code === 0) {
+      removeToken()
+      commit("setLoginState", false)
+    }
   }
 }
 
