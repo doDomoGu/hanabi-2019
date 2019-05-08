@@ -8,75 +8,46 @@ const state = {
 }
 
 const actions = {
-  Login({ commit }, [username, password]) {
-    return new Promise((resolve, reject) => {
-      login(username, password)
-        .then(res => {
-          if (res.data) {
-            const data = res.data
-            if (data.code === 0) {
-              const _data = data.data
-              setToken(_data.token)
-              commit("setLoginState", true)
-              commit("removeLoginErrorMsg")
-            } else {
-              removeToken()
-              commit("setLoginState", false)
-              commit("setLoginErrorMsg", data.msg)
-            }
-            resolve()
-          } else {
-            reject()
-          }
-        })
-        .catch(error => {
-          reject(error)
-        })
-    })
+  async Login({ commit }, [username, password]) {
+    const res = await login(username, password)
+    if (res.data) {
+      const data = res.data
+      if (data.code === 0) {
+        const _data = data.data
+        setToken(_data.token)
+        commit("setLoginState", true)
+        commit("removeLoginErrorMsg")
+      } else {
+        removeToken()
+        commit("setLoginState", false)
+        commit("setLoginErrorMsg", data.msg)
+      }
+    }
   },
-  CheckToken({ commit }) {
-    return new Promise((resolve, reject) => {
-      checkToken(getToken())
-        .then(res => {
-          if (res.data) {
-            const data = res.data
-            if (data.code === 0) {
-              commit("setLoginState", true)
-            } else {
-              // 提交的token 错误
-              removeToken()
-              commit("setLoginState", false)
-            }
-            resolve()
-          } else {
-            reject()
-          }
-        })
-        .catch(error => {
-          reject(error)
-        })
-    })
+  async CheckToken({ commit }) {
+    const res = await checkToken(getToken())
+    if (res.data) {
+      const data = res.data
+      if (data.code === 0) {
+        commit("setLoginState", true)
+      } else {
+        // 提交的token 错误
+        removeToken()
+        commit("setLoginState", false)
+      }
+    }
+    return 1
   },
-  GetInfo({ commit }) {
-    return new Promise((resolve, reject) => {
-      getUserInfo(getToken())
-        .then(res => {
-          if (res.data) {
-            const _data = res.data
-            if (_data.code === 0) {
-              commit("setUserInfo", _data.data)
-            } else {
-              commit("removeUserInfo")
-            }
-            resolve()
-          } else {
-            reject()
-          }
-        })
-        .catch(error => {
-          reject(error)
-        })
-    })
+  async GetInfo({ commit }) {
+    const res = await getUserInfo(getToken())
+    if (res.data) {
+      const _data = res.data
+      if (_data.code === 0) {
+        commit("setUserInfo", _data.data)
+      } else {
+        commit("removeUserInfo")
+      }
+    }
   },
   Logout({ commit }) {
     return new Promise((resolve, reject) => {

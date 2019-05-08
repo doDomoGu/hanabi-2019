@@ -3,6 +3,7 @@
     <login v-if="loginState === false" />
     <template v-else-if="loginState === true">
       <room-list v-if="!isInRoom" />
+      <my-room v-else-if="isInRoom" />
     </template>
   </div>
 </template>
@@ -19,8 +20,16 @@ export default {
   },
   created() {
     if (getToken()) {
-      this.$store.dispatch("auth/CheckToken")
+      //本地(localstorage)有token 验证token
+      this.$store.dispatch("auth/CheckToken").then(() => {
+        if (this.loginState) {
+          //验证成功 获取用户信息
+          this.$store.dispatch("auth/GetInfo")
+          this.$store.dispatch("myRoom/GetInfo", { force: true })
+        }
+      })
     } else {
+      //没有token 将loginState置为false
       this.$store.commit("auth/setLoginState", false)
     }
   },
@@ -29,9 +38,10 @@ export default {
       return this.$store.getters["auth/loginState"]
     },
     isInRoom() {
-      return this.$store.getters["my-room/roomId"] > 0
+      return this.$store.getters["myRoom/roomId"] > 0
     }
-  }
+  },
+  methods: {}
 }
 </script>
 <style>
