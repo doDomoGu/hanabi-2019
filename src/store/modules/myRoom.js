@@ -1,4 +1,4 @@
-import { enter, exit, getInfo } from "@/api/myRoom"
+import { enter, exit, getInfo, doReady } from "@/api/myRoom"
 
 const state = {
   roomId: -1,
@@ -56,7 +56,7 @@ const actions = {
     }
   },
   async DoReady() {
-    await axios.post("/my-room/do-ready")
+    await doReady()
   }
 }
 

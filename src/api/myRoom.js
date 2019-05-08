@@ -13,3 +13,7 @@ export function exit() {
 export function getInfo(params) {
   return axios.get("/my-room/info", { params: params })
 }
+
+export function doReady() {
+  return axios.post("/my-room/do-ready")
+}

@@ -4,11 +4,7 @@
 
 <script>
 import { DrawLib, RoomListDraw } from "@/utils/canvas/index"
-// import CanvasLib from "@/utils/canvas/lib"
 import RoomListEventListener from "@/utils/canvas/eventListener/roomList"
-// import RLCParam from "@/utils/canvas/config/roomList.js"
-// import CommonDraw from "@/utils/canvas/draw/common.js"
-// import RoomListDraw from "@/utils/canvas/draw/roomList.js"
 
 export default {
   name: "room_list",
@@ -63,9 +59,10 @@ export default {
     }, 3000)
   },
   methods: {
-    async enter(index) {
-      await this.$store.dispatch("myRoom/Enter", index)
-      // await this.$store.dispatch("myRoom/GetInfo", { force: true })
+    enter(index) {
+      this.$store.dispatch("myRoom/Enter", index).then(() => {
+        this.$store.dispatch("myRoom/GetInfo", { force: true })
+      })
     }
   },
   destroyed() {

@@ -82,7 +82,8 @@ const drawPlayer = (ctx, rectConfig, isHost, isPlayer, isReady, info) => {
       if (isReady) {
         //已准备  按钮enabled_cancel
         buttonConfig.bgColor = MyRoomConfig.player.button.enabled.cancel.bgColor
-        buttonConfig.textcolor = MyRoomConfig.player.button.enabled.cancel.textColor
+        buttonConfig.textcolor =
+          MyRoomConfig.player.button.enabled.cancel.textColor
         buttonConfig.text = "取消准备"
       } else {
         //未准备  按钮enabled_ok
