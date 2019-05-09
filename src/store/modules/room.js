@@ -47,9 +47,11 @@ const getters = {
 const mutations = {
   SetRoomList(state, data) {
     state.list = data
+    state.count = data.length
   },
   ClearRoomList(state) {
     state.list = []
+    state.count = 0
   }
 }
 

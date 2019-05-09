@@ -4,6 +4,7 @@
 
 <script>
 import { DrawLib, MyRoomDraw } from "@/utils/canvas/index"
+import MyRoomEventListener from "@/utils/canvas/eventListener/myRoom"
 export default {
   name: "my-room",
   data() {
@@ -49,12 +50,18 @@ export default {
 
     this.$store.dispatch("myRoom/GetInfo", { force: true })
 
-    /* this.intervalId = setInterval(() => {
+    this.intervalId = setInterval(() => {
       this.$store.dispatch("myRoom/GetInfo")
-      this.$store.dispatch("myGame/GetInfo", { mode: "simple" })
+      //this.$store.dispatch("myGame/GetInfo", { mode: "simple" })
     }, 1000)
 
-    this.canvas.addEventListener("click", this.eventListener, false) */
+    this.canvas.addEventListener(
+      "click",
+      e => {
+        MyRoomEventListener(this, e)
+      },
+      false
+    )
   }
 }
 </script>
