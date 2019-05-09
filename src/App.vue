@@ -2,7 +2,7 @@
   <div id="app">
     <login v-if="loginState === false" />
     <template v-else-if="loginState === true">
-      <logout />
+      <logout v-if="!isInRoom" />
       <room-list v-if="!isInRoom" />
       <template v-else-if="isInRoom">
         <my-room v-if="!isInGame" />

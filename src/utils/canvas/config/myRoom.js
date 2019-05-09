@@ -104,7 +104,7 @@ _.exitBtn = {}
 _.exitBtn.w = width
 _.exitBtn.h = 30 * dpr
 _.exitBtn.x = 0 * dpr
-_.exitBtn.y = height - _.exitBtn.h - 80 * dpr
+_.exitBtn.y = height - _.exitBtn.h
 _.exitBtn.bgColor = "#e90200"
 _.exitBtn.textColor = "#ffffff"
 
