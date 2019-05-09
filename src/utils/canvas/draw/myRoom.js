@@ -17,7 +17,7 @@ _.exitBtn = ctx => {
   ctx.fillStyle = btn.textColor
   ctx.textAlign = "center"
   ctx.textBaseline = "middle"
-  ctx.fillText("退出", btn.x + btn.w / 2, btn.y + btn.h / 2)
+  ctx.fillText("退出房间", btn.x + btn.w / 2, btn.y + btn.h / 2)
 }
 
 _.hostPlayer = (ctx, isHost, isReady, info) => {
