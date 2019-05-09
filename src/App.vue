@@ -62,6 +62,6 @@ export default {
 body,
 html {
   margin: 0;
-  background: #5b4ab9;
+  background: #99c9db;
 }
 </style>

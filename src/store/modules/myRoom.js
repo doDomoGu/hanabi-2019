@@ -17,7 +17,7 @@ const state = {
 }
 
 const actions = {
-  async Enter(roomId) {
+  async Enter({ commit }, roomId) {
     await enter(roomId)
   },
   async Exit() {

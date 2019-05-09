@@ -1,7 +1,7 @@
 <template>
   <section id="logout-button">
     <mt-button type="danger" size="large" @click.native="logout">
-      退出
+      登出
     </mt-button>
   </section>
 </template>
@@ -11,7 +11,7 @@ export default {
   name: "logout",
   methods: {
     logout() {
-      MessageBox.confirm("确定要退出吗?")
+      MessageBox.confirm("确定要退出登录吗?")
         .then(action => {
           if (action == "confirm") {
             this.$store.dispatch("auth/Logout")

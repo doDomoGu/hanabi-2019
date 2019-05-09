@@ -58,7 +58,7 @@ const actions = {
       commit("ClearInfo")
     }
   },
-  async DoDiscard(cardSelectOrd) {
+  async DoDiscard({}, cardSelectOrd) {
     await doDiscard(cardSelectOrd)
   },
   async DoPlay({}, cardSelectOrd) {
