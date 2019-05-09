@@ -4,7 +4,10 @@
     <template v-else-if="loginState === true">
       <logout />
       <room-list v-if="!isInRoom" />
-      <my-room v-else-if="isInRoom" />
+      <template v-else-if="isInRoom">
+        <my-room v-if="!isInGame" />
+        <my-game v-else-if="isInGame" />
+      </template>
     </template>
   </div>
 </template>
@@ -15,13 +18,15 @@ import LoginCom from "./components/Login"
 import LogoutCom from "./components/Logout"
 import RoomListCom from "./components/RoomList"
 import MyRoomCom from "./components/MyRoom"
+import MyGameCom from "./components/MyGame"
 export default {
   name: "app",
   components: {
     login: LoginCom,
     logout: LogoutCom,
     roomList: RoomListCom,
-    myRoom: MyRoomCom
+    myRoom: MyRoomCom,
+    myGame: MyGameCom
   },
   created() {
     if (getToken()) {
@@ -31,6 +36,7 @@ export default {
           //验证成功 获取用户信息/房间信息/游戏信息
           this.$store.dispatch("auth/GetInfo")
           this.$store.dispatch("myRoom/GetInfo", { force: true })
+          this.$store.dispatch("myGame/GetInfo", { force: true })
         }
       })
     } else {
@@ -44,6 +50,9 @@ export default {
     },
     isInRoom() {
       return this.$store.getters["myRoom/roomId"] > 0
+    },
+    isInGame() {
+      return this.$store.getters["myGame/isPlaying"]
     }
   },
   methods: {}
