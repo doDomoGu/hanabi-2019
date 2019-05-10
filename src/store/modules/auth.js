@@ -36,7 +36,6 @@ const actions = {
         commit("setLoginState", false)
       }
     }
-    return 1
   },
   async GetInfo({ commit }) {
     const res = await getUserInfo(getToken())
