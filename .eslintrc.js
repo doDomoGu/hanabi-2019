@@ -11,7 +11,8 @@ module.exports = {
       "warn", {
         "semi": false
       }
-    ]
+    ],
+    "no-empty-pattern": 0
   },
   parserOptions: {
     parser: "babel-eslint"
