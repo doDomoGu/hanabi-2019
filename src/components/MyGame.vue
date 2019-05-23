@@ -8,7 +8,7 @@
 
 <script>
 import { DrawLib, MyGameDraw } from "@/utils/canvas/index"
-// import MyGameEventListener from "@/utils/canvas/eventListener/myRoom"
+// import { MyGameEventListener } from "@/utils/canvas/eventListener/myGame"
 export default {
   name: "my-game",
   data() {
