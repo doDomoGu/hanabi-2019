@@ -2,13 +2,17 @@
   <div>
     <canvas id="canvas_my_game_bottom"></canvas>
     <canvas id="canvas_my_game_middle"></canvas>
-    <canvas id="canvas_my_game_top"></canvas>
+    <canvas id="canvas_my_game_top" v-show="topOperation"></canvas>
   </div>
 </template>
 
 <script>
 import { DrawLib, MyGameDraw } from "@/utils/canvas/index"
 // import { MyGameEventListener } from "@/utils/canvas/eventListener/myGame"
+import {
+  eventListener as MyGameEventListener,
+  eventListenerTop as MyGameEventListenerTop
+} from "@/utils/canvas/eventListener/myGame"
 export default {
   name: "my-game",
   data() {
@@ -101,8 +105,20 @@ export default {
       this.$store.dispatch("myGame/GetInfo", { force: true })
     }, 5000)
 
-    /* this.canvas_m.addEventListener("click", this.eventListener, false)
-    this.canvas_t.addEventListener("click", this.eventListenerTop, false) */
+    this.canvas_m.addEventListener(
+      "click",
+      e => {
+        MyGameEventListener(this, e)
+      },
+      false
+    )
+    this.canvas_t.addEventListener(
+      "click",
+      e => {
+        MyGameEventListenerTop(this, e)
+      },
+      false
+    )
     // this.canvas.addEventListener('touchstart',this.eventListener,false)
     // this.canvas.addEventListener('touchend',this.eventListener,false)
   }

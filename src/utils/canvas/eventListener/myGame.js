@@ -3,8 +3,7 @@ import CanvasLib from "../lib"
 import { MyGameDraw } from "../index"
 import MyGameConfig from "../config/myGame"
 
-let _ = {}
-_.eventListener = (t, evt) => {
+const eventListener = (t, evt) => {
   const mousePos = CanvasLib.getMousePos(t.canvas_m, evt)
   // console.log("鼠标指针坐标：" + mousePos.x + "," + mousePos.y)
   const isPath = (pos, areaName) => {
@@ -73,7 +72,7 @@ _.eventListener = (t, evt) => {
   }
 }
 
-_.eventListenerTop = (t, evt) => {
+const eventListenerTop = (t, evt) => {
   const mousePos = CanvasLib.getMousePos(t.canvas_m, evt)
   // console.log("鼠标指针坐标：" + mousePos.x + "," + mousePos.y)
   const isPath = (pos, areaName) => {
@@ -127,4 +126,4 @@ _.eventListenerTop = (t, evt) => {
   }
 }
 
-export default _
+export { eventListener, eventListenerTop }
