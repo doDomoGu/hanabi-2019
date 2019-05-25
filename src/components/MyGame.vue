@@ -3,12 +3,31 @@
     <canvas id="canvas_my_game_bottom"></canvas>
     <canvas id="canvas_my_game_middle"></canvas>
     <canvas id="canvas_my_game_top" v-show="topOperation"></canvas>
+    <ul
+      id="log"
+      :style="
+        'left:' +
+          logRect.x +
+          'px;top:' +
+          logRect.y +
+          'px;width:' +
+          logRect.w +
+          'px;height:' +
+          logRect.h +
+          'px;overflow-y:scroll;'
+      "
+    >
+      <li v-for="l in logList" :key="l">
+        {{ l }}
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
 import { DrawLib, MyGameDraw } from "@/utils/canvas/index"
-// import { MyGameEventListener } from "@/utils/canvas/eventListener/myGame"
+import MyGameConfig from "@/utils/canvas/config/myGame"
+import CanvasLib from "@/utils/canvas/lib"
 import {
   eventListener as MyGameEventListener,
   eventListenerTop as MyGameEventListenerTop
@@ -24,10 +43,10 @@ export default {
       selectCardIsHost: false,
       selectCardIndex: -1,
       logRect: {
-        /* x: MGCParam.history.area.x / MyCanvas.getDevicePixelRatio(),
-        y: MGCParam.history.area.y / MyCanvas.getDevicePixelRatio(),
-        w: MGCParam.history.area.w / MyCanvas.getDevicePixelRatio(),
-        h: MGCParam.history.area.h / MyCanvas.getDevicePixelRatio() */
+        x: MyGameConfig.history.area.x / CanvasLib.getDevicePixelRatio(),
+        y: MyGameConfig.history.area.y / CanvasLib.getDevicePixelRatio(),
+        w: MyGameConfig.history.area.w / CanvasLib.getDevicePixelRatio(),
+        h: MyGameConfig.history.area.h / CanvasLib.getDevicePixelRatio()
       }
     }
   },
@@ -144,10 +163,20 @@ export default {
   line-height: 20px;
   z-index: 2;
   list-style: none;
-  padding-left: 4px;
+  padding: 0;
   margin: 0;
   overflow-y: scroll;
 }
+#log li {
+  padding: 4px;
+}
+#log li:nth-child(2n) {
+  background: rgb(155, 228, 72);
+}
+#log li:nth-child(2n + 1) {
+  background: rgb(243, 130, 130);
+}
+
 #my_game {
   width: 100%;
   height: 100%;
