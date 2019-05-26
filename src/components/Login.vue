@@ -40,14 +40,17 @@ export default {
           this.form.password.trim()
         ])
         .then(() => {
-          if (!this.$store.getters["auth/loginState"]) {
+          if (this.$store.getters["auth/loginState"]) {
             /* const redirectUrl = this.$route.query.redirectUrl
             if (redirectUrl != "") {
               this.$router.push({ path: redirectUrl })
             } else {
               this.$router.push({ path: "/" })
-            }
-          } else { */
+            } */
+
+            this.$store.dispatch("myRoom/GetInfo", { force: true })
+            this.$store.dispatch("myGame/GetInfo", { force: true })
+          } else {
             MessageBox("提示", this.$store.getters["auth/loginErrorMsg"])
           }
         })
