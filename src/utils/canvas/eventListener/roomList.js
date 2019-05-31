@@ -5,7 +5,7 @@ import { RoomListDraw } from "@/utils/canvas/index"
 import RoomListConfig from "../config/roomList"
 
 export default function eventListener(t, evt) {
-  const mousePos = CanvasLib.getMousePos(t.canvas, evt)
+  const mousePos = CanvasLib.getMousePos(t.ctx.canvas, evt)
 
   function getListItemIndex(pos, listCount) {
     let index = -1 // [0-9]

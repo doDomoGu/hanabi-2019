@@ -12,6 +12,21 @@ _.clear = canvas => {
   canvas.height = window.innerHeight * dpr
 }
 
+//绘制背景图
+_.background = (ctx, imgSrc) => {
+  let image = new Image()
+  image.src = imgSrc
+  image.onload = () => {
+    ctx.drawImage(
+      image,
+      0,
+      0,
+      ctx.canvas.clientWidth * dpr,
+      ctx.canvas.clientHeight * dpr
+    )
+  }
+}
+
 //font-size
 // _.fontSize = window.innerWidth / 6.4
 

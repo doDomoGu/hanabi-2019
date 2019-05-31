@@ -1,17 +1,21 @@
 <template>
-  <canvas id="room-list"></canvas>
+  <div>
+    <canvas id="room-list"></canvas>
+    <canvas id="bg"></canvas>
+  </div>
 </template>
 
 <script>
 import { DrawLib, RoomListDraw } from "@/utils/canvas/index"
 import RoomListEventListener from "@/utils/canvas/eventListener/roomList"
+import bgImg from "@/assets/background.jpg"
 
 export default {
   name: "room_list",
   data() {
     return {
-      canvas: null,
       ctx: null,
+      ctxBg: null,
       intervalId: 0,
       itemIndex: -1
     }
@@ -28,21 +32,25 @@ export default {
   },
   mounted() {
     // 定义canvas
-    this.canvas = document.querySelector("#room-list")
-    this.ctx = this.canvas.getContext("2d")
+    this.ctx = document.querySelector("#room-list").getContext("2d")
+    this.ctxBg = document.querySelector("#bg").getContext("2d")
 
     //清除画布
-    DrawLib.clear(this.canvas)
+    DrawLib.clear(this.ctx.canvas)
+    DrawLib.clear(this.ctxBg.canvas)
+
+    //绘制背景
+    DrawLib.background(this.ctxBg, bgImg)
 
     // 绑定触摸事件 touchstart 和 touchend
-    this.canvas.addEventListener(
+    this.ctx.canvas.addEventListener(
       "touchstart",
       e => {
         RoomListEventListener(this, e)
       },
       false
     )
-    this.canvas.addEventListener(
+    this.ctx.canvas.addEventListener(
       "touchend",
       e => {
         RoomListEventListener(this, e)
@@ -76,6 +84,14 @@ export default {
   position: absolute;
   width: 100%;
   height: 100%;
+  z-index: 2;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+#bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 </style>
