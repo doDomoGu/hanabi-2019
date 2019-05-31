@@ -6,7 +6,6 @@ let _ = {}
 
 _.list = (ctx, list) => {
   DrawLib.clear(ctx.canvas)
-
   for (let i in list) {
     //drawItem(ctx, _idx, list[index].title, this.itemIndex === _idx)
     _.drawItem(ctx, i, list[i], false)

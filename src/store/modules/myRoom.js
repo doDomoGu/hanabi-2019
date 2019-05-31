@@ -1,6 +1,7 @@
 import { enter, exit, getInfo, doReady } from "@/api/myRoom"
 
 const state = {
+  isIn: null,
   roomId: -1,
   isHost: null,
   hostPlayer: {
@@ -61,6 +62,7 @@ const actions = {
 }
 
 const getters = {
+  isIn: state => state.isIn,
   roomId: state => state.roomId,
   isHost: state => state.isHost,
   hostPlayer: state => state.hostPlayer,
@@ -71,6 +73,7 @@ const getters = {
 const mutations = {
   SetRoomId(state, roomId) {
     state.roomId = roomId
+    state.isIn = true
   },
   SetIsHost(state, isHost) {
     state.isHost = isHost
@@ -86,6 +89,7 @@ const mutations = {
   },
   ClearRoomId(state) {
     state.roomId = -1
+    state.isIn = false
   },
   ClearRoomPlayer(state) {
     state.hostPlayer = {

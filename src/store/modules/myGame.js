@@ -100,7 +100,7 @@ const mutations = {
     state.gameInfo = data
   },
   ClearInfo(state) {
-    state.isPlaying = null
+    state.isPlaying = false
     state.logList = []
     state.gameInfo = {
       roundNum: -1,

@@ -1,12 +1,20 @@
 <template>
   <div id="app">
-    <login v-if="loginState === false" />
+    <template v-if="loginState === false">
+      <login />
+    </template>
     <template v-else-if="loginState === true">
-      <logout v-if="!isInRoom" />
-      <room-list v-if="!isInRoom" />
-      <template v-else-if="isInRoom">
-        <my-room v-if="!isInGame" />
-        <my-game v-else-if="isInGame" />
+      <template v-if="isInRoom === false">
+        <logout />
+        <room-list />
+      </template>
+      <template v-else-if="isInRoom === true">
+        <template v-if="isInGame === false">
+          <my-room />
+        </template>
+        <template v-if="isInGame === true">
+          <my-game />
+        </template>
       </template>
     </template>
   </div>
@@ -49,7 +57,7 @@ export default {
       return this.$store.getters["auth/loginState"]
     },
     isInRoom() {
-      return this.$store.getters["myRoom/roomId"] > 0
+      return this.$store.getters["myRoom/isIn"]
     },
     isInGame() {
       return this.$store.getters["myGame/isPlaying"]
