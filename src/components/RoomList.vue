@@ -1,7 +1,7 @@
 <template>
   <div>
-    <canvas id="room-list"></canvas>
-    <canvas id="bg"></canvas>
+    <!-- <canvas id="room-list"></canvas>
+    <canvas id="bg"></canvas> -->
   </div>
 </template>
 
@@ -14,12 +14,18 @@ export default {
   name: "room_list",
   data() {
     return {
-      ctx: null,
-      ctxBg: null,
+      /* ctx: null,
+      ctxBg: null, */
       intervalId: 0,
       itemIndex: -1
     }
   },
+  props: ["ctxMain"],
+  /* props: {
+    ctxMain: {
+      type: CanvasRenderingContext2D
+    }
+  }, */
   computed: {
     list() {
       return this.$store.getters["room/list"]
@@ -27,44 +33,45 @@ export default {
   },
   watch: {
     list(newVal) {
-      RoomListDraw.list(this.ctx, newVal)
+      RoomListDraw.list(this.ctxMain, newVal)
     }
   },
   mounted() {
+    console.log(this.ctxMain)
     // 定义canvas
-    this.ctx = document.querySelector("#room-list").getContext("2d")
-    this.ctxBg = document.querySelector("#bg").getContext("2d")
+    // this.ctx = document.querySelector("#room-list").getContext("2d")
+    // this.ctxBg = document.querySelector("#bg").getContext("2d")
 
-    //清除画布
-    DrawLib.clear(this.ctx.canvas)
-    DrawLib.clear(this.ctxBg.canvas)
+    // //清除画布
+    // DrawLib.clear(this.ctx.canvas)
+    // DrawLib.clear(this.ctxBg.canvas)
 
-    //绘制背景
-    DrawLib.background(this.ctxBg, bgImg)
+    // //绘制背景
+    // DrawLib.background(this.ctxBg, bgImg)
 
-    // 绑定触摸事件 touchstart 和 touchend
-    this.ctx.canvas.addEventListener(
-      "touchstart",
-      e => {
-        RoomListEventListener(this, e)
-      },
-      false
-    )
-    this.ctx.canvas.addEventListener(
-      "touchend",
-      e => {
-        RoomListEventListener(this, e)
-      },
-      false
-    )
+    // // 绑定触摸事件 touchstart 和 touchend
+    // this.ctx.canvas.addEventListener(
+    //   "touchstart",
+    //   e => {
+    //     RoomListEventListener(this, e)
+    //   },
+    //   false
+    // )
+    // this.ctx.canvas.addEventListener(
+    //   "touchend",
+    //   e => {
+    //     RoomListEventListener(this, e)
+    //   },
+    //   false
+    // )
 
-    // 执行一次获取房间列表（参数：强制更新）
-    this.$store.dispatch("room/GetList", { force: true })
+    // // 执行一次获取房间列表（参数：强制更新）
+    // this.$store.dispatch("room/GetList", { force: true })
 
-    // 设置定时器：获取房间列表数据
-    this.intervalId = setInterval(() => {
-      this.$store.dispatch("room/GetList")
-    }, 3000)
+    // // 设置定时器：获取房间列表数据
+    // this.intervalId = setInterval(() => {
+    //   this.$store.dispatch("room/GetList")
+    // }, 3000)
   },
   methods: {
     enter(index) {

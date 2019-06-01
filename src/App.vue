@@ -1,22 +1,9 @@
 <template>
   <div id="app">
-    <template v-if="loginState === false">
-      <login />
-    </template>
-    <template v-else-if="loginState === true">
-      <template v-if="isInRoom === false">
-        <logout />
-        <room-list />
-      </template>
-      <template v-else-if="isInRoom === true">
-        <template v-if="isInGame === false">
-          <my-room />
-        </template>
-        <template v-if="isInGame === true">
-          <my-game />
-        </template>
-      </template>
-    </template>
+    <canvas id="bg"></canvas>
+    <canvas ref="main"></canvas>
+    <canvas id="top"></canvas>
+    <room-list :ctxMain="$refs" />
   </div>
 </template>
 
@@ -36,6 +23,12 @@ export default {
     myRoom: MyRoomCom,
     myGame: MyGameCom
   },
+  data() {
+    return {
+      ctxMain: null,
+      ctxBg: null
+    }
+  },
   created() {
     if (getToken()) {
       //本地(localstorage)有token 验证token
@@ -51,6 +44,9 @@ export default {
       //没有token 将loginState置为false
       this.$store.commit("auth/setLoginState", false)
     }
+
+    /* this.ctxMain = document.querySelector("#main").getContext("2d")
+    this.ctxBg = document.querySelector("#bg").getContext("2d") */
   },
   computed: {
     loginState() {
@@ -62,6 +58,21 @@ export default {
     isInGame() {
       return this.$store.getters["myGame/isPlaying"]
     }
+  },
+  mounted() {
+    console.log(this.$refs["main"])
+    console.log(this.$refs)
+    // console.log(this.$refs["main"])
+    // 定义canvas
+    // this.$store.commit("canvas/Set", {
+    //   name: "ctxMain",
+    //   data: document.querySelector("#main").getContext("2d")
+    // })
+    // // this.ctxBg = document.querySelector("#bg").getContext("2d")
+    // console.log("app")
+    // console.log(this.$store.getters["canvas/ctxMain"])
+    // // console.log(this.ctxBg)
+    // console.log(" ")
   },
   methods: {}
 }
