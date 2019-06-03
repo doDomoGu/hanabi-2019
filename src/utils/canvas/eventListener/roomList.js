@@ -46,9 +46,10 @@ export default function eventListener(t, evt) {
         t.enter(itemIndex + 1)
       }
     } else {
-      RoomListDraw.drawItem(t.ctx, t.itemIndex, t.list[t.itemIndex], false)
-
-      t.itemIndex = 0
+      if (t.itemIndex > -1) {
+        RoomListDraw.drawItem(t.ctx, t.itemIndex, t.list[t.itemIndex], false)
+        t.itemIndex = -1
+      }
     }
   }
 }
