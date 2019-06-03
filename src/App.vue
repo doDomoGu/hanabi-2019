@@ -16,7 +16,7 @@ import MyRoom from "./components/MyRoom"
 import MyGame from "./components/MyGame"
 export default {
   name: "app",
-  components: [Login, Logout, RoomList, MyRoom, MyGame],
+  components: { Login, Logout, RoomList, MyRoom, MyGame },
   created() {
     if (getToken()) {
       //本地(localstorage)有token 验证token
