@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <canvas id="my-room"></canvas>
-    <canvas id="bg"></canvas>
+  <div id="my-room">
+    <canvas id="ctxMain"></canvas>
+    <canvas id="ctxBg"></canvas>
   </div>
 </template>
 
@@ -14,7 +14,7 @@ export default {
   name: "my-room",
   data() {
     return {
-      ctx: null,
+      ctxMain: null,
       ctxBg: null,
       intervalId: 0
     }
@@ -35,37 +35,36 @@ export default {
   },
   watch: {
     hostPlayer(newVal) {
-      MyRoomDraw.hostPlayer(this.ctx, this.isHost, this.isReady, newVal)
+      MyRoomDraw.hostPlayer(this.ctxMain, this.isHost, this.isReady, newVal)
     },
     guestPlayer(newVal) {
       if (newVal) {
-        MyRoomDraw.guestPlayer(this.ctx, this.isHost, this.isReady, newVal)
+        MyRoomDraw.guestPlayer(this.ctxMain, this.isHost, this.isReady, newVal)
       }
     }
   },
   mounted() {
     // 定义canvas
-    this.ctx = document.querySelector("#my-room").getContext("2d")
-    this.ctxBg = document.querySelector("#bg").getContext("2d")
+    this.ctxMain = document.querySelector("#ctxMain").getContext("2d")
+    this.ctxBg = document.querySelector("#ctxBg").getContext("2d")
 
-    // 清除画布
-    DrawLib.clear(this.ctx.canvas)
+    //清除画布
+    DrawLib.clear(this.ctxMain.canvas)
     DrawLib.clear(this.ctxBg.canvas)
 
-    // 绘制背景
+    //绘制背景
     DrawLib.background(this.ctxBg, bgImg)
 
     // 绘制退出按钮
-    MyRoomDraw.exitBtn(this.ctx)
+    MyRoomDraw.exitBtn(this.ctxMain)
 
     this.$store.dispatch("myRoom/GetInfo", { force: true })
 
     this.intervalId = setInterval(() => {
       this.$store.dispatch("myRoom/GetInfo")
-      //this.$store.dispatch("myGame/GetInfo", { mode: "simple" })
     }, 3000)
 
-    this.ctx.canvas.addEventListener(
+    this.ctxMain.canvas.addEventListener(
       "click",
       e => {
         MyRoomEventListener(this, e)
@@ -77,15 +76,14 @@ export default {
 </script>
 
 <style scoped>
-#my-room {
+#ctxMain {
   position: absolute;
   width: 100%;
   height: 100%;
   z-index: 2;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-
-#bg {
+#ctxBg {
   position: absolute;
   width: 100%;
   height: 100%;

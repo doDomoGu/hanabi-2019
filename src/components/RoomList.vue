@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <canvas id="room-list"></canvas>
-    <canvas id="bg"></canvas>
+  <div id="room-list">
+    <canvas id="ctxMain"></canvas>
+    <canvas id="ctxBg"></canvas>
   </div>
 </template>
 
@@ -14,7 +14,7 @@ export default {
   name: "room_list",
   data() {
     return {
-      ctx: null,
+      ctxMain: null,
       ctxBg: null,
       intervalId: 0,
       itemIndex: -1
@@ -27,33 +27,33 @@ export default {
   },
   watch: {
     list(newVal) {
-      RoomListDraw.list(this.ctx, newVal)
+      RoomListDraw.list(this.ctxMain, newVal)
     }
   },
   mounted() {
     // 定义canvas
-    this.ctx = document.querySelector("#room-list").getContext("2d")
-    this.ctxBg = document.querySelector("#bg").getContext("2d")
+    this.ctxMain = document.querySelector("#ctxMain").getContext("2d")
+    this.ctxBg = document.querySelector("#ctxBg").getContext("2d")
 
     //清除画布
-    DrawLib.clear(this.ctx.canvas)
+    DrawLib.clear(this.ctxMain.canvas)
     DrawLib.clear(this.ctxBg.canvas)
 
     //绘制背景
     DrawLib.background(this.ctxBg, bgImg)
 
     // 绑定触摸事件 touchstart 和 touchend
-    this.ctx.canvas.addEventListener(
+    this.ctxMain.canvas.addEventListener(
       "touchstart",
       e => {
-        RoomListEventListener(this, e)
+        RoomListEventListener(this, e, this.ctxMain)
       },
       false
     )
-    this.ctx.canvas.addEventListener(
+    this.ctxMain.canvas.addEventListener(
       "touchend",
       e => {
-        RoomListEventListener(this, e)
+        RoomListEventListener(this, e, this.ctxMain)
       },
       false
     )
@@ -80,14 +80,14 @@ export default {
 }
 </script>
 <style scoped>
-#room-list {
+#ctxMain {
   position: absolute;
   width: 100%;
   height: 100%;
   z-index: 2;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-#bg {
+#ctxBg {
   position: absolute;
   width: 100%;
   height: 100%;

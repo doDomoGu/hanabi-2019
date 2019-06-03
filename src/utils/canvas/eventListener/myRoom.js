@@ -3,7 +3,9 @@ import CanvasLib from "../lib"
 import MyRoomConfig from "../config/myRoom"
 
 export default function eventListener(t, evt) {
-  const mousePos = CanvasLib.getMousePos(t.ctx.canvas, evt)
+  const ctx = t[evt.target.id]
+
+  const mousePos = CanvasLib.getMousePos(ctx.canvas, evt)
 
   function isPath(pos, areaName) {
     let area

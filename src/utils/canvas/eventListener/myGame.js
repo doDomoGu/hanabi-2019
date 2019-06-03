@@ -4,8 +4,11 @@ import { MyGameDraw } from "../index"
 import MyGameConfig from "../config/myGame"
 
 const eventListener = (t, evt) => {
-  const mousePos = CanvasLib.getMousePos(t.canvas_m, evt)
-  // console.log("鼠标指针坐标：" + mousePos.x + "," + mousePos.y)
+  const ctx = t[evt.target.id]
+  const ctxModal = t.ctxModal
+
+  const mousePos = CanvasLib.getMousePos(ctx.canvas, evt)
+
   const isPath = (pos, areaName) => {
     let area
     switch (areaName) {
@@ -54,18 +57,18 @@ const eventListener = (t, evt) => {
     t.selectCardIndex = hostHandsIndex
     t.selectCardIsHost = true
     if (t.isHost) {
-      MyGameDraw.topConfirmPlay(t.ctx_t)
+      MyGameDraw.topConfirmPlay(ctxModal)
     } else {
-      MyGameDraw.topConfirmCue(t.ctx_t)
+      MyGameDraw.topConfirmCue(ctxModal)
     }
   } else if (t.gameInfo.roundPlayerIsHost == t.isHost && guestHandsIndex > -1) {
     t.topOperation = true
     t.selectCardIndex = guestHandsIndex + 5
     t.selectCardIsHost = false
     if (t.isHost) {
-      MyGameDraw.topConfirmCue(t.ctx_t)
+      MyGameDraw.topConfirmCue(ctxModal)
     } else {
-      MyGameDraw.topConfirmPlay(t.ctx_t)
+      MyGameDraw.topConfirmPlay(ctxModal)
     }
   } else if (isPath(mousePos, "endBtn")) {
     t.$store.dispatch("myGame/End")
@@ -73,7 +76,9 @@ const eventListener = (t, evt) => {
 }
 
 const eventListenerTop = (t, evt) => {
-  const mousePos = CanvasLib.getMousePos(t.canvas_m, evt)
+  const ctx = t[evt.target.id]
+
+  const mousePos = CanvasLib.getMousePos(ctx.canvas, evt)
   // console.log("鼠标指针坐标：" + mousePos.x + "," + mousePos.y)
   const isPath = (pos, areaName) => {
     let area

@@ -5,7 +5,9 @@ import { RoomListDraw } from "@/utils/canvas/index"
 import RoomListConfig from "../config/roomList"
 
 export default function eventListener(t, evt) {
-  const mousePos = CanvasLib.getMousePos(t.ctx.canvas, evt)
+  const ctx = t[evt.target.id]
+
+  const mousePos = CanvasLib.getMousePos(ctx.canvas, evt)
 
   function getListItemIndex(pos, listCount) {
     let index = -1 // [0-9]
@@ -31,7 +33,7 @@ export default function eventListener(t, evt) {
   if (evt.type == "touchstart") {
     if (itemIndex > -1) {
       t.itemIndex = itemIndex
-      RoomListDraw.drawItem(t.ctx, t.itemIndex, t.list[t.itemIndex], true)
+      RoomListDraw.drawItem(ctx, t.itemIndex, t.list[t.itemIndex], true)
     }
   } else if (evt.type == "touchend") {
     if (
@@ -41,13 +43,13 @@ export default function eventListener(t, evt) {
     ) {
       if (t.list[itemIndex].isLocked) {
         alert("这个房间锁上了")
-        RoomListDraw.drawItem(t.ctx, t.itemIndex, t.list[t.itemIndex], false)
+        RoomListDraw.drawItem(ctx, t.itemIndex, t.list[t.itemIndex], false)
       } else {
         t.enter(itemIndex + 1)
       }
     } else {
       if (t.itemIndex > -1) {
-        RoomListDraw.drawItem(t.ctx, t.itemIndex, t.list[t.itemIndex], false)
+        RoomListDraw.drawItem(ctx, t.itemIndex, t.list[t.itemIndex], false)
         t.itemIndex = -1
       }
     }

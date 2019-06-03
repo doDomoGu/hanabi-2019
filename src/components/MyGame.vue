@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <canvas id="canvas_my_game_bottom"></canvas>
-    <canvas id="canvas_my_game_middle"></canvas>
-    <canvas id="canvas_my_game_top" v-show="topOperation"></canvas>
+  <div id="my-game">
+    <canvas id="ctxMain"></canvas>
+    <canvas id="ctxBg"></canvas>
+    <canvas id="ctxModal" v-show="modalShow"></canvas>
     <ul
       id="log"
       :style="
@@ -36,10 +36,11 @@ export default {
   name: "my-game",
   data() {
     return {
-      canvas: null,
-      ctx: null,
+      ctxMain: null,
+      ctxBg: null,
+      ctxModal: null,
       intervalId: 0,
-      topOperation: false,
+      modalShow: false,
       selectCardIsHost: false,
       selectCardIndex: -1,
       logRect: {
@@ -75,46 +76,41 @@ export default {
   },
   watch: {
     hostPlayer(val) {
-      MyGameDraw.hostPlayer(this.ctx_m, this.isHost, val)
+      MyGameDraw.hostPlayer(this.ctxMain, this.isHost, val)
     },
     guestPlayer(val) {
-      MyGameDraw.guestPlayer(this.ctx_m, this.isHost, val)
+      MyGameDraw.guestPlayer(this.ctxMain, this.isHost, val)
     },
     cardInfo(val) {
       //手牌
-      MyGameDraw.hostHands(this.ctx_m, this.isHost, val.hostHands)
-      MyGameDraw.guestHands(this.ctx_m, this.isHost, val.guestHands)
+      MyGameDraw.hostHands(this.ctxMain, this.isHost, val.hostHands)
+      MyGameDraw.guestHands(this.ctxMain, this.isHost, val.guestHands)
       //牌库 弃牌堆
-      MyGameDraw.libraryCards(this.ctx_m, val.libraryCardsNum)
-      MyGameDraw.discardCards(this.ctx_m, val.discardCardsNum)
+      MyGameDraw.libraryCards(this.ctxMain, val.libraryCardsNum)
+      MyGameDraw.discardCards(this.ctxMain, val.discardCardsNum)
       //数字:提示数/机会数/分数  cueNum/chanceNum/score
-      MyGameDraw.cueNum(this.ctx_m, val.cueNum)
-      MyGameDraw.chanceNum(this.ctx_m, val.chanceNum)
-      MyGameDraw.score(this.ctx_m, val.score)
+      MyGameDraw.cueNum(this.ctxMain, val.cueNum)
+      MyGameDraw.chanceNum(this.ctxMain, val.chanceNum)
+      MyGameDraw.score(this.ctxMain, val.score)
       //成功打出的卡牌
-      MyGameDraw.successCards(this.ctx_m, val.successCards)
+      MyGameDraw.successCards(this.ctxMain, val.successCards)
     },
     gameInfo(val) {
-      MyGameDraw.nowPlaying(this.ctx_m, val.roundPlayerIsHost)
+      MyGameDraw.nowPlaying(this.ctxMain, val.roundPlayerIsHost)
     }
   },
   mounted() {
-    this.canvas_b = document.querySelector("#canvas_my_game_bottom")
-    this.ctx_b = this.canvas_b.getContext("2d")
+    this.ctxMain = document.querySelector("#ctxMain").getContext("2d")
+    this.ctxBg = document.querySelector("#ctxBg").getContext("2d")
+    this.ctxModal = document.querySelector("#ctxModal").getContext("2d")
 
-    this.canvas_m = document.querySelector("#canvas_my_game_middle")
-    this.ctx_m = this.canvas_m.getContext("2d")
+    DrawLib.clear(this.ctxMain)
+    DrawLib.clear(this.ctxBg)
+    DrawLib.clear(this.ctxModal)
 
-    this.canvas_t = document.querySelector("#canvas_my_game_top")
-    this.ctx_t = this.canvas_t.getContext("2d")
-
-    DrawLib.clear(this.canvas_b)
-    DrawLib.clear(this.canvas_m)
-    DrawLib.clear(this.canvas_t)
-
-    MyGameDraw.bottomRect(this.ctx_b)
-    MyGameDraw.endBtn(this.ctx_m)
-    MyGameDraw.topRect(this.ctx_t)
+    MyGameDraw.bottomRect(this.ctxBg)
+    MyGameDraw.endBtn(this.ctxMain)
+    MyGameDraw.topRect(this.ctxModal)
 
     this.$store.dispatch("myRoom/GetInfo", { force: true })
 
@@ -124,14 +120,14 @@ export default {
       this.$store.dispatch("myGame/GetInfo", { force: true })
     }, 5000)
 
-    this.canvas_m.addEventListener(
+    this.ctxMain.canvas.addEventListener(
       "click",
       e => {
         MyGameEventListener(this, e)
       },
       false
     )
-    this.canvas_t.addEventListener(
+    this.ctxModal.canvas.addEventListener(
       "click",
       e => {
         MyGameEventListenerTop(this, e)
@@ -144,16 +140,16 @@ export default {
 }
 </script>
 <style scoped>
-#canvas_my_game_bottom,
-#canvas_my_game_middle,
-#canvas_my_game_top {
+#ctxBg,
+#ctxMain,
+#ctxModal {
   position: absolute;
   width: 100%;
   height: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-#canvas_my_game_top {
+#ctxModal {
   z-index: 100;
 }
 
@@ -177,7 +173,7 @@ export default {
   background: rgb(243, 130, 130);
 }
 
-#my_game {
+#my-game {
   width: 100%;
   height: 100%;
   overflow: hidden;
