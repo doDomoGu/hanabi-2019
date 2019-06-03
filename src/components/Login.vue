@@ -41,17 +41,13 @@ export default {
         ])
         .then(() => {
           if (this.$store.getters["auth/isLogin"] === true) {
-            /* const redirectUrl = this.$route.query.redirectUrl
-            if (redirectUrl != "") {
-              this.$router.push({ path: redirectUrl })
-            } else {
-              this.$router.push({ path: "/" })
-            } */
-
+            this.$store.dispatch("auth/GetInfo")
             this.$store.dispatch("myRoom/GetInfo", { force: true })
             this.$store.dispatch("myGame/GetInfo", { force: true })
           } else if (this.$store.getters["auth/isLogin"] === false) {
             MessageBox("提示", this.$store.getters["auth/loginErrorMsg"])
+          } else {
+            MessageBox("未知错误")
           }
         })
         .catch(err => {
