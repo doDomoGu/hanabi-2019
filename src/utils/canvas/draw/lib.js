@@ -7,9 +7,9 @@ const dpr = CanvasLib.getDevicePixelRatio()
 let _ = {}
 
 // 清空画布方法
-_.clear = canvas => {
-  canvas.width = window.innerWidth * dpr
-  canvas.height = window.innerHeight * dpr
+_.clear = ctx => {
+  ctx.canvas.width = window.innerWidth * dpr
+  ctx.canvas.height = window.innerHeight * dpr
 }
 
 //绘制背景图

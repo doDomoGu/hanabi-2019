@@ -49,8 +49,8 @@ export default {
     this.ctxBg = document.querySelector("#ctxBg").getContext("2d")
 
     //清除画布
-    DrawLib.clear(this.ctxMain.canvas)
-    DrawLib.clear(this.ctxBg.canvas)
+    DrawLib.clear(this.ctxMain)
+    DrawLib.clear(this.ctxBg)
 
     //绘制背景
     DrawLib.background(this.ctxBg, bgImg)

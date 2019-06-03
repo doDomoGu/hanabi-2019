@@ -234,7 +234,7 @@ _.nowPlaying = (ctx, isHost) => {
 }
 
 _.topConfirmPlay = ctx => {
-  DrawLib.clear(ctx.canvas)
+  DrawLib.clear(ctx)
   _.topRect(ctx)
 
   const rectTip = MyGameConfig.top.tip.rect
@@ -275,7 +275,7 @@ _.topConfirmPlay = ctx => {
 }
 
 _.topConfirmCue = ctx => {
-  DrawLib.clear(ctx.canvas)
+  DrawLib.clear(ctx)
   _.topRect(ctx)
 
   const rectTip = MyGameConfig.top.tip.rect

@@ -149,8 +149,14 @@ export default {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+#ctxMain {
+  z-index: 5;
+}
+#ctxBg {
+  z-index: 1;
+}
 #ctxModal {
-  z-index: 100;
+  z-index: 10;
 }
 
 #log {
