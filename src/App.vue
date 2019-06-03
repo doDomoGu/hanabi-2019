@@ -1,41 +1,22 @@
 <template>
   <div id="app">
-    <template v-if="isLogin === false">
-      <login />
-    </template>
-    <template v-else-if="isLogin === true">
-      <template v-if="isInRoom === false">
-        <logout />
-        <room-list />
-      </template>
-      <template v-else-if="isInRoom === true">
-        <template v-if="isInGame === false">
-          <my-room />
-        </template>
-        <template v-else-if="isInGame === true">
-          <my-game />
-        </template>
-      </template>
-    </template>
+    <login v-if="isLogin === false" />
+    <logout v-if="isLogin === true" />
+    <room-list v-if="isRoomList === true" />
+    <my-room v-if="isInRoom === true" />
+    <my-game v-if="isInGame === true" />
   </div>
 </template>
-
 <script>
 import { getToken } from "@/utils/authToken"
-import LoginCom from "./components/Login"
-import LogoutCom from "./components/Logout"
-import RoomListCom from "./components/RoomList"
-import MyRoomCom from "./components/MyRoom"
-import MyGameCom from "./components/MyGame"
+import Login from "./components/Login"
+import Logout from "./components/Logout"
+import RoomList from "./components/RoomList"
+import MyRoom from "./components/MyRoom"
+import MyGame from "./components/MyGame"
 export default {
   name: "app",
-  components: {
-    login: LoginCom,
-    logout: LogoutCom,
-    roomList: RoomListCom,
-    myRoom: MyRoomCom,
-    myGame: MyGameCom
-  },
+  components: [Login, Logout, RoomList, MyRoom, MyGame],
   created() {
     if (getToken()) {
       //本地(localstorage)有token 验证token
@@ -56,14 +37,27 @@ export default {
     isLogin() {
       return this.$store.getters["auth/isLogin"]
     },
+    isRoomList() {
+      return (
+        this.$store.getters["auth/isLogin"] &&
+        !this.$store.getters["myRoom/isIn"]
+      )
+    },
     isInRoom() {
-      return this.$store.getters["myRoom/isIn"]
+      return (
+        this.$store.getters["auth/isLogin"] &&
+        this.$store.getters["myRoom/isIn"] &&
+        !this.$store.getters["myGame/isPlaying"]
+      )
     },
     isInGame() {
-      return this.$store.getters["myGame/isPlaying"]
+      return (
+        this.$store.getters["auth/isLogin"] &&
+        this.$store.getters["myRoom/isIn"] &&
+        this.$store.getters["myGame/isPlaying"]
+      )
     }
-  },
-  methods: {}
+  }
 }
 </script>
 <style>
