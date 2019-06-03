@@ -27,7 +27,7 @@ export default {
   data() {
     return {
       form: {
-        username: "admin",
+        username: "player1",
         password: "123123"
       }
     }
@@ -40,7 +40,7 @@ export default {
           this.form.password.trim()
         ])
         .then(() => {
-          if (this.$store.getters["auth/loginState"]) {
+          if (this.$store.getters["auth/isLogin"] === true) {
             /* const redirectUrl = this.$route.query.redirectUrl
             if (redirectUrl != "") {
               this.$router.push({ path: redirectUrl })
@@ -50,7 +50,7 @@ export default {
 
             this.$store.dispatch("myRoom/GetInfo", { force: true })
             this.$store.dispatch("myGame/GetInfo", { force: true })
-          } else {
+          } else if (this.$store.getters["auth/isLogin"] === false) {
             MessageBox("提示", this.$store.getters["auth/loginErrorMsg"])
           }
         })

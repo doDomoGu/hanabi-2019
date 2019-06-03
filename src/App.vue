@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <template v-if="loginState === false">
+    <template v-if="isLogin === false">
       <login />
     </template>
-    <template v-else-if="loginState === true">
+    <template v-else-if="isLogin === true">
       <template v-if="isInRoom === false">
         <logout />
         <room-list />
@@ -12,7 +12,7 @@
         <template v-if="isInGame === false">
           <my-room />
         </template>
-        <template v-if="isInGame === true">
+        <template v-else-if="isInGame === true">
           <my-game />
         </template>
       </template>
@@ -40,7 +40,7 @@ export default {
     if (getToken()) {
       //本地(localstorage)有token 验证token
       this.$store.dispatch("auth/CheckToken").then(() => {
-        if (this.loginState) {
+        if (this.isLogin) {
           //验证成功 获取用户信息/房间信息/游戏信息
           this.$store.dispatch("auth/GetInfo")
           this.$store.dispatch("myRoom/GetInfo", { force: true })
@@ -53,8 +53,8 @@ export default {
     }
   },
   computed: {
-    loginState() {
-      return this.$store.getters["auth/loginState"]
+    isLogin() {
+      return this.$store.getters["auth/isLogin"]
     },
     isInRoom() {
       return this.$store.getters["myRoom/isIn"]

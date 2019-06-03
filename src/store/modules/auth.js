@@ -2,7 +2,7 @@ import { login, logout, checkToken, getUserInfo } from "@/api/auth"
 import { getToken, setToken, removeToken } from "@/utils/authToken"
 
 const state = {
-  loginState: null,
+  isLogin: null,
   loginErrorMsg: null,
   userInfo: {}
 }
@@ -13,13 +13,19 @@ const actions = {
     if (res.data) {
       const data = res.data
       if (data.code === 0) {
+        // 登录验证成功
         const _data = data.data
+        // localstorage添加Token
         setToken(_data.token)
+        // 设置登录状态为True
         commit("setLoginState", true)
+        // 如果有错误信息则移除
         commit("removeLoginErrorMsg")
       } else {
-        removeToken()
-        commit("setLoginState", false)
+        // 登录验证失败
+        // removeToken()
+        // commit("setLoginState", false)
+        // 显示错误信息
         commit("setLoginErrorMsg", data.msg)
       }
     }
@@ -29,10 +35,14 @@ const actions = {
     if (res.data) {
       const data = res.data
       if (data.code === 0) {
+        // Token验证成功
+        // 设置登录状态为True
         commit("setLoginState", true)
       } else {
-        // 提交的token 错误
+        // Token验证失败
+        // 移除localstorage里储存的Token
         removeToken()
+        // 设置登录状态为False
         commit("setLoginState", false)
       }
     }
@@ -58,17 +68,17 @@ const actions = {
 }
 
 const getters = {
-  loginState: state => state.loginState,
+  isLogin: state => state.isLogin,
   loginErrorMsg: state => state.loginErrorMsg,
   userInfo: state => state.userInfo
 }
 
 const mutations = {
   setLoginState: (state, data) => {
-    state.loginState = data
+    state.isLogin = data
   },
   removeLoginState: state => {
-    state.loginState = null
+    state.isLogin = null
   },
   setLoginErrorMsg: (state, msg) => {
     state.loginErrorMsg = msg
