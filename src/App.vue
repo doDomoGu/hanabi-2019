@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <login v-if="isLogin === false" />
-    <logout v-if="isLogin === true" />
+    <logout v-if="logoutShow === true" />
     <room-list v-if="isRoomList === true" />
     <my-room v-if="isInRoom === true" />
     <my-game v-if="isInGame === true" />
@@ -36,6 +36,12 @@ export default {
   computed: {
     isLogin() {
       return this.$store.getters["auth/isLogin"]
+    },
+    logoutShow() {
+      return (
+        this.$store.getters["auth/isLogin"] &&
+        !this.$store.getters["myRoom/isIn"]
+      )
     },
     isRoomList() {
       return (
