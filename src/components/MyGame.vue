@@ -129,6 +129,10 @@ export default {
     )
     // this.canvas.addEventListener('touchstart',this.eventListener,false)
     // this.canvas.addEventListener('touchend',this.eventListener,false)
+  },
+  destroyed() {
+    // 离开页面 清除定时器
+    clearInterval(this.intervalId)
   }
 }
 </script>
