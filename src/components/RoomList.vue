@@ -1,12 +1,13 @@
 <template>
   <div id="room-list">
-    <canvas id="ctxMain"></canvas>
-    <canvas id="ctxBg"></canvas>
+    <canvas id="ctxMain" ref="ctxMain"></canvas>
+    <canvas id="ctxBg" ref="ctxBg"></canvas>
   </div>
 </template>
 
 <script>
 import { DrawLib, RoomListDraw } from "@/utils/canvas/index"
+import CanvasLib from "@/utils/canvas/lib"
 import RoomListEventListener from "@/utils/canvas/eventListener/roomList"
 import bgImg from "@/assets/background.jpg"
 
@@ -31,15 +32,11 @@ export default {
     }
   },
   mounted() {
-    // 定义canvas
-    this.ctxMain = document.querySelector("#ctxMain").getContext("2d")
-    this.ctxBg = document.querySelector("#ctxBg").getContext("2d")
+    // 初始化定义canvasContext
+    this.ctxMain = CanvasLib.getCtx(this.$refs.ctxMain)
+    this.ctxBg = CanvasLib.getCtx(this.$refs.ctxBg)
 
-    //清除画布
-    DrawLib.clear(this.ctxMain)
-    DrawLib.clear(this.ctxBg)
-
-    //绘制背景
+    // 绘制图片背景
     DrawLib.background(this.ctxBg, bgImg)
 
     // 绑定触摸事件 touchstart 和 touchend

@@ -28,6 +28,15 @@ _.getPixelRatio = context => {
   return (window.devicePixelRatio || 1) / backingStore
 }
 
+// 方法：定义canvasContext,且设置宽高
+_.getCtx = canvas => {
+  const ctx = canvas.getContext("2d")
+  const dpr = _.getDevicePixelRatio()
+  ctx.canvas.width = window.innerWidth * dpr
+  ctx.canvas.height = window.innerHeight * dpr
+  return ctx
+}
+
 // 方法：获得触摸位置坐标 (touchstart , touchend , click)
 _.getMousePos = (canvas, evt) => {
   let _evt

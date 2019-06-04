@@ -12,7 +12,7 @@ export default function eventListener(t, evt) {
   function getListItemIndex(pos, listCount) {
     let index = -1 // [0-9]
 
-    const rect = JSON.parse(JSON.stringify(RoomListConfig.item.rect))
+    const rect = { ...RoomListConfig.item.rect }
 
     if (pos.x >= rect.x && pos.x <= rect.x + rect.w) {
       let y1, y2
@@ -33,7 +33,7 @@ export default function eventListener(t, evt) {
   if (evt.type == "touchstart") {
     if (itemIndex > -1) {
       t.itemIndex = itemIndex
-      RoomListDraw.drawItem(ctx, t.itemIndex, t.list[t.itemIndex], true)
+      RoomListDraw.item(ctx, t.itemIndex, t.list[t.itemIndex], true)
     }
   } else if (evt.type == "touchend") {
     if (
@@ -43,13 +43,13 @@ export default function eventListener(t, evt) {
     ) {
       if (t.list[itemIndex].isLocked) {
         alert("这个房间锁上了")
-        RoomListDraw.drawItem(ctx, t.itemIndex, t.list[t.itemIndex], false)
+        RoomListDraw.item(ctx, t.itemIndex, t.list[t.itemIndex], false)
       } else {
         t.enter(itemIndex + 1)
       }
     } else {
       if (t.itemIndex > -1) {
-        RoomListDraw.drawItem(ctx, t.itemIndex, t.list[t.itemIndex], false)
+        RoomListDraw.item(ctx, t.itemIndex, t.list[t.itemIndex], false)
         t.itemIndex = -1
       }
     }

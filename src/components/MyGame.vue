@@ -1,21 +1,17 @@
 <template>
   <div id="my-game">
-    <canvas id="ctxMain"></canvas>
-    <canvas id="ctxBg"></canvas>
-    <canvas id="ctxModal" v-show="modalShow"></canvas>
+    <canvas id="ctxMain" ref="ctxMain"></canvas>
+    <canvas id="ctxBg" ref="ctxBg"></canvas>
+    <canvas id="ctxModal" ref="ctxModal" v-show="modalShow"></canvas>
     <ul
       id="log"
-      :style="
-        'left:' +
-          logRect.x +
-          'px;top:' +
-          logRect.y +
-          'px;width:' +
-          logRect.w +
-          'px;height:' +
-          logRect.h +
-          'px;overflow-y:scroll;'
-      "
+      :style="{
+        left: logRect.x + 'px',
+        top: logRect.y + 'px',
+        width: logRect.w + 'px',
+        height: logRect.h + 'px',
+        'overflow-y': 'scroll'
+      }"
     >
       <li v-for="l in logList" :key="l">
         {{ l }}
@@ -25,7 +21,7 @@
 </template>
 
 <script>
-import { DrawLib, MyGameDraw } from "@/utils/canvas/index"
+import { /* DrawLib, */ MyGameDraw } from "@/utils/canvas/index"
 import MyGameConfig from "@/utils/canvas/config/myGame"
 import CanvasLib from "@/utils/canvas/lib"
 import {
@@ -100,13 +96,10 @@ export default {
     }
   },
   mounted() {
-    this.ctxMain = document.querySelector("#ctxMain").getContext("2d")
-    this.ctxBg = document.querySelector("#ctxBg").getContext("2d")
-    this.ctxModal = document.querySelector("#ctxModal").getContext("2d")
-
-    DrawLib.clear(this.ctxMain)
-    DrawLib.clear(this.ctxBg)
-    DrawLib.clear(this.ctxModal)
+    // 初始化定义canvasContext
+    this.ctxMain = CanvasLib.getCtx(this.$refs.ctxMain)
+    this.ctxBg = CanvasLib.getCtx(this.$refs.ctxBg)
+    this.ctxModal = CanvasLib.getCtx(this.$refs.ctxModal)
 
     MyGameDraw.bottomRect(this.ctxBg)
     MyGameDraw.endBtn(this.ctxMain)

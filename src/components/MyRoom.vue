@@ -1,12 +1,13 @@
 <template>
   <div id="my-room">
-    <canvas id="ctxMain"></canvas>
-    <canvas id="ctxBg"></canvas>
+    <canvas id="ctxMain" ref="ctxMain"></canvas>
+    <canvas id="ctxBg" ref="ctxBg"></canvas>
   </div>
 </template>
 
 <script>
 import { DrawLib, MyRoomDraw } from "@/utils/canvas/index"
+import CanvasLib from "@/utils/canvas/lib"
 import MyRoomEventListener from "@/utils/canvas/eventListener/myRoom"
 import bgImg from "@/assets/background.jpg"
 
@@ -44,13 +45,9 @@ export default {
     }
   },
   mounted() {
-    // 定义canvas
-    this.ctxMain = document.querySelector("#ctxMain").getContext("2d")
-    this.ctxBg = document.querySelector("#ctxBg").getContext("2d")
-
-    //清除画布
-    DrawLib.clear(this.ctxMain)
-    DrawLib.clear(this.ctxBg)
+    // 初始化定义canvasContext
+    this.ctxMain = CanvasLib.getCtx(this.$refs.ctxMain)
+    this.ctxBg = CanvasLib.getCtx(this.$refs.ctxBg)
 
     //绘制背景
     DrawLib.background(this.ctxBg, bgImg)
