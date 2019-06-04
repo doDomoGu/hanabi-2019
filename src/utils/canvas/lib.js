@@ -38,7 +38,7 @@ _.getCtx = canvas => {
 }
 
 // 方法：获得触摸位置坐标 (touchstart , touchend , click)
-_.getMousePos = (canvas, evt) => {
+_.getEventPoint = (ctx, evt) => {
   let _evt
   if (evt.type == "touchstart") {
     _evt = evt.touches[0] //touchstart
@@ -47,7 +47,7 @@ _.getMousePos = (canvas, evt) => {
   } else if (evt.type == "click") {
     _evt = evt
   }
-  const rect = canvas.getBoundingClientRect()
+  const rect = ctx.canvas.getBoundingClientRect()
   return {
     x: (Math.round(_evt.clientX) - rect.left) * _.getDevicePixelRatio(),
     y: (Math.round(_evt.clientY) - rect.top) * _.getDevicePixelRatio()

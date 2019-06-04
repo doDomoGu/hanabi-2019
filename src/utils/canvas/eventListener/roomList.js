@@ -7,19 +7,30 @@ import RoomListConfig from "../config/roomList"
 export default function eventListener(t, evt) {
   const ctx = t[evt.target.id]
 
-  const mousePos = CanvasLib.getMousePos(ctx.canvas, evt)
+  const point = CanvasLib.getEventPoint(ctx, evt)
 
-  function getListItemIndex(pos, listCount) {
-    let index = -1 // [0-9]
+  /*
+   * 获取点击的项目序号
+   * 参数 point: 点击/触摸的位置坐标
+   * 参数 itemConfig: roomList的item绘制设置
+   * 参数 listCount: list的总数
+   */
+  function getListItemIndex(point, itemConfig, listCount) {
+    let index = -1 // 在区块范围内返回 [0-9]， 否则返回 -1
 
-    const rect = { ...RoomListConfig.item.rect }
+    const rect = { ...itemConfig.rect }
 
-    if (pos.x >= rect.x && pos.x <= rect.x + rect.w) {
+    // 判断point的x轴坐标在 x1 和 x2 范围之间
+    const x1 = rect.x
+    const x2 = rect.x + rect.w
+    if (point.x >= x1 && point.x <= x2) {
       let y1, y2
       for (let i = 0; i < listCount; i++) {
-        y1 = rect.y + parseInt(rect.h + RoomListConfig.item.margin) * i
+        // y1和y2 根据序号i的变化而变化
+        y1 = rect.y + parseInt(rect.h + itemConfig.margin) * i
         y2 = y1 + rect.h
-        if (pos.y >= y1 && pos.y <= y2) {
+        // 判断point的y轴坐标在 y1 和 y2 范围之间
+        if (point.y >= y1 && point.y <= y2) {
           index = i
           break
         }
@@ -28,10 +39,10 @@ export default function eventListener(t, evt) {
     return index
   }
 
-  const itemIndex = getListItemIndex(mousePos, t.list.length)
+  const itemIndex = getListItemIndex(point, RoomListConfig.item, t.list.length)
 
   if (evt.type == "touchstart") {
-    if (itemIndex > -1) {
+    if (itemIndex > -1 && itemIndex < t.list.length) {
       t.itemIndex = itemIndex
       RoomListDraw.item(ctx, t.itemIndex, t.list[t.itemIndex], true)
     }

@@ -5,9 +5,9 @@ import MyRoomConfig from "../config/myRoom"
 export default function eventListener(t, evt) {
   const ctx = t[evt.target.id]
 
-  const mousePos = CanvasLib.getMousePos(ctx.canvas, evt)
+  const point = CanvasLib.getEventPoint(ctx, evt)
 
-  function isPath(pos, areaName) {
+  function isPath(point, areaName) {
     let area
     switch (areaName) {
       case "exitBtn":
@@ -23,20 +23,20 @@ export default function eventListener(t, evt) {
         area = { x: 0, y: 0, w: 0, h: 0 }
     }
     return (
-      pos.x >= area.x &&
-      pos.x <= area.x + area.w &&
-      pos.y >= area.y &&
-      pos.y <= area.y + area.h
+      point.x >= area.x &&
+      point.x <= area.x + area.w &&
+      point.y >= area.y &&
+      point.y <= area.y + area.h
     )
   }
 
-  if (isPath(mousePos, "exitBtn")) {
+  if (isPath(point, "exitBtn")) {
     t.$store.dispatch("myRoom/Exit")
-  } else if (isPath(mousePos, "readyBtn")) {
+  } else if (isPath(point, "readyBtn")) {
     if (!t.isHost) {
       t.$store.dispatch("myRoom/DoReady")
     }
-  } else if (isPath(mousePos, "startBtn")) {
+  } else if (isPath(point, "startBtn")) {
     if (t.isHost && t.isReady) {
       t.$store.dispatch("myGame/Start")
     }

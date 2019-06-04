@@ -7,9 +7,9 @@ const eventListener = (t, evt) => {
   const ctx = t[evt.target.id]
   const ctxModal = t.ctxModal
 
-  const mousePos = CanvasLib.getMousePos(ctx.canvas, evt)
+  const point = CanvasLib.getEventPoint(ctx, evt)
 
-  const isPath = (pos, areaName) => {
+  const isPath = (point, areaName) => {
     let area
     switch (areaName) {
       case "endBtn":
@@ -19,39 +19,39 @@ const eventListener = (t, evt) => {
         area = { x: 0, y: 0, w: 0, h: 0 }
     }
     return (
-      pos.x >= area.x &&
-      pos.x <= area.x + area.w &&
-      pos.y >= area.y &&
-      pos.y <= area.y + area.h
+      point.x >= area.x &&
+      point.x <= area.x + area.w &&
+      point.y >= area.y &&
+      point.y <= area.y + area.h
     )
   }
 
-  const getHandsIndex = (rects, pos) => {
+  const getHandsIndex = (rects, point) => {
     let index = -1
     rects.forEach((rect, i) => {
       if (
-        pos.x >= rect.x &&
-        pos.x <= rect.x + rect.w &&
-        pos.y >= rect.y &&
-        pos.y <= rect.y + rect.h
+        point.x >= rect.x &&
+        point.x <= rect.x + rect.w &&
+        point.y >= rect.y &&
+        point.y <= rect.y + rect.h
       ) {
         index = i
       }
     })
     return index
   }
-  const getHostHandsIndex = pos => {
+  const getHostHandsIndex = point => {
     const rects = MyGameConfig.host.hands.areas
-    return getHandsIndex(rects, pos)
+    return getHandsIndex(rects, point)
   }
 
-  const getGuestHandsIndex = pos => {
+  const getGuestHandsIndex = point => {
     const rects = MyGameConfig.guest.hands.areas
-    return getHandsIndex(rects, pos)
+    return getHandsIndex(rects, point)
   }
 
-  const hostHandsIndex = getHostHandsIndex(mousePos)
-  const guestHandsIndex = getGuestHandsIndex(mousePos)
+  const hostHandsIndex = getHostHandsIndex(point)
+  const guestHandsIndex = getGuestHandsIndex(point)
   if (t.gameInfo.roundPlayerIsHost == t.isHost && hostHandsIndex > -1) {
     t.topOperation = true
     t.selectCardIndex = hostHandsIndex
@@ -70,7 +70,7 @@ const eventListener = (t, evt) => {
     } else {
       MyGameDraw.topConfirmPlay(ctxModal)
     }
-  } else if (isPath(mousePos, "endBtn")) {
+  } else if (isPath(point, "endBtn")) {
     t.$store.dispatch("myGame/End")
   }
 }
@@ -78,9 +78,9 @@ const eventListener = (t, evt) => {
 const eventListenerTop = (t, evt) => {
   const ctx = t[evt.target.id]
 
-  const mousePos = CanvasLib.getMousePos(ctx.canvas, evt)
-  // console.log("鼠标指针坐标：" + mousePos.x + "," + mousePos.y)
-  const isPath = (pos, areaName) => {
+  const point = CanvasLib.getEventPoint(ctx, evt)
+
+  const isPath = (point, areaName) => {
     let area
     switch (areaName) {
       case "playOkBtn":
@@ -102,30 +102,30 @@ const eventListenerTop = (t, evt) => {
         area = { x: 0, y: 0, w: 0, h: 0 }
     }
     return (
-      pos.x >= area.x &&
-      pos.x <= area.x + area.w &&
-      pos.y >= area.y &&
-      pos.y <= area.y + area.h
+      point.x >= area.x &&
+      point.x <= area.x + area.w &&
+      point.y >= area.y &&
+      point.y <= area.y + area.h
     )
   }
 
   if (t.isHost == t.selectCardIsHost) {
     //play
-    if (isPath(mousePos, "playOkBtn")) {
+    if (isPath(point, "playOkBtn")) {
       t.$store.dispatch("myGame/DoPlay", t.selectCardIndex)
       t.topOperation = false
-    } else if (isPath(mousePos, "playCancelBtn")) {
+    } else if (isPath(point, "playCancelBtn")) {
       t.topOperation = false
     }
   } else {
     //cue
-    if (isPath(mousePos, "cueNumBtn")) {
+    if (isPath(point, "cueNumBtn")) {
       t.$store.dispatch("myGame/DoCue", [t.selectCardIndex, "num"])
       t.topOperation = false
-    } else if (isPath(mousePos, "cueColorBtn")) {
+    } else if (isPath(point, "cueColorBtn")) {
       t.$store.dispatch("myGame/DoCue", [t.selectCardIndex, "color"])
       t.topOperation = false
-    } else if (isPath(mousePos, "cueCancelBtn")) {
+    } else if (isPath(point, "cueCancelBtn")) {
       t.topOperation = false
     }
   }
