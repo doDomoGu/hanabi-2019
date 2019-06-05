@@ -9,7 +9,7 @@
 import { DrawLib, MyRoomDraw } from "@/utils/canvas/index"
 import CanvasLib from "@/utils/canvas/lib"
 import MyRoomEventListener from "@/utils/canvas/eventListener/myRoom"
-import bgImg from "@/assets/background.jpg"
+import bgImg from "@/assets/hanabi_bg.jpg"
 
 export default {
   name: "my-room",

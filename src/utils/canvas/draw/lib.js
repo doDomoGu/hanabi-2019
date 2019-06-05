@@ -17,13 +17,14 @@ _.background = (ctx, imgSrc) => {
   let image = new Image()
   image.src = imgSrc
   image.onload = () => {
-    /* ctx.drawImage(
-      image,
-      0,
-      0,
-      ctx.canvas.clientWidth * dpr,
-      ctx.canvas.clientHeight * dpr
-    ) */
+    //图片拉伸
+    // ctx.drawImage(
+    //   image,
+    //   0,
+    //   0,
+    //   ctx.canvas.clientWidth * dpr,
+    //   ctx.canvas.clientHeight * dpr
+    // )
     //图片平铺
     let canvasWidth = ctx.canvas.clientWidth * dpr
     let canvasHeight = ctx.canvas.clientHeight * dpr
