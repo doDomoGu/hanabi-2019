@@ -1,13 +1,8 @@
 /* 房间绘制参数配置 */
 
-import CanvasLib from "../lib"
-
-const dpr = CanvasLib.getDevicePixelRatio()
+import { dpr, width, height } from "../lib"
 
 let _ = {}
-
-const width = window.innerWidth * dpr
-const height = window.innerHeight * dpr
 
 /* 基础参数 */
 _.window = {}

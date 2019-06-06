@@ -7,7 +7,7 @@
 
 <script>
 import { DrawLib, RoomListDraw } from "@/utils/canvas/index"
-import CanvasLib from "@/utils/canvas/lib"
+import { getCtx } from "@/utils/canvas/lib"
 import RoomListEventListener from "@/utils/canvas/eventListener/roomList"
 import bgImg from "@/assets/background.jpg"
 
@@ -33,8 +33,8 @@ export default {
   },
   mounted() {
     // 初始化定义canvasContext
-    this.ctxMain = CanvasLib.getCtx(this.$refs.ctxMain)
-    this.ctxBg = CanvasLib.getCtx(this.$refs.ctxBg)
+    this.ctxMain = getCtx(this.$refs.ctxMain)
+    this.ctxBg = getCtx(this.$refs.ctxBg)
 
     // 绘制图片背景
     DrawLib.background(this.ctxBg, bgImg)

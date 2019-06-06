@@ -1,11 +1,11 @@
 /* 我的房间事件监听库 */
-import CanvasLib from "../lib"
+import { getEventPoint } from "../lib"
 import MyRoomConfig from "../config/myRoom"
 
 export default function eventListener(t, evt) {
   const ctx = t[evt.target.id]
 
-  const point = CanvasLib.getEventPoint(ctx, evt)
+  const point = getEventPoint(ctx, evt)
 
   function isPath(point, areaName) {
     let area

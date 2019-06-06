@@ -1,13 +1,8 @@
 /* 房间列表绘制参数配置 */
 
-import CanvasLib from "../lib"
-
-const dpr = CanvasLib.getDevicePixelRatio()
+import { dpr, width, height, px2Rem } from "../lib"
 
 let _ = {}
-
-const width = window.innerWidth * dpr
-const height = window.innerHeight * dpr
 
 _.padding = 30 * dpr
 
@@ -45,6 +40,6 @@ _.item.margin = Math.floor((height - _.padding * 2 - _.item.rect.h * 10) / 9)
 
 _.item.margin = _.item.margin > 120 ? 120 : _.item.margin
 
-_.item.fontSize = CanvasLib.px2Rem(22)
+_.item.fontSize = px2Rem(22)
 
 export default _

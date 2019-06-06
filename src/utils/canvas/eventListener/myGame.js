@@ -1,5 +1,5 @@
 /* 我的游戏事件监听库 */
-import CanvasLib from "../lib"
+import { getEventPoint } from "../lib"
 import { MyGameDraw } from "../index"
 import MyGameConfig from "../config/myGame"
 
@@ -7,7 +7,7 @@ const eventListener = (t, evt) => {
   const ctx = t[evt.target.id]
   const ctxModal = t.ctxModal
 
-  const point = CanvasLib.getEventPoint(ctx, evt)
+  const point = getEventPoint(ctx, evt)
 
   const isPath = (point, areaName) => {
     let area
@@ -78,7 +78,7 @@ const eventListener = (t, evt) => {
 const eventListenerTop = (t, evt) => {
   const ctx = t[evt.target.id]
 
-  const point = CanvasLib.getEventPoint(ctx, evt)
+  const point = getEventPoint(ctx, evt)
 
   const isPath = (point, areaName) => {
     let area

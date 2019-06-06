@@ -23,7 +23,7 @@
 <script>
 import { /* DrawLib, */ MyGameDraw } from "@/utils/canvas/index"
 import MyGameConfig from "@/utils/canvas/config/myGame"
-import CanvasLib from "@/utils/canvas/lib"
+import { dpr, getCtx } from "@/utils/canvas/lib"
 import {
   eventListener as MyGameEventListener,
   eventListenerTop as MyGameEventListenerTop
@@ -40,10 +40,10 @@ export default {
       selectCardIsHost: false,
       selectCardIndex: -1,
       logRect: {
-        x: MyGameConfig.history.area.x / CanvasLib.getDevicePixelRatio(),
-        y: MyGameConfig.history.area.y / CanvasLib.getDevicePixelRatio(),
-        w: MyGameConfig.history.area.w / CanvasLib.getDevicePixelRatio(),
-        h: MyGameConfig.history.area.h / CanvasLib.getDevicePixelRatio()
+        x: MyGameConfig.history.area.x / dpr,
+        y: MyGameConfig.history.area.y / dpr,
+        w: MyGameConfig.history.area.w / dpr,
+        h: MyGameConfig.history.area.h / dpr
       }
     }
   },
@@ -97,9 +97,9 @@ export default {
   },
   mounted() {
     // 初始化定义canvasContext
-    this.ctxMain = CanvasLib.getCtx(this.$refs.ctxMain)
-    this.ctxBg = CanvasLib.getCtx(this.$refs.ctxBg)
-    this.ctxModal = CanvasLib.getCtx(this.$refs.ctxModal)
+    this.ctxMain = getCtx(this.$refs.ctxMain)
+    this.ctxBg = getCtx(this.$refs.ctxBg)
+    this.ctxModal = getCtx(this.$refs.ctxModal)
 
     MyGameDraw.bottomRect(this.ctxBg)
     MyGameDraw.endBtn(this.ctxMain)
@@ -110,7 +110,7 @@ export default {
     this.$store.dispatch("myGame/GetInfo", { force: true })
 
     this.intervalId = setInterval(() => {
-      this.$store.dispatch("myGame/GetInfo", { force: true })
+      this.$store.dispatch("myGame/GetInfo")
     }, 5000)
 
     this.ctxMain.canvas.addEventListener(

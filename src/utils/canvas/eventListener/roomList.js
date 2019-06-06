@@ -1,5 +1,5 @@
 /* 房间列表事件监听库 */
-import CanvasLib from "../lib"
+import { getEventPoint } from "../lib"
 // import DrawLib from "../draw/lib"
 import { RoomListDraw } from "@/utils/canvas/index"
 import RoomListConfig from "../config/roomList"
@@ -7,7 +7,7 @@ import RoomListConfig from "../config/roomList"
 export default function eventListener(t, evt) {
   const ctx = t[evt.target.id]
 
-  const point = CanvasLib.getEventPoint(ctx, evt)
+  const point = getEventPoint(ctx, evt)
 
   /*
    * 获取点击的项目序号

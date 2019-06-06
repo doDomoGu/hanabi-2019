@@ -1,9 +1,7 @@
 /* 房间绘制方法库 */
 // import DrawLib from "./lib"
 import MyRoomConfig from "../config/myRoom"
-import CanvasLib from "../lib"
-
-const dpr = CanvasLib.getDevicePixelRatio()
+import { dpr, px2Rem } from "../lib"
 
 let _ = {}
 
@@ -13,7 +11,7 @@ _.exitBtn = ctx => {
   ctx.fillStyle = btn.bgColor
   ctx.fillRect(btn.x, btn.y, btn.w, btn.h)
 
-  ctx.font = CanvasLib.px2Rem(16) + "px Microsoft JhengHei"
+  ctx.font = px2Rem(16) + "px Microsoft JhengHei"
   ctx.fillStyle = btn.textColor
   ctx.textAlign = "center"
   ctx.textBaseline = "middle"
@@ -51,7 +49,7 @@ const drawPlayer = (ctx, rectConfig, isHost, isPlayer, isReady, info) => {
     ctx.fillStyle = "#fee9d6"
     ctx.fillRect(rectInfo.x, rectInfo.y, rectInfo.w, rectInfo.h)
 
-    ctx.font = CanvasLib.px2Rem(24) + "px Microsoft JhengHei"
+    ctx.font = px2Rem(24) + "px Microsoft JhengHei"
     ctx.fillStyle = "#4b4b4b"
     ctx.textAlign = "left"
     ctx.textBaseline = "middle"
@@ -96,7 +94,7 @@ const drawPlayer = (ctx, rectConfig, isHost, isPlayer, isReady, info) => {
     ctx.fillStyle = buttonConfig.bgColor
     ctx.fillRect(rectButton.x, rectButton.y, rectButton.w, rectButton.h)
 
-    ctx.font = CanvasLib.px2Rem(16) + "px Microsoft JhengHei"
+    ctx.font = px2Rem(16) + "px Microsoft JhengHei"
     ctx.fillStyle = buttonConfig.textcolor
     ctx.textAlign = "center"
     ctx.textBaseline = "middle"
@@ -120,7 +118,7 @@ const drawPlayer = (ctx, rectConfig, isHost, isPlayer, isReady, info) => {
       ctx.fillStyle = MyRoomConfig.guest.readyArea.bgColor
       ctx.fillRect(readyArea.x, readyArea.y, readyArea.w, readyArea.h)
 
-      ctx.font = CanvasLib.px2Rem(16) + "px Microsoft JhengHei"
+      ctx.font = px2Rem(16) + "px Microsoft JhengHei"
       ctx.fillStyle = MyRoomConfig.guest.readyArea.textColor
       ctx.textAlign = "left"
       ctx.textBaseline = "middle"

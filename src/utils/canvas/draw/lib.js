@@ -1,15 +1,12 @@
 /* 基础绘制方法库 */
-import CanvasLib from "../lib"
-
-// dpr：设备像素比
-const dpr = CanvasLib.getDevicePixelRatio()
+import { dpr, width, height } from "../lib"
 
 let _ = {}
 
 // 清空画布方法
 _.clear = ctx => {
-  ctx.canvas.width = window.innerWidth * dpr
-  ctx.canvas.height = window.innerHeight * dpr
+  ctx.canvas.width = width
+  ctx.canvas.height = height
 }
 
 //绘制背景图

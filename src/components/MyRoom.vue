@@ -7,7 +7,7 @@
 
 <script>
 import { DrawLib, MyRoomDraw } from "@/utils/canvas/index"
-import CanvasLib from "@/utils/canvas/lib"
+import { getCtx } from "@/utils/canvas/lib"
 import MyRoomEventListener from "@/utils/canvas/eventListener/myRoom"
 import bgImg from "@/assets/hanabi_bg.jpg"
 
@@ -46,8 +46,8 @@ export default {
   },
   mounted() {
     // 初始化定义canvasContext
-    this.ctxMain = CanvasLib.getCtx(this.$refs.ctxMain)
-    this.ctxBg = CanvasLib.getCtx(this.$refs.ctxBg)
+    this.ctxMain = getCtx(this.$refs.ctxMain)
+    this.ctxBg = getCtx(this.$refs.ctxBg)
 
     //绘制背景
     DrawLib.background(this.ctxBg, bgImg)
@@ -59,6 +59,7 @@ export default {
 
     this.intervalId = setInterval(() => {
       this.$store.dispatch("myRoom/GetInfo")
+      this.$store.dispatch("myGame/GetInfo")
     }, 3000)
 
     this.ctxMain.canvas.addEventListener(
