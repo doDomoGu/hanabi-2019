@@ -1,6 +1,6 @@
 /* 游戏绘制方法库 */
-import DrawLib from "./lib"
-import MyGameConfig from "../config/myGame"
+import { DrawLib } from "../draw"
+import { MyGameConfig } from "../config"
 import { px2Rem } from "../lib"
 
 const colors = ["white", "blue", "yellow", "red", "green"]

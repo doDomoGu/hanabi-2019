@@ -1,6 +1,6 @@
 /* 我的房间事件监听库 */
 import { getEventPoint } from "../lib"
-import MyRoomConfig from "../config/myRoom"
+import { MyRoomConfig } from "../config"
 
 export default function eventListener(t, evt) {
   const ctx = t[evt.target.id]

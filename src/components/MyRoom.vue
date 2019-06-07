@@ -6,9 +6,9 @@
 </template>
 
 <script>
-import { DrawLib, MyRoomDraw } from "@/utils/canvas/index"
 import { getCtx } from "@/utils/canvas/lib"
-import MyRoomEventListener from "@/utils/canvas/eventListener/myRoom"
+import { DrawLib, MyRoomDraw } from "@/utils/canvas/draw"
+import { MyRoomEventListener } from "@/utils/canvas/eventListener"
 import bgImg from "@/assets/hanabi_bg.jpg"
 
 export default {

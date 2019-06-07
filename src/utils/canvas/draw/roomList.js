@@ -1,7 +1,7 @@
 /* 房间列表绘制库 */
 
 // import DrawLib from "./lib" // DrawLib基础绘制库
-import RoomListConfig from "../config/roomList" //房间列表页面绘制参数
+import { RoomListConfig } from "../config" //房间列表页面绘制参数
 
 let _ = {}
 

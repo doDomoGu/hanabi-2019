@@ -1,6 +1,6 @@
 /* 房间绘制方法库 */
 // import DrawLib from "./lib"
-import MyRoomConfig from "../config/myRoom"
+import { MyRoomConfig } from "../config"
 import { dpr, px2Rem } from "../lib"
 
 let _ = {}

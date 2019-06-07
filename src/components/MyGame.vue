@@ -21,9 +21,10 @@
 </template>
 
 <script>
-import { /* DrawLib, */ MyGameDraw } from "@/utils/canvas/index"
-import MyGameConfig from "@/utils/canvas/config/myGame"
 import { dpr, getCtx } from "@/utils/canvas/lib"
+import { /* DrawLib, */ MyGameDraw } from "@/utils/canvas/draw"
+import { MyGameConfig } from "@/utils/canvas/config"
+
 import {
   eventListener as MyGameEventListener,
   eventListenerTop as MyGameEventListenerTop

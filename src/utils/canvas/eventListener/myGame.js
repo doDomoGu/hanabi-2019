@@ -1,7 +1,7 @@
 /* 我的游戏事件监听库 */
 import { getEventPoint } from "../lib"
-import { MyGameDraw } from "../index"
-import MyGameConfig from "../config/myGame"
+import { MyGameDraw } from "../draw"
+import { MyGameConfig } from "../config"
 
 const eventListener = (t, evt) => {
   const ctx = t[evt.target.id]
