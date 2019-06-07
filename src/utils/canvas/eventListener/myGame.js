@@ -53,7 +53,7 @@ const main = (t, evt) => {
   const hostHandsIndex = getHostHandsIndex(point)
   const guestHandsIndex = getGuestHandsIndex(point)
   if (t.gameInfo.roundPlayerIsHost == t.isHost && hostHandsIndex > -1) {
-    t.topOperation = true
+    t.modalShow = true
     t.selectCardIndex = hostHandsIndex
     t.selectCardIsHost = true
     if (t.isHost) {
@@ -62,7 +62,7 @@ const main = (t, evt) => {
       MyGameDraw.topConfirmCue(ctxModal)
     }
   } else if (t.gameInfo.roundPlayerIsHost == t.isHost && guestHandsIndex > -1) {
-    t.topOperation = true
+    t.modalShow = true
     t.selectCardIndex = guestHandsIndex + 5
     t.selectCardIsHost = false
     if (t.isHost) {
@@ -113,20 +113,20 @@ const modal = (t, evt) => {
     //play
     if (isPath(point, "playOkBtn")) {
       t.$store.dispatch("myGame/DoPlay", t.selectCardIndex)
-      t.topOperation = false
+      t.modalShow = false
     } else if (isPath(point, "playCancelBtn")) {
-      t.topOperation = false
+      t.modalShow = false
     }
   } else {
     //cue
     if (isPath(point, "cueNumBtn")) {
       t.$store.dispatch("myGame/DoCue", [t.selectCardIndex, "num"])
-      t.topOperation = false
+      t.modalShow = false
     } else if (isPath(point, "cueColorBtn")) {
       t.$store.dispatch("myGame/DoCue", [t.selectCardIndex, "color"])
-      t.topOperation = false
+      t.modalShow = false
     } else if (isPath(point, "cueCancelBtn")) {
-      t.topOperation = false
+      t.modalShow = false
     }
   }
 }
