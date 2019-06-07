@@ -3,7 +3,7 @@ import { getEventPoint } from "../lib"
 import { MyGameDraw } from "../draw"
 import { MyGameConfig } from "../config"
 
-const eventListener = (t, evt) => {
+const main = (t, evt) => {
   const ctx = t[evt.target.id]
   const ctxModal = t.ctxModal
 
@@ -75,7 +75,7 @@ const eventListener = (t, evt) => {
   }
 }
 
-const eventListenerTop = (t, evt) => {
+const modal = (t, evt) => {
   const ctx = t[evt.target.id]
 
   const point = getEventPoint(ctx, evt)
@@ -131,4 +131,4 @@ const eventListenerTop = (t, evt) => {
   }
 }
 
-export { eventListener, eventListenerTop }
+export default { main, modal }

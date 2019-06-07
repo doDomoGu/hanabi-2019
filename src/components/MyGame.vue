@@ -25,10 +25,7 @@ import { dpr, getCtx } from "@/utils/canvas/lib"
 import { /* DrawLib, */ MyGameDraw } from "@/utils/canvas/draw"
 import { MyGameConfig } from "@/utils/canvas/config"
 
-import {
-  eventListener as MyGameEventListener,
-  eventListenerTop as MyGameEventListenerTop
-} from "@/utils/canvas/eventListener/myGame"
+import { MyGameEventListener } from "@/utils/canvas/eventListener"
 export default {
   name: "my-game",
   data() {
@@ -117,14 +114,14 @@ export default {
     this.ctxMain.canvas.addEventListener(
       "click",
       e => {
-        MyGameEventListener(this, e)
+        MyGameEventListener.main(this, e)
       },
       false
     )
     this.ctxModal.canvas.addEventListener(
       "click",
       e => {
-        MyGameEventListenerTop(this, e)
+        MyGameEventListener.modal(this, e)
       },
       false
     )
