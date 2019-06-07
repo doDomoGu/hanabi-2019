@@ -13,7 +13,11 @@
         'overflow-y': 'scroll'
       }"
     >
-      <li v-for="l in logList" :key="l">
+      <li
+        v-for="(l, key) in logList"
+        :key="l"
+        :class="{ odd: key % 2 == 1, even: key % 2 == 0 }"
+      >
         {{ l }}
       </li>
     </ul>
@@ -167,10 +171,10 @@ export default {
 #log li {
   padding: 4px;
 }
-#log li:nth-child(2n) {
+#log li.even {
   background: rgb(155, 228, 72);
 }
-#log li:nth-child(2n + 1) {
+#log li.odd {
   background: rgb(243, 130, 130);
 }
 
