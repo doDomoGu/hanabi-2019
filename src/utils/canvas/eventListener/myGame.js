@@ -63,7 +63,7 @@ const main = (t, evt) => {
     }
   } else if (t.gameInfo.roundPlayerIsHost == t.isHost && guestHandsIndex > -1) {
     t.modalShow = true
-    t.selectCardIndex = guestHandsIndex + 5
+    t.selectCardIndex = guestHandsIndex
     t.selectCardIsHost = false
     if (t.isHost) {
       MyGameDraw.topConfirmCue(ctxModal)
