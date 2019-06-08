@@ -4,6 +4,8 @@ import { getEventPoint } from "../lib"
 import { RoomListDraw } from "../draw"
 import { RoomListConfig } from "../config"
 
+import { MessageBox } from "mint-ui"
+
 export default function eventListener(t, evt) {
   const ctx = t[evt.target.id]
 
@@ -53,8 +55,9 @@ export default function eventListener(t, evt) {
       itemIndex < t.list.length
     ) {
       if (t.list[itemIndex].isLocked) {
-        alert("这个房间锁上了")
-        RoomListDraw.item(ctx, t.itemIndex, t.list[t.itemIndex], false)
+        MessageBox.alert("这个房间锁上了").then(() => {
+          RoomListDraw.item(ctx, t.itemIndex, t.list[t.itemIndex], false)
+        })
       } else {
         t.enter(itemIndex + 1)
       }
