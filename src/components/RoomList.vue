@@ -7,9 +7,9 @@
 
 <script>
 import { getCtx } from "@/utils/canvas/lib"
-import { DrawLib, RoomListDraw } from "@/utils/canvas/draw"
+import { RoomListDraw } from "@/utils/canvas/draw"
 import { RoomListEventListener } from "@/utils/canvas/eventListener"
-import bgImg from "@/assets/background.jpg"
+import bgImg from "@/assets/hanabi_bg2.jpg"
 
 export default {
   name: "room_list",
@@ -37,7 +37,7 @@ export default {
     this.ctxBg = getCtx(this.$refs.ctxBg)
 
     // 绘制图片背景
-    DrawLib.background(this.ctxBg, bgImg)
+    RoomListDraw.background(this.ctxBg, bgImg)
 
     // 绑定触摸事件 touchstart 和 touchend
     this.ctxMain.canvas.addEventListener(

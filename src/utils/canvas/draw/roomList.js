@@ -71,4 +71,29 @@ _.item = (ctx, index, item, actived) => {
   )
 }
 
+//绘制背景图
+_.background = (ctx, imgSrc) => {
+  let image = new Image()
+  image.src = imgSrc
+  image.onload = evt => {
+    // 先将image宽度拉伸到和设备一样 （等比例）
+    const ctxTemp = document.createElement("canvas").getContext("2d") // ctxTemp 临时canvas
+    ctxTemp.canvas.width = ctx.canvas.width // 目标宽度
+    ctxTemp.canvas.height = parseInt(
+      (ctx.canvas.width / image.width) * image.height
+    ) // 目标高度
+    ctxTemp.drawImage(
+      evt.target,
+      0,
+      0,
+      ctxTemp.canvas.width,
+      ctxTemp.canvas.height
+    )
+    //再将 ctxTemp内容 在ctx 上重复平铺
+    ctx.rect(0, 0, ctx.canvas.width, ctx.canvas.height)
+    ctx.fillStyle = ctx.createPattern(ctxTemp.canvas, "repeat")
+    ctx.fill()
+  }
+}
+
 export default _
