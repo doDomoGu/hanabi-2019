@@ -15,7 +15,7 @@ _.item.actived.textColor = "#ffffff"
 
 _.item.unactived = {}
 _.item.unactived.bgColor = "#eeeeee"
-_.item.unactived.textColor = "#333333"
+_.item.unactived.textColor = "#eeeeee"
 
 _.item.rect = {}
 _.item.rect.x = _.padding

@@ -2,8 +2,35 @@
 
 // import DrawLib from "./lib" // DrawLib基础绘制库
 import { RoomListConfig } from "../config" //房间列表页面绘制参数
+import imgSrc from "@/assets/background.jpg"
 
 let _ = {}
+
+const loadImg = url => {
+  return new Promise((resolve, reject) => {
+    // 创建图片对象
+    var img = new Image()
+    // 加载成功
+    img.onload = () => {
+      resolve(img)
+    }
+    // 加载失败
+    img.onerror = () => {
+      reject(new Error("图片加载失败"))
+    }
+    // 给src赋值
+    img.src = url
+  })
+}
+
+const drawImg = (ctx, rect, imgSrc) => {
+  return new Promise((resolve, reject) => {
+    loadImg(imgSrc).then(img => {
+      ctx.drawImage(img, rect.x, rect.y, rect.w, rect.h)
+      resolve()
+    })
+  })
+}
 
 /*
  * 函数 list: 绘制列表
@@ -44,31 +71,39 @@ _.item = (ctx, index, item, actived) => {
   }
 
   // 填充背景 (这里等于把这块区域原有的内容清除了)
-  ctx.fillStyle = bgColor
-  ctx.fillRect(rect.x, rect.y, rect.w, rect.h)
+  //ctx.fillStyle = bgColor
+  // let image = new Image()
+  // image.src = img
+  // image.onload = evt => {
+  //   ctx.drawImage(evt.target, rect.x, rect.y, rect.w, rect.h)
+  // }
+  drawImg(ctx, rect, imgSrc).then(() => {
+    // 绘制房间名称
+    ctx.font = RoomListConfig.item.fontSize + "px Arial"
+    ctx.fillStyle = textColor
+    ctx.textAlign = "left"
+    ctx.textBaseline = "middle"
+    const _index = parseInt(index) + 1
+    const text =
+      (_index < 10 ? "00" + _index : "0" + _index) + "   " + item.title
+    ctx.fillText(text, RoomListConfig.item.titleX, rect.y + rect.h / 2)
 
-  // 绘制房间名称
-  ctx.font = RoomListConfig.item.fontSize + "px Arial"
-  ctx.fillStyle = textColor
-  ctx.textAlign = "left"
-  ctx.textBaseline = "middle"
-  const _index = parseInt(index) + 1
-  const text = (_index < 10 ? "00" + _index : "0" + _index) + "   " + item.title
-  ctx.fillText(text, RoomListConfig.item.titleX, rect.y + rect.h / 2)
+    // 绘制房间上锁符号
+    ctx.fillText(
+      item.isLocked ? "L" : "",
+      RoomListConfig.item.lockX,
+      rect.y + rect.h / 2
+    )
 
-  // 绘制房间上锁符号
-  ctx.fillText(
-    item.isLocked ? "L" : "",
-    RoomListConfig.item.lockX,
-    rect.y + rect.h / 2
-  )
+    // 绘制房间人数信息
+    ctx.fillText(
+      item.playerCount + "/2",
+      RoomListConfig.item.playerCountX,
+      rect.y + rect.h / 2
+    )
+  })
 
-  // 绘制房间人数信息
-  ctx.fillText(
-    item.playerCount + "/2",
-    RoomListConfig.item.playerCountX,
-    rect.y + rect.h / 2
-  )
+  // ctx.fillRect(rect.x, rect.y, rect.w, rect.h)
 }
 
 //绘制背景图
