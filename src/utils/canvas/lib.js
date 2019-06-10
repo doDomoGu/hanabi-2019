@@ -40,7 +40,8 @@ const getEventPoint = (ctx, evt) => {
   }
 }
 
-const loadImg = url => {
+// 读取图片src 返回Image对象
+const loadImg = src => {
   return new Promise((resolve, reject) => {
     // 创建图片对象
     var img = new Image()
@@ -53,7 +54,7 @@ const loadImg = url => {
       reject(new Error("图片加载失败"))
     }
     // 给src赋值
-    img.src = url
+    img.src = src
   })
 }
 

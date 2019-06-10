@@ -2,6 +2,7 @@
 
 import { dpr, width, height, px2Rem } from "../lib"
 import OtherConfig from "./other"
+import imgSrc from "@/assets/background.jpg"
 
 let _ = {}
 
@@ -35,5 +36,6 @@ _.item.margin = Math.floor(
 // _.item.margin = _.item.margin > 120 ? 120 : _.item.margin
 
 _.item.fontSize = px2Rem(22)
+_.item.bgImgSrc = imgSrc
 
 export default _

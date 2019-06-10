@@ -2,16 +2,19 @@
 
 import { loadImg } from "../lib" // DrawLib基础绘制库
 import { RoomListConfig } from "../config" //房间列表页面绘制参数
-import imgSrc from "@/assets/background.jpg"
 
 let _ = {}
 
 const drawImg = (ctx, rect, imgSrc) => {
-  return new Promise((resolve, reject) => {
-    loadImg(imgSrc).then(img => {
-      ctx.drawImage(img, rect.x, rect.y, rect.w, rect.h)
-      resolve()
-    })
+  return new Promise(resolve => {
+    loadImg(imgSrc)
+      .then(img => {
+        ctx.drawImage(img, rect.x, rect.y, rect.w, rect.h)
+        resolve()
+      })
+      .catch(err => {
+        console.log(err)
+      })
   })
 }
 
@@ -44,14 +47,12 @@ _.item = (ctx, index, item, actived) => {
   rect.y += parseInt(index) * parseInt(rect.h + RoomListConfig.item.margin)
 
   // 根据 actived 赋予背景色和文字颜色
-  let bgColor, textColor
-  if (actived) {
-    bgColor = RoomListConfig.item.actived.bgColor
-    textColor = RoomListConfig.item.actived.textColor
-  } else {
-    bgColor = RoomListConfig.item.unactived.bgColor
-    textColor = RoomListConfig.item.unactived.textColor
-  }
+  // const bgColor = actived
+  //   ? RoomListConfig.item.actived.bgColor
+  //   : RoomListConfig.item.unactived.bgColor
+  const textColor = actived
+    ? RoomListConfig.item.actived.textColor
+    : RoomListConfig.item.unactived.textColor
 
   // 填充背景 (这里等于把这块区域原有的内容清除了)
   //ctx.fillStyle = bgColor
@@ -60,7 +61,7 @@ _.item = (ctx, index, item, actived) => {
   // image.onload = evt => {
   //   ctx.drawImage(evt.target, rect.x, rect.y, rect.w, rect.h)
   // }
-  drawImg(ctx, rect, imgSrc).then(() => {
+  drawImg(ctx, rect, RoomListConfig.item.bgImgSrc).then(() => {
     // 绘制房间名称
     ctx.font = RoomListConfig.item.fontSize + "px Arial"
     ctx.fillStyle = textColor
@@ -91,19 +92,23 @@ _.item = (ctx, index, item, actived) => {
 
 //绘制背景图
 _.background = (ctx, imgSrc) => {
-  loadImg(imgSrc).then(img => {
-    // 先将image宽度拉伸到和设备一样 （等比例）
-    const ctxTemp = document.createElement("canvas").getContext("2d") // ctxTemp 临时canvas
-    ctxTemp.canvas.width = ctx.canvas.width // 目标宽度
-    ctxTemp.canvas.height = parseInt(
-      (ctx.canvas.width / img.width) * img.height
-    ) // 目标高度
-    ctxTemp.drawImage(img, 0, 0, ctxTemp.canvas.width, ctxTemp.canvas.height)
-    //再将 ctxTemp内容 在ctx 上重复平铺
-    ctx.rect(0, 0, ctx.canvas.width, ctx.canvas.height)
-    ctx.fillStyle = ctx.createPattern(ctxTemp.canvas, "repeat")
-    ctx.fill()
-  })
+  loadImg(imgSrc)
+    .then(img => {
+      // 先将image宽度拉伸到和设备一样 （等比例）
+      const ctxTemp = document.createElement("canvas").getContext("2d") // ctxTemp 临时canvas
+      ctxTemp.canvas.width = ctx.canvas.width // 目标宽度
+      ctxTemp.canvas.height = parseInt(
+        (ctx.canvas.width / img.width) * img.height
+      ) // 目标高度
+      ctxTemp.drawImage(img, 0, 0, ctxTemp.canvas.width, ctxTemp.canvas.height)
+      //再将 ctxTemp内容 在ctx 上重复平铺
+      ctx.rect(0, 0, ctx.canvas.width, ctx.canvas.height)
+      ctx.fillStyle = ctx.createPattern(ctxTemp.canvas, "repeat")
+      ctx.fill()
+    })
+    .catch(err => {
+      console.log(err)
+    })
 }
 
 export default _
