@@ -40,4 +40,21 @@ const getEventPoint = (ctx, evt) => {
   }
 }
 
-export { dpr, width, height, getCtx, getEventPoint, px2Rem }
+const loadImg = url => {
+  return new Promise((resolve, reject) => {
+    // 创建图片对象
+    var img = new Image()
+    // 加载成功
+    img.onload = () => {
+      resolve(img)
+    }
+    // 加载失败
+    img.onerror = () => {
+      reject(new Error("图片加载失败"))
+    }
+    // 给src赋值
+    img.src = url
+  })
+}
+
+export { dpr, width, height, getCtx, getEventPoint, px2Rem, loadImg }
