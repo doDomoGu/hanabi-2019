@@ -7,7 +7,7 @@
 
 <script>
 import { getCtx } from "@/utils/canvas/lib"
-import { RoomListDraw } from "@/utils/canvas/draw"
+import { DrawLib, RoomListDraw } from "@/utils/canvas/draw"
 import { RoomListEventListener } from "@/utils/canvas/eventListener"
 import bgImg from "@/assets/hanabi_bg2.jpg"
 
@@ -27,7 +27,9 @@ export default {
     }
   },
   watch: {
+    // list更新则重绘
     list(newVal) {
+      DrawLib.clear(this.ctxMain)
       RoomListDraw.list(this.ctxMain, newVal)
     }
   },
