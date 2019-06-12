@@ -78,11 +78,12 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style type="scss" scoped>
 #ctxMain {
   position: absolute;
   width: 100%;
-  height: 100%;
+  /* padding-top: 20%; */
+  /* height: 100%; */
   z-index: 2;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
