@@ -30,10 +30,21 @@ export default {
     // list更新则重绘
     list(newVal) {
       DrawLib.clear(this.ctxMain)
+      this.ctxMain.rotate(Math.PI / 2) //正方向旋转30度
       RoomListDraw.list(this.ctxMain, newVal)
     }
   },
   mounted() {
+    // const o = window.orientation //获取设备方向
+    // /* if (o == 90) {
+    //   ang = e.beta //设备横向1
+    // } else if (o == -90) {
+    //   ang = -e.beta //设备横向2
+    // } else if (o == 0) {
+    //   ang = e.gamma //设备纵向
+    // } */
+    // console.log(o)
+
     // 初始化定义canvasContext
     this.ctxMain = getCtx(this.$refs.ctxMain)
     this.ctxBg = getCtx(this.$refs.ctxBg)
