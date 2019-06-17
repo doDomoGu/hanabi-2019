@@ -31,20 +31,14 @@ export default function eventListener(t, evt) {
   }
 
   if (isPath(point, "exitBtn")) {
-    t.$store.dispatch("myRoom/Exit").then(() => {
-      t.$store.dispatch("myRoom/GetInfo", { force: true })
-    })
+    t.doExit()
   } else if (isPath(point, "readyBtn")) {
     if (!t.isHost) {
-      t.$store.dispatch("myRoom/DoReady").then(() => {
-        t.$store.dispatch("myRoom/GetInfo", { force: true })
-      })
+      t.doReady()
     }
   } else if (isPath(point, "startBtn")) {
     if (t.isHost && t.isReady) {
-      t.$store.dispatch("myGame/Start").then(() => {
-        t.$store.dispatch("myRoom/GetInfo", { force: true })
-      })
+      t.doStart()
     }
   }
 }

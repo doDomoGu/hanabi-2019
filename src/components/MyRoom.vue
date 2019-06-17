@@ -70,6 +70,23 @@ export default {
       false
     )
   },
+  methods: {
+    doExit() {
+      this.$store.dispatch("myRoom/Exit").then(() => {
+        this.$store.dispatch("myRoom/GetInfo", { force: true })
+      })
+    },
+    doReady() {
+      this.$store.dispatch("myRoom/DoReady").then(() => {
+        this.$store.dispatch("myRoom/GetInfo", { force: true })
+      })
+    },
+    doStart() {
+      this.$store.dispatch("myGame/Start").then(() => {
+        this.$store.dispatch("myRoom/GetInfo", { force: true })
+      })
+    }
+  },
   destroyed() {
     // 离开页面 清除定时器
     clearInterval(this.intervalId)
