@@ -2,7 +2,8 @@
 
 import { dpr, width, height, px2Rem } from "../lib"
 import OtherConfig from "./other"
-import imgSrc from "@/assets/background.jpg"
+import itemImg from "@/assets/background.jpg"
+import bgImg from "@/assets/hanabi_bg2.jpg"
 
 let _ = {}
 
@@ -36,6 +37,9 @@ _.item.margin = Math.floor(
 // _.item.margin = _.item.margin > 120 ? 120 : _.item.margin
 
 _.item.fontSize = px2Rem(22)
-_.item.bgImgSrc = imgSrc
+
+_.item.itemImgSrc = itemImg
+
+_.bgImgSrc = bgImg
 
 export default _

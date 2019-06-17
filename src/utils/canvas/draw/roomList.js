@@ -41,7 +41,7 @@ _.item = (ctx, index, item, actived) => {
     ? RoomListConfig.item.actived.textColor
     : RoomListConfig.item.unactived.textColor
 
-  loadImg(RoomListConfig.item.bgImgSrc).then(img => {
+  loadImg(RoomListConfig.item.itemImgSrc).then(img => {
     // 填充背景
     ctx.drawImage(img, rect.x, rect.y, rect.w, rect.h)
 
@@ -74,8 +74,8 @@ _.item = (ctx, index, item, actived) => {
 }
 
 //绘制背景图
-_.background = (ctx, imgSrc) => {
-  loadImg(imgSrc)
+_.background = ctx => {
+  loadImg(RoomListConfig.bgImgSrc)
     .then(img => {
       // 先将image宽度拉伸到和设备一样 （等比例）
       const ctxTemp = document.createElement("canvas").getContext("2d") // ctxTemp 临时canvas
