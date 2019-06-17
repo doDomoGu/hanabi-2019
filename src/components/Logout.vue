@@ -30,8 +30,11 @@ export default {
 <style scoped>
 #logout-button {
   position: absolute;
-  bottom: 0;
-  width: 100%;
+  width: 99vw;
+  bottom: 50%;
+  margin-bottom: -88vw;
+  left: 50%;
+  margin-left: -49.5vw;
   z-index: 100;
 }
 </style>
