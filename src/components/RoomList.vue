@@ -30,7 +30,7 @@ export default {
     // list更新则重绘
     list(newVal) {
       DrawLib.clear(this.ctxMain)
-      this.ctxMain.rotate(Math.PI / 2) //正方向旋转30度
+      // this.ctxMain.rotate(Math.PI / 2) //正方向旋转30度
       RoomListDraw.list(this.ctxMain, newVal)
     }
   },

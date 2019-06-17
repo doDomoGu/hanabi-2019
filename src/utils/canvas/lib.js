@@ -8,10 +8,6 @@ const width = window.innerWidth * dpr
 // const height = window.innerHeight * dpr
 const height = (width / 9) * 16
 
-console.log("====")
-console.log(width)
-console.log(height)
-console.log((width / 9) * 16)
 // 属性：字体大小
 // _.fontSize = window.innerWidth / 6.4
 
@@ -23,13 +19,8 @@ const px2Rem = px => {
 // 方法：定义并获得canvasContext对象，且设置宽和高(canvas重置初始化)
 const getCtx = canvas => {
   const ctx = canvas.getContext("2d")
-  console.log(" ")
-  console.log(ctx.canvas.width)
-  console.log(ctx.canvas.height)
   ctx.canvas.width = width
   ctx.canvas.height = height
-  console.log(ctx.canvas.width)
-  console.log(ctx.canvas.height)
   return ctx
 }
 

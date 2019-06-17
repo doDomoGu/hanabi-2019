@@ -9,13 +9,7 @@ const drawImg = (ctx, rect, imgSrc) => {
   return new Promise(resolve => {
     loadImg(imgSrc)
       .then(img => {
-        ctx.drawImage(
-          img,
-          rect.x,
-          rect.y - window.innerWidth * window.devicePixelRatio,
-          rect.w,
-          rect.h
-        )
+        ctx.drawImage(img, rect.x, rect.y, rect.w, rect.h)
         resolve()
       })
       .catch(err => {
@@ -69,18 +63,14 @@ _.item = (ctx, index, item, actived) => {
   // }
   drawImg(ctx, rect, RoomListConfig.item.bgImgSrc).then(() => {
     // 绘制房间名称
-    ctx.font = RoomListConfig.item.fontSize + "px Arial"
+    ctx.font = RoomListConfig.item.fontSize + "px Microsoft YaHei"
     ctx.fillStyle = textColor
     ctx.textAlign = "left"
     ctx.textBaseline = "middle"
     const _index = parseInt(index) + 1
     const text =
       (_index < 10 ? "00" + _index : "0" + _index) + "   " + item.title
-    ctx.fillText(
-      text,
-      RoomListConfig.item.titleX,
-      rect.y + rect.h / 2 - window.innerWidth * window.devicePixelRatio
-    )
+    ctx.fillText(text, RoomListConfig.item.titleX, rect.y + rect.h / 2)
 
     // 绘制房间上锁符号
     ctx.fillText(
