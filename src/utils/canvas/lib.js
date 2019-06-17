@@ -11,6 +11,9 @@ const height = (width / 9) * 16
 // 属性：字体大小
 // _.fontSize = window.innerWidth / 6.4
 
+// 字体
+const fontFamily = "Microsoft YaHei"
+
 // 方法：像素转换为Rem
 const px2Rem = px => {
   return (px / 375) * width
@@ -59,4 +62,13 @@ const loadImg = src => {
   })
 }
 
-export { dpr, width, height, getCtx, getEventPoint, px2Rem, loadImg }
+export {
+  dpr,
+  width,
+  height,
+  fontFamily,
+  getCtx,
+  getEventPoint,
+  px2Rem,
+  loadImg
+}

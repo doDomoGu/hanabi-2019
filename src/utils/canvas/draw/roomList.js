@@ -1,6 +1,6 @@
 /* 房间列表绘制库 */
 
-import { loadImg } from "../lib" // DrawLib基础绘制库
+import { loadImg, fontFamily } from "../lib" // CanvasLib Canvas基础库
 import { RoomListConfig } from "../config" //房间列表页面绘制参数
 
 let _ = {}
@@ -63,7 +63,7 @@ _.item = (ctx, index, item, actived) => {
   // }
   drawImg(ctx, rect, RoomListConfig.item.bgImgSrc).then(() => {
     // 绘制房间名称
-    ctx.font = RoomListConfig.item.fontSize + "px Microsoft YaHei"
+    ctx.font = RoomListConfig.item.fontSize + "px " + fontFamily
     ctx.fillStyle = textColor
     ctx.textAlign = "left"
     ctx.textBaseline = "middle"
