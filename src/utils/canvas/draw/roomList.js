@@ -5,19 +5,6 @@ import { RoomListConfig } from "../config" //房间列表页面绘制参数
 
 let _ = {}
 
-const drawImg = (ctx, rect, imgSrc) => {
-  return new Promise(resolve => {
-    loadImg(imgSrc)
-      .then(img => {
-        ctx.drawImage(img, rect.x, rect.y, rect.w, rect.h)
-        resolve()
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  })
-}
-
 /*
  * 函数 list: 绘制列表
  * 参数 ctx: canvasContext 对象
@@ -54,19 +41,17 @@ _.item = (ctx, index, item, actived) => {
     ? RoomListConfig.item.actived.textColor
     : RoomListConfig.item.unactived.textColor
 
-  // 填充背景 (这里等于把这块区域原有的内容清除了)
-  //ctx.fillStyle = bgColor
-  // let image = new Image()
-  // image.src = img
-  // image.onload = evt => {
-  //   ctx.drawImage(evt.target, rect.x, rect.y, rect.w, rect.h)
-  // }
-  drawImg(ctx, rect, RoomListConfig.item.bgImgSrc).then(() => {
-    // 绘制房间名称
+  loadImg(RoomListConfig.item.bgImgSrc).then(img => {
+    // 填充背景
+    ctx.drawImage(img, rect.x, rect.y, rect.w, rect.h)
+
+    // 设置文字参数
     ctx.font = RoomListConfig.item.fontSize + "px " + fontFamily
     ctx.fillStyle = textColor
     ctx.textAlign = "left"
     ctx.textBaseline = "middle"
+
+    // 绘制房间名称
     const _index = parseInt(index) + 1
     const text =
       (_index < 10 ? "00" + _index : "0" + _index) + "   " + item.title
@@ -86,8 +71,6 @@ _.item = (ctx, index, item, actived) => {
       rect.y + rect.h / 2
     )
   })
-
-  // ctx.fillRect(rect.x, rect.y, rect.w, rect.h)
 }
 
 //绘制背景图
