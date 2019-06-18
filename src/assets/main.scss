@@ -1,0 +1,33 @@
+/* 竖屏 */
+@media screen and (orientation: portrait) {
+  body {
+    background: #99c9db;
+  }
+  .ctx {
+    position: absolute;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    width: 99vw;
+    height: (99vw / 9 * 16);
+    top: 50%;
+    margin-top: (-99vw / 2 / 9 * 16);
+    left: 50%;
+    margin-left: (-99vw / 2); 
+  }
+}
+
+/* 横屏 */
+@media screen and (orientation: landscape) {
+  body {
+    background: #c9db99;
+  }
+  .ctx {
+    position: absolute;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    width: (96vh / 16 * 9);
+    height: 96vh;
+    top: 50%;
+    margin-top: (-96vh / 2);
+    left: 50%;
+    margin-left: (-96vh / 2 / 16 * 9);
+  }
+}

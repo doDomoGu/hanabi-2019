@@ -70,6 +70,6 @@ export default {
 body,
 html {
   margin: 0;
-  background: #99c9db;
+  /* background: #99c9db; */
 }
 </style>

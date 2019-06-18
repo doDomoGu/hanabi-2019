@@ -1,7 +1,7 @@
 <template>
   <div id="room-list">
-    <canvas id="ctxMain" ref="ctxMain"></canvas>
-    <canvas id="ctxBg" ref="ctxBg"></canvas>
+    <canvas id="ctxMain" class="ctx" ref="ctxMain"></canvas>
+    <canvas id="ctxBg" class="ctx" ref="ctxBg"></canvas>
   </div>
 </template>
 
@@ -79,25 +79,9 @@ export default {
 </script>
 <style lang="scss" scoped>
 #ctxMain {
-  position: absolute;
-  width: 99vw;
-  height: 99vw / 9 * 16;
-  top: 50%;
-  margin-top: -49.5vw / 9 * 16;
-  left: 50%;
-  margin-left: -49.5vw;
   z-index: 2;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 #ctxBg {
-  position: absolute;
-  width: 99vw;
-  height: 99vw / 9 * 16;
-  top: 50%;
-  margin-top: -49.5vw / 9 * 16;
-  left: 50%;
-  margin-left: -49.5vw;
   z-index: 1;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 </style>
