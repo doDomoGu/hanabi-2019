@@ -27,12 +27,12 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 #logout-button {
   position: absolute;
   width: 99vw;
   bottom: 50%;
-  margin-bottom: -88vw;
+  margin-bottom: -49.5vw / 9 * 16;
   left: 50%;
   margin-left: -49.5vw;
   z-index: 100;
