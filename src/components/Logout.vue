@@ -32,9 +32,32 @@ export default {
   position: absolute;
   width: 99vw;
   bottom: 50%;
-  margin-bottom: -49.5vw / 9 * 16;
+  margin-bottom: (-99vw / 2 / 9 * 16);
   left: 50%;
-  margin-left: -49.5vw;
+  margin-left: (-99vw / 2);
   z-index: 100;
 }
+
+/* @media screen and (orientation: portrait) {
+  #logout-button {
+    position: absolute;
+    width: 99vw;
+    bottom: 50%;
+    margin-bottom: (-99vw / 2 / 9 * 16);
+    left: 50%;
+    margin-left: (-99vw / 2);
+    z-index: 100;
+  }
+}
+@media screen and (orientation: landscape) {
+  #logout-button {
+    position: absolute;
+    width: (96vh / 16 * 9);
+    bottom: 50%;
+    margin-bottom: (-96vh / 2);
+    left: 50%;
+    margin-left: (-96vh / 2 / 16 * 9);
+    z-index: 100;
+  }
+} */
 </style>

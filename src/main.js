@@ -7,7 +7,7 @@ import Mint from "mint-ui"
 import "mint-ui/lib/style.css"
 Vue.use(Mint)
 
-import "@/assets/main.scss"
+// import "@/assets/main.scss"
 
 /* LocalStorage 本地储存 */
 import Storage from "vue-ls"
