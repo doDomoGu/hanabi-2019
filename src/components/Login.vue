@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section id="login">
     <mt-field
       label="用户名"
       placeholder="请输入用户名"
@@ -57,3 +57,15 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+#login {
+  position: absolute;
+  width: 100vw;
+  top: 50%;
+  height: 300px;
+  margin-top: (-200px / 2);
+  left: 50%;
+  margin-left: (-100vw / 2);
+  z-index: 100;
+}
+</style>
