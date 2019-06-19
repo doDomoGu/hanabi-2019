@@ -6,7 +6,10 @@ const dpr = window.devicePixelRatio
 // canvas 宽和高 （窗口高度*像素比，高清化）
 const width = window.innerWidth * dpr
 // const height = window.innerHeight * dpr
-const height = (width / 9) * 16
+const height = (width / 10) * 16
+
+// console.log(window.innerWidth * dpr)
+// console.log(window.innerHeight * dpr)
 
 // 属性：字体大小
 // _.fontSize = window.innerWidth / 6.4

@@ -72,14 +72,15 @@ html {
   margin: 0;
   background: #99c9db;
 }
+
 .ctx {
   position: absolute;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  width: 99vw;
-  height: (99vw / 9 * 16);
-  top: 50%;
-  margin-top: (-99vw / 2 / 9 * 16);
-  left: 50%;
-  margin-left: (-99vw / 2);
+  width: $width;
+  height: ($width / 10 * 16);
+  // top: 50%;
+  // margin-top: (-99vw / 2 / 9 * 16);
+  // left: 50%;
+  // margin-left: (-99vw / 2);
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div id="my-room">
-    <canvas id="ctxMain" ref="ctxMain"></canvas>
-    <canvas id="ctxBg" ref="ctxBg"></canvas>
+    <canvas id="ctxMain" class="ctx" ref="ctxMain"></canvas>
+    <canvas id="ctxBg" class="ctx" ref="ctxBg"></canvas>
   </div>
 </template>
 
@@ -96,17 +96,9 @@ export default {
 
 <style scoped>
 #ctxMain {
-  position: absolute;
-  width: 100%;
-  height: 100%;
   z-index: 2;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 #ctxBg {
-  position: absolute;
-  width: 100%;
-  height: 100%;
   z-index: 1;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 </style>

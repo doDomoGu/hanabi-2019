@@ -30,11 +30,12 @@ export default {
 <style lang="scss" scoped>
 #logout-button {
   position: absolute;
-  width: 99vw;
-  bottom: 50%;
-  margin-bottom: (-99vw / 2 / 9 * 16);
-  left: 50%;
-  margin-left: (-99vw / 2);
+  width: $width;
+  top: $width / 10 * 16;
+  margin-top: -41px;
+  // margin-bottom: (-99vw / 2 / 9 * 16);
+  // left: 50%;
+  // margin-left: (-99vw / 2);
   z-index: 100;
 }
 
