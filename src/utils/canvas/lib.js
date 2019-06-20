@@ -6,7 +6,10 @@ const dpr = window.devicePixelRatio
 // canvas 宽和高 （窗口高度*像素比，高清化）
 const width = window.innerWidth * dpr
 // const height = window.innerHeight * dpr
-const height = (width / 10) * 16
+const height = (width / 16) * 9
+
+// console.log(width)
+// console.log(height)
 
 // console.log(window.innerWidth * dpr)
 // console.log(window.innerHeight * dpr)
@@ -25,8 +28,10 @@ const px2Rem = px => {
 // 方法：定义并获得canvasContext对象，且设置宽和高(canvas重置初始化)
 const getCtx = canvas => {
   const ctx = canvas.getContext("2d")
-  ctx.canvas.width = width
-  ctx.canvas.height = height
+  // ctx.canvas.width = width
+  // ctx.canvas.height = height
+  ctx.canvas.width = ctx.canvas.width * dpr
+  ctx.canvas.height = ctx.canvas.height * dpr
   return ctx
 }
 

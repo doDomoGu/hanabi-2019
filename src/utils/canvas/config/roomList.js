@@ -1,7 +1,6 @@
 /* 房间列表绘制参数配置 */
 
 import { dpr, width, height, px2Rem } from "../lib"
-// import OtherConfig from "./other"
 import itemImg from "@/assets/background.jpg"
 import bgImg from "@/assets/hanabi_bg2.jpg"
 

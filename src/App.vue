@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <login v-if="isLogin === false" />
-    <logout v-if="logoutShow === true" />
+    <navbar v-if="navbarShow === true" />
     <room-list v-if="isRoomList === true" />
     <my-room v-if="isInRoom === true" />
     <my-game v-if="isInGame === true" />
@@ -10,13 +10,13 @@
 <script>
 import { getToken } from "@/utils/authToken"
 import Login from "./components/Login"
-import Logout from "./components/Logout"
+import Navbar from "./components/Navbar"
 import RoomList from "./components/RoomList"
 import MyRoom from "./components/MyRoom"
 import MyGame from "./components/MyGame"
 export default {
   name: "app",
-  components: { Login, Logout, RoomList, MyRoom, MyGame },
+  components: { Login, Navbar, RoomList, MyRoom, MyGame },
   created() {
     if (getToken()) {
       //本地(localstorage)有token 验证token
@@ -37,7 +37,7 @@ export default {
     isLogin() {
       return this.$store.getters["auth/isLogin"]
     },
-    logoutShow() {
+    navbarShow() {
       return this.$store.getters["auth/isLogin"]
     },
     isRoomList() {
