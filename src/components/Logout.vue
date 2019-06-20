@@ -31,8 +31,9 @@ export default {
 #logout-button {
   position: absolute;
   width: $width;
-  top: $width / 10 * 16;
-  margin-top: -41px;
+  bottom: 0;
+  // top: $width / 10 * 16;
+  // margin-top: -41px;
   // margin-bottom: (-99vw / 2 / 9 * 16);
   // left: 50%;
   // margin-left: (-99vw / 2);

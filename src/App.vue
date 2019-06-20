@@ -38,10 +38,7 @@ export default {
       return this.$store.getters["auth/isLogin"]
     },
     logoutShow() {
-      return (
-        this.$store.getters["auth/isLogin"] &&
-        !this.$store.getters["myRoom/isIn"]
-      )
+      return this.$store.getters["auth/isLogin"]
     },
     isRoomList() {
       return (

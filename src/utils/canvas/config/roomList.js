@@ -1,7 +1,7 @@
 /* 房间列表绘制参数配置 */
 
 import { dpr, width, height, px2Rem } from "../lib"
-import OtherConfig from "./other"
+// import OtherConfig from "./other"
 import itemImg from "@/assets/background.jpg"
 import bgImg from "@/assets/hanabi_bg2.jpg"
 
@@ -29,10 +29,7 @@ _.item.titleX = _.item.rect.x + 10 * dpr
 _.item.lockX = _.item.rect.x + _.item.rect.w - 60 * dpr
 _.item.playerCountX = _.item.rect.x + _.item.rect.w - 40 * dpr
 
-_.item.margin = Math.floor(
-  (height - _.padding * 2 - OtherConfig.logoutBtn.height - _.item.rect.h * 10) /
-    9
-)
+_.item.margin = Math.floor((height - _.padding * 2 - _.item.rect.h * 10) / 9)
 
 // _.item.margin = _.item.margin > 120 ? 120 : _.item.margin
 

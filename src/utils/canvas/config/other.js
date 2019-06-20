@@ -4,6 +4,6 @@ let _ = {}
 
 /* 登出按钮 */
 _.logoutBtn = {}
-_.logoutBtn.height = 40 * dpr
+_.logoutBtn.height = 41 * dpr
 
 export default _
