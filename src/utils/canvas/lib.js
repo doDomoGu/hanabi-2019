@@ -30,8 +30,10 @@ const getCtx = canvas => {
   const ctx = canvas.getContext("2d")
   // ctx.canvas.width = width
   // ctx.canvas.height = height
-  ctx.canvas.width = ctx.canvas.width * dpr
-  ctx.canvas.height = ctx.canvas.height * dpr
+  ctx.canvas.width = ctx.canvas.clientWidth * dpr
+  ctx.canvas.height = ctx.canvas.clientHeight * dpr
+  // console.log(ctx.canvas.width)
+  // console.log(ctx.canvas.height)
   return ctx
 }
 
