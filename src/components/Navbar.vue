@@ -37,10 +37,10 @@ export default {
     this.ctxBg = getCtx(this.$refs.ctxBg)
 
     // 绘制导航背景
-    NavbarDraw.background(this.ctxBg)
+    // NavbarDraw.background(this.ctxBg)
 
     // 绘制登出按钮
-    NavbarDraw.logoutBtn(this.ctxMain)
+    // NavbarDraw.logoutBtn(this.ctxMain)
 
     // 绑定触摸事件 touchstart 和 touchend
     // this.ctxMain.canvas.addEventListener(
@@ -90,11 +90,11 @@ export default {
 </script>
 <style lang="scss" scoped>
 #ctxMain {
-  height: ($height / 10);
+  // height: ($height / 10);
   z-index: 202;
 }
 #ctxBg {
-  height: ($height / 10);
+  // height: ($height / 10);
   z-index: 201;
 }
 </style>

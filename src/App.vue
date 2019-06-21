@@ -67,17 +67,6 @@ export default {
 body,
 html {
   margin: 0;
-  background: $background;
-}
-
-.ctx {
-  position: absolute;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  width: $width;
-  height: $height;
-  top: 50%;
-  margin-top: -$height / 2;
-  left: 50%;
-  margin-left: -$width / 2;
+  // background: $background;
 }
 </style>
