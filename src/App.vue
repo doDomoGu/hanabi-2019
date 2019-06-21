@@ -67,6 +67,6 @@ export default {
 body,
 html {
   margin: 0;
-  // background: $background;
+  background: $background;
 }
 </style>
