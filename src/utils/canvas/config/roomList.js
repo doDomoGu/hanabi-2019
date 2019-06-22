@@ -1,6 +1,6 @@
 /* 房间列表绘制参数配置 */
 
-import { dpr, width, height, px2Rem } from "../lib"
+import { dpr, width, height, px2Rem, fontFamily } from "../lib"
 import itemImg from "@/assets/background.jpg"
 import bgImg from "@/assets/hanabi_bg2.jpg"
 
@@ -16,7 +16,7 @@ _.item.actived.textColor = "#ffffff"
 
 _.item.unactived = {}
 _.item.unactived.bgColor = "#eeeeee"
-_.item.unactived.textColor = "#eeeeee"
+_.item.unactived.textColor = "#333333"
 
 _.item.rect = {}
 _.item.rect.x = _.padding
@@ -32,7 +32,7 @@ _.item.margin = Math.floor((height - _.padding * 2 - _.item.rect.h * 10) / 9)
 
 // _.item.margin = _.item.margin > 120 ? 120 : _.item.margin
 
-_.item.fontSize = px2Rem(22)
+_.item.font = px2Rem(22) + "px " + fontFamily
 
 _.item.itemImgSrc = itemImg
 

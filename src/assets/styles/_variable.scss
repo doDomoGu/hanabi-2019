@@ -5,7 +5,7 @@ $background: #000000;
 @media (max-aspect-ratio: 16/9) {
   $width: 100vw;
   $height: 100vw / 16 * 9;
-  .ctx {
+  #app {
     position: absolute;
     width: $width;
     height: $height;
@@ -20,7 +20,7 @@ $background: #000000;
 @media (min-aspect-ratio: 16/9) {
   $width: 100vh / 9 * 16;
   $height: 100vh;
-  .ctx {
+  #app {
     position: absolute;
     width: $width;
     height: $height;
@@ -31,10 +31,7 @@ $background: #000000;
     // background: #a2aa33;
   }
 }
-.ctx {
-  position: absolute;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
+
 
 /* .ctx {
   position: absolute;

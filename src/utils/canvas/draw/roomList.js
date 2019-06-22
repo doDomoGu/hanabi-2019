@@ -1,6 +1,6 @@
 /* 房间列表绘制库 */
 
-import { loadImg, fontFamily } from "../lib" // CanvasLib Canvas基础库
+import { loadImg } from "../lib" // CanvasLib Canvas基础库
 import { RoomListConfig } from "../config" //房间列表页面绘制参数
 
 let _ = {}
@@ -28,49 +28,72 @@ _.list = (ctx, list) => {
  */
 _.item = (ctx, index, item, actived) => {
   // 复制单个项目的 x y w h 属性
-  let rect = { ...RoomListConfig.item.rect }
+  // let rect = { ...RoomListConfig.item.rect }
+  // // 根据 index 计算y偏移量
+  // rect.y += parseInt(index) * parseInt(rect.h + RoomListConfig.item.margin)
+  /* loadImg(RoomListConfig.item.itemImgSrc).then(img => {
+    // 填充背景
+    ctx.drawImage(img, rect.x, rect.y, rect.w, rect.h)
+  }) */
+  // console.log(ctx.canvas.id, index, actived)
 
-  // 根据 index 计算y偏移量
-  rect.y += parseInt(index) * parseInt(rect.h + RoomListConfig.item.margin)
+  drawItemBackground(ctx, index, actived)
 
+  drawItemText(ctx, index, item, actived)
+}
+
+const drawItemBackground = (ctx, index, actived) => {
+  // item区域属性
+  const rect = getItemRect(index)
+  // console.log(rect)
   // 根据 actived 赋予背景色和文字颜色
-  // const bgColor = actived
-  //   ? RoomListConfig.item.actived.bgColor
-  //   : RoomListConfig.item.unactived.bgColor
+  const bgColor = actived
+    ? RoomListConfig.item.actived.bgColor
+    : RoomListConfig.item.unactived.bgColor
+
+  ctx.fillStyle = bgColor
+  ctx.fillRect(rect.x, rect.y, rect.w, rect.h)
+}
+
+const drawItemText = (ctx, index, item, actived) => {
+  // item区域属性
+  const rect = getItemRect(index)
+
+  // 设置文字参数
   const textColor = actived
     ? RoomListConfig.item.actived.textColor
     : RoomListConfig.item.unactived.textColor
+  ctx.font = RoomListConfig.item.font // 文字大小字体
+  ctx.fillStyle = textColor // 文字颜色
+  ctx.textAlign = "left"
+  ctx.textBaseline = "middle"
 
-  loadImg(RoomListConfig.item.itemImgSrc).then(img => {
-    // 填充背景
-    ctx.drawImage(img, rect.x, rect.y, rect.w, rect.h)
+  // 绘制房间名称
+  const _index = parseInt(index) + 1
+  const text = (_index < 10 ? "00" + _index : "0" + _index) + "   " + item.title
+  ctx.fillText(text, RoomListConfig.item.titleX, rect.y + rect.h / 2)
 
-    // 设置文字参数
-    ctx.font = RoomListConfig.item.fontSize + "px " + fontFamily
-    ctx.fillStyle = textColor
-    ctx.textAlign = "left"
-    ctx.textBaseline = "middle"
+  // 绘制房间上锁符号
+  ctx.fillText(
+    item.isLocked ? "L" : "",
+    RoomListConfig.item.lockX,
+    rect.y + rect.h / 2
+  )
 
-    // 绘制房间名称
-    const _index = parseInt(index) + 1
-    const text =
-      (_index < 10 ? "00" + _index : "0" + _index) + "   " + item.title
-    ctx.fillText(text, RoomListConfig.item.titleX, rect.y + rect.h / 2)
+  // 绘制房间人数信息
+  ctx.fillText(
+    item.playerCount + "/2",
+    RoomListConfig.item.playerCountX,
+    rect.y + rect.h / 2
+  )
+}
 
-    // 绘制房间上锁符号
-    ctx.fillText(
-      item.isLocked ? "L" : "",
-      RoomListConfig.item.lockX,
-      rect.y + rect.h / 2
-    )
-
-    // 绘制房间人数信息
-    ctx.fillText(
-      item.playerCount + "/2",
-      RoomListConfig.item.playerCountX,
-      rect.y + rect.h / 2
-    )
-  })
+// 根据index获取item的区域 x y w h 的属性
+const getItemRect = index => {
+  let rect = { ...RoomListConfig.item.rect }
+  // 根据 index 计算y偏移量
+  rect.y += parseInt(index) * parseInt(rect.h + RoomListConfig.item.margin)
+  return rect
 }
 
 //绘制背景图

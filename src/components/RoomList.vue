@@ -1,5 +1,5 @@
 <template>
-  <div id="room-list">
+  <div id="room-list" class="canvasContainter">
     <canvas id="ctxMain" class="ctx" ref="ctxMain"></canvas>
     <canvas id="ctxBg" class="ctx" ref="ctxBg"></canvas>
   </div>
@@ -35,10 +35,10 @@ export default {
   mounted() {
     // 初始化定义canvasContext
     this.ctxMain = getCtx(this.$refs.ctxMain)
-    this.ctxBg = getCtx(this.$refs.ctxBg)
+    // this.ctxBg = getCtx(this.$refs.ctxBg)
 
     // 绘制图片背景
-    RoomListDraw.background(this.ctxBg)
+    // RoomListDraw.background(this.ctxBg)
 
     // 绑定触摸事件 touchstart 和 touchend
     this.ctxMain.canvas.addEventListener(

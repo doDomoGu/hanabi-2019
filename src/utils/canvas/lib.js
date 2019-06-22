@@ -3,19 +3,26 @@
 // 设备像素比
 const dpr = window.devicePixelRatio
 
-// canvas 宽和高 （窗口高度*像素比，高清化）
+const width = 736 * dpr
+const height = (width / 16) * 9
+
+/* // canvas 宽和高 （窗口高度*像素比，高清化）
 const width = window.innerWidth * dpr
 // const height = window.innerHeight * dpr
 const height = (width / 16) * 9
 
-// console.log(width)
-// console.log(height)
-
+console.log(window.innerWidth)
+console.log(window.innerHeight) */
 // console.log(window.innerWidth * dpr)
 // console.log(window.innerHeight * dpr)
 
 // 属性：字体大小
 // _.fontSize = window.innerWidth / 6.4
+
+const setWidthAndHeight = (w, h) => {
+  width = w * dpr
+  height = h * dpr
+}
 
 // 字体
 const fontFamily = "Microsoft YaHei"
@@ -28,12 +35,23 @@ const px2Rem = px => {
 // 方法：定义并获得canvasContext对象，且设置宽和高(canvas重置初始化)
 const getCtx = canvas => {
   const ctx = canvas.getContext("2d")
-  // ctx.canvas.width = width
-  // ctx.canvas.height = height
-  ctx.canvas.width = ctx.canvas.clientWidth * dpr
+  ctx.canvas.width = width
+  ctx.canvas.height = height
+  /* ctx.canvas.width = ctx.canvas.clientWidth * dpr
   ctx.canvas.height = ctx.canvas.clientHeight * dpr
   // console.log(ctx.canvas.width)
   // console.log(ctx.canvas.height)
+
+  console.log(canvas.id)
+
+  console.log(width)
+  console.log(height)
+
+  width = ctx.canvas.width
+  height = ctx.canvas.height
+
+  console.log(width)
+  console.log(height) */
   return ctx
 }
 
@@ -73,6 +91,7 @@ const loadImg = src => {
 }
 
 export {
+  setWidthAndHeight,
   dpr,
   width,
   height,

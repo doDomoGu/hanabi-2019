@@ -1,5 +1,5 @@
 <template>
-  <div id="my-room">
+  <div id="my-room" class="canvasContainter">
     <canvas id="ctxMain" class="ctx" ref="ctxMain"></canvas>
     <canvas id="ctxBg" class="ctx" ref="ctxBg"></canvas>
   </div>
