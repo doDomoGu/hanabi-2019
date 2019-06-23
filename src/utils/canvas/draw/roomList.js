@@ -1,6 +1,5 @@
 /* 房间列表绘制库 */
 
-import { loadImg } from "../lib" // CanvasLib Canvas基础库
 import { RoomListConfig } from "../config" //房间列表页面绘制参数
 import DrawLib from "./lib" // DrawLib
 

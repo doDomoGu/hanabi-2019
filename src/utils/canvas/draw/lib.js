@@ -15,23 +15,12 @@ _.background = (ctx, imgSrc, type) => {
     .then(img => {
       if (type == "tile") {
         //平铺
-        ctx.rect(
-          0,
-          0,
-          ctx.canvas.clientWidth * dpr,
-          ctx.canvas.clientHeight * dpr
-        )
+        ctx.rect(0, 0, ctx.canvas.width, ctx.canvas.height)
         ctx.fillStyle = ctx.createPattern(img, "repeat")
         ctx.fill()
       } else if (type == "stretch") {
         //拉伸
-        ctx.drawImage(
-          img,
-          0,
-          0,
-          ctx.canvas.clientWidth * dpr,
-          ctx.canvas.clientHeight * dpr
-        )
+        ctx.drawImage(img, 0, 0, ctx.canvas.width, ctx.canvas.height)
       } else if (type == "tile2") {
         // 先将image宽度拉伸到和设备一样 （等比例） 再平铺
         const ctxTemp = document.createElement("canvas").getContext("2d") // ctxTemp 临时canvas
