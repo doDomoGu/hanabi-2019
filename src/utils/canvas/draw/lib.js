@@ -1,5 +1,5 @@
 /* 基础绘制方法库 */
-import { dpr, width, height } from "../lib"
+import { dpr, width, height, loadImg } from "../lib"
 
 let _ = {}
 
@@ -10,25 +10,52 @@ _.clear = ctx => {
 }
 
 //绘制背景图
-_.background = (ctx, imgSrc) => {
-  let image = new Image()
-  image.src = imgSrc
-  image.onload = () => {
-    //图片拉伸
-    // ctx.drawImage(
-    //   image,
-    //   0,
-    //   0,
-    //   ctx.canvas.clientWidth * dpr,
-    //   ctx.canvas.clientHeight * dpr
-    // )
-    //图片平铺
-    let canvasWidth = ctx.canvas.clientWidth * dpr
-    let canvasHeight = ctx.canvas.clientHeight * dpr
-    ctx.rect(0, 0, canvasWidth, canvasHeight)
-    ctx.fillStyle = ctx.createPattern(image, "repeat")
-    ctx.fill()
-  }
+_.background = (ctx, imgSrc, type) => {
+  loadImg(imgSrc)
+    .then(img => {
+      if (type == "tile") {
+        //平铺
+        ctx.rect(
+          0,
+          0,
+          ctx.canvas.clientWidth * dpr,
+          ctx.canvas.clientHeight * dpr
+        )
+        ctx.fillStyle = ctx.createPattern(img, "repeat")
+        ctx.fill()
+      } else if (type == "stretch") {
+        //拉伸
+        ctx.drawImage(
+          img,
+          0,
+          0,
+          ctx.canvas.clientWidth * dpr,
+          ctx.canvas.clientHeight * dpr
+        )
+      } else if (type == "tile2") {
+        // 先将image宽度拉伸到和设备一样 （等比例） 再平铺
+        const ctxTemp = document.createElement("canvas").getContext("2d") // ctxTemp 临时canvas
+        ctxTemp.canvas.width = ctx.canvas.width // 目标宽度
+        ctxTemp.canvas.height = parseInt(
+          (ctx.canvas.width / img.width) * img.height
+        ) // 目标高度
+        ctxTemp.drawImage(
+          img,
+          0,
+          0,
+          ctxTemp.canvas.width,
+          ctxTemp.canvas.height
+        )
+        //再将 ctxTemp内容 在ctx 上重复平铺
+        ctx.rect(0, 0, ctx.canvas.width, ctx.canvas.height)
+        ctx.fillStyle = ctx.createPattern(ctxTemp.canvas, "repeat")
+        ctx.fill()
+      }
+    })
+    .catch(err => {
+      console.log("loadImg wrong")
+      console.log(err)
+    })
 }
 
 //font-size
