@@ -1,8 +1,8 @@
 /* Canvas 基础库 */
 
 // 设备像素比
-const dpr = window.devicePixelRatio
-
+// const dpr = window.devicePixelRatio
+const dpr = 3
 // 固定高宽
 const width = 736 * dpr
 const height = (width / 16) * 9
