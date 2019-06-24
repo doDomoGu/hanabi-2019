@@ -14,7 +14,7 @@ import Login from "./components/Login"
 import RoomList from "./components/RoomList"
 import MyRoom from "./components/MyRoom"
 import MyGame from "./components/MyGame"
-// import { setWidthAndHeight } from "@/utils/canvas/lib"
+
 export default {
   name: "app",
   components: { Login, /* Navbar, */ RoomList, MyRoom, MyGame },
@@ -39,14 +39,6 @@ export default {
       //没有token 将loginState置为false
       this.$store.commit("auth/setLoginState", false)
     }
-  },
-  mounted() {
-    // console.log(this.$refs.app.clientWidth, this.$refs.app.clientHeight)
-    // console.log(
-    //   this.$refs.app.clientWidth * window.devicePixelRatio,
-    //   this.$refs.app.clientHeight * window.devicePixelRatio
-    // )
-    // setWidthAndHeight(this.$refs.app.clientWidth, this.$refs.app.clientHeight)
   },
   computed: {
     isLogin() {

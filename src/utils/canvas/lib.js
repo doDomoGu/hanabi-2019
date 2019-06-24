@@ -3,33 +3,23 @@
 // 设备像素比
 const dpr = window.devicePixelRatio
 
+// 固定高宽
 const width = 736 * dpr
 const height = (width / 16) * 9
 
-/* // canvas 宽和高 （窗口高度*像素比，高清化）
-const width = window.innerWidth * dpr
-// const height = window.innerHeight * dpr
-const height = (width / 16) * 9
-
-console.log(window.innerWidth)
-console.log(window.innerHeight) */
-// console.log(window.innerWidth * dpr)
-// console.log(window.innerHeight * dpr)
+const vw = width / 100
+const vh = height / 100
 
 // 属性：字体大小
 // _.fontSize = window.innerWidth / 6.4
-
-const setWidthAndHeight = (w, h) => {
-  width = w * dpr
-  height = h * dpr
-}
 
 // 字体
 const fontFamily = "Microsoft YaHei"
 
 // 方法：像素转换为Rem
 const px2Rem = px => {
-  return (px / 375) * width
+  return px * dpr
+  // return (px / 375) * width
 }
 
 // 方法：定义并获得canvasContext对象，且设置宽和高(canvas重置初始化)
@@ -66,6 +56,36 @@ const getEventPoint = (ctx, evt) => {
     _evt = evt
   }
   const rect = ctx.canvas.getBoundingClientRect()
+  console.log("left:" + rect.left)
+  console.log("top:" + rect.top)
+  // rate canvas缩放的比率
+  const rate = ctx.canvas.width / ctx.canvas.clientWidth
+
+  console.log("canvas width:" + ctx.canvas.width)
+  console.log("canvas clientwidth:" + ctx.canvas.clientWidth)
+
+  console.log("canvas height:" + ctx.canvas.height)
+  console.log("canvas clientHeight:" + ctx.canvas.clientHeight)
+
+  console.log("rate: " + rate)
+
+  console.log("clientX:" + Math.round(_evt.clientX))
+  console.log("clientX2:" + Math.round(_evt.clientX) / rate)
+
+  console.log("clientY:" + Math.round(_evt.clientY))
+  console.log("clientY2:" + Math.round(_evt.clientY) / rate)
+
+  const x = (Math.round(_evt.clientX) / rate - rect.left) * dpr
+  const y = (Math.round(_evt.clientY) / rate) * dpr - rect.top / rate
+
+  console.log("x:" + x)
+  console.log("y:" + y)
+
+  return {
+    x: x,
+    y: y
+  }
+
   return {
     x: (Math.round(_evt.clientX) - rect.left) * dpr,
     y: (Math.round(_evt.clientY) - rect.top) * dpr
@@ -91,10 +111,11 @@ const loadImg = src => {
 }
 
 export {
-  setWidthAndHeight,
   dpr,
   width,
   height,
+  vw,
+  vh,
   fontFamily,
   getCtx,
   getEventPoint,

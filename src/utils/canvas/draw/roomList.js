@@ -1,6 +1,6 @@
 /* 房间列表绘制库 */
 
-import { RoomListConfig } from "../config" //房间列表页面绘制参数
+import { RoomListConfig, NavbarConfig } from "../config" //房间列表页面绘制参数
 import DrawLib from "./lib" // DrawLib
 
 let _ = {}
@@ -92,13 +92,24 @@ const drawItemText = (ctx, index, item, actived) => {
 const getItemRect = index => {
   let rect = { ...RoomListConfig.item.rect }
   // 根据 index 计算y偏移量
-  rect.y += parseInt(index) * parseInt(rect.h + RoomListConfig.item.margin)
+  rect.y += parseInt(index) * parseInt(rect.h + RoomListConfig.item.padding)
   return rect
 }
 
-//绘制背景图
+// 绘制背景图
 _.background = ctx => {
   DrawLib.background(ctx, RoomListConfig.bgImgSrc, "tile")
+}
+
+// 顶部导航栏
+_.navbar = ctx => {
+  // 导航栏区域 背景色
+  const rect = NavbarConfig.rect
+  ctx.fillStyle = NavbarConfig.bgColor
+  ctx.fillRect(rect.x, rect.y, rect.w, rect.h)
+
+  // 绘制登出按钮
+  DrawLib.btn(ctx, NavbarConfig.logoutBtn)
 }
 
 export default _

@@ -28,7 +28,7 @@ export default {
   watch: {
     // list更新则重绘
     list(newVal) {
-      DrawLib.clear(this.ctxMain)
+      // DrawLib.clear(this.ctxMain)
       RoomListDraw.list(this.ctxMain, newVal)
     }
   },
@@ -39,6 +39,9 @@ export default {
 
     // 绘制图片背景
     RoomListDraw.background(this.ctxBg)
+
+    // 绘制顶部导航栏
+    RoomListDraw.navbar(this.ctxMain)
 
     // 绑定触摸事件 touchstart 和 touchend
     this.ctxMain.canvas.addEventListener(
