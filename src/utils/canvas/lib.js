@@ -56,39 +56,15 @@ const getEventPoint = (ctx, evt) => {
     _evt = evt
   }
   const rect = ctx.canvas.getBoundingClientRect()
-  console.log("left:" + rect.left)
-  console.log("top:" + rect.top)
-  // rate canvas缩放的比率
-  const rate = ctx.canvas.width / ctx.canvas.clientWidth
 
-  console.log("canvas width:" + ctx.canvas.width)
-  console.log("canvas clientwidth:" + ctx.canvas.clientWidth)
+  const rate = ctx.canvas.width / ctx.canvas.clientWidth // rate canvas缩放的比率
 
-  console.log("canvas height:" + ctx.canvas.height)
-  console.log("canvas clientHeight:" + ctx.canvas.clientHeight)
-
-  console.log("rate: " + rate)
-
-  console.log("clientX:" + Math.round(_evt.clientX))
-  console.log("clientX2:" + Math.round(_evt.clientX) / rate)
-
-  console.log("clientY:" + Math.round(_evt.clientY))
-  console.log("clientY2:" + Math.round(_evt.clientY) / rate)
-
-  const x = (Math.round(_evt.clientX) / rate - rect.left) * dpr
-  const y = (Math.round(_evt.clientY) / rate) * dpr - rect.top / rate
-
-  console.log("x:" + x)
-  console.log("y:" + y)
+  const x = (Math.round(_evt.clientX) - rect.left) * rate
+  const y = (Math.round(_evt.clientY) - rect.top) * rate
 
   return {
     x: x,
     y: y
-  }
-
-  return {
-    x: (Math.round(_evt.clientX) - rect.left) * dpr,
-    y: (Math.round(_evt.clientY) - rect.top) * dpr
   }
 }
 

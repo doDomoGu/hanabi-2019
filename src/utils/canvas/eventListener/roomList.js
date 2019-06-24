@@ -26,20 +26,12 @@ export default function eventListener(t, evt) {
     const x1 = rect.x
     const x2 = rect.x + rect.w
 
-    console.log(" ")
-    console.log(point.x)
-    console.log(x1, x2)
-
     if (point.x >= x1 && point.x <= x2) {
       let y1, y2
       for (let i = 0; i < listCount; i++) {
         // y1和y2 根据序号i的变化而变化
         y1 = rect.y + parseInt(rect.h + itemConfig.padding) * i
         y2 = y1 + rect.h
-        console.log(" ")
-        console.log(i)
-        console.log(point.y)
-        console.log(y1, y2)
         // 判断point的y轴坐标在 y1 和 y2 范围之间
         if (point.y >= y1 && point.y <= y2) {
           index = i
@@ -51,8 +43,6 @@ export default function eventListener(t, evt) {
   }
 
   const itemIndex = getListItemIndex(point, RoomListConfig.item, t.list.length)
-
-  console.log("itemindex:" + itemIndex)
 
   if (evt.type == "touchstart") {
     if (itemIndex > -1 && itemIndex < t.list.length) {
@@ -70,7 +60,6 @@ export default function eventListener(t, evt) {
           RoomListDraw.item(ctx, t.itemIndex, t.list[t.itemIndex], false)
         })
       } else {
-        return false
         t.enter(itemIndex + 1)
       }
     } else {
