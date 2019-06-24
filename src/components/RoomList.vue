@@ -8,7 +8,10 @@
 <script>
 import { getCtx } from "@/utils/canvas/lib"
 import { DrawLib, RoomListDraw } from "@/utils/canvas/draw"
-import { RoomListEventListener } from "@/utils/canvas/eventListener"
+import {
+  RoomListEventListener,
+  NavbarEventListener
+} from "@/utils/canvas/eventListener"
 
 export default {
   name: "room_list",
@@ -55,6 +58,14 @@ export default {
       "touchend",
       e => {
         RoomListEventListener(this, e, this.ctxMain)
+      },
+      false
+    )
+
+    this.ctxMain.canvas.addEventListener(
+      "click",
+      e => {
+        NavbarEventListener.clickLogoutBtn(this, e, this.ctxMain)
       },
       false
     )
