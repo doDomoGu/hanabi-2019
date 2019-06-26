@@ -1,7 +1,7 @@
 /* 导航栏事件监听库 */
 import { getEventPoint } from "../lib"
 // import DrawLib from "../draw/lib"
-import { RoomListDraw } from "../draw"
+// import { RoomListDraw } from "../draw"
 import { NavbarConfig } from "../config"
 
 import { MessageBox } from "mint-ui"

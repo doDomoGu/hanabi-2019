@@ -1,13 +1,13 @@
 /* 房间列表绘制参数配置 */
 
-import { dpr, width, height, vw, vh, px2Rem, fontFamily } from "../lib"
+import { vw, vh, px2Rem, fontFamily } from "../lib"
 import NavbarConfig from "./navbar"
 import itemImg from "@/assets/background.jpg"
 import bgImg from "@/assets/hanabi_bg2.jpg"
 
 let _ = {}
 
-let padding = 2 * vh
+// let padding = 2 * vh
 let itemMarginX = 6 * vw
 let itemMarginY = 6 * vh
 let itemPadding = 2 * vh
@@ -15,7 +15,7 @@ let itemPadding = 2 * vh
 let itemWidth = 30 * vw
 let itemHeight = 6 * vh
 
-_.padding = 30 * dpr
+// _.padding = 30 * dpr
 
 _.item = {}
 
@@ -28,7 +28,7 @@ _.item.unactived.bgColor = "#eeeeee"
 _.item.unactived.textColor = "#333333"
 
 _.item.rect = {}
-_.item.rect.x = width - itemWidth - itemMarginX
+_.item.rect.x = 100 * vw - itemWidth - itemMarginX
 _.item.rect.y = NavbarConfig.rect.h + itemMarginY
 _.item.rect.w = itemWidth
 _.item.rect.h = itemHeight

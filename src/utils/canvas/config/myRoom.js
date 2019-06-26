@@ -1,6 +1,6 @@
 /* 房间绘制参数配置 */
 
-import { dpr, width, height } from "../lib"
+import { vw, vh, px2Rem, fontFamily } from "../lib"
 
 let _ = {}
 
