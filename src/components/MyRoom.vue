@@ -49,8 +49,8 @@ export default {
     this.ctxMain = getCtx(this.$refs.ctxMain)
     this.ctxBg = getCtx(this.$refs.ctxBg)
 
-    //绘制背景
-    DrawLib.background(this.ctxBg, bgImg)
+    // 绘制图片背景
+    MyRoomDraw.background(this.ctxBg)
 
     // 绘制退出按钮
     MyRoomDraw.exitBtn(this.ctxMain)

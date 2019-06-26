@@ -1,7 +1,7 @@
 /* 房间绘制方法库 */
 // import DrawLib from "./lib"
 import { MyRoomConfig } from "../config"
-import { dpr, px2Rem, fontFamily } from "../lib"
+import DrawLib from "./lib" // DrawLib
 
 let _ = {}
 
@@ -11,11 +11,11 @@ _.exitBtn = ctx => {
   ctx.fillStyle = btn.bgColor
   ctx.fillRect(btn.x, btn.y, btn.w, btn.h)
 
-  ctx.font = px2Rem(16) + "px " + fontFamily
+  ctx.font = btn.font
   ctx.fillStyle = btn.textColor
   ctx.textAlign = "center"
   ctx.textBaseline = "middle"
-  ctx.fillText("退出房间", btn.x + btn.w / 2, btn.y + btn.h / 2)
+  ctx.fillText(btn.text, btn.x + btn.w / 2, btn.y + btn.h / 2)
 }
 
 _.hostPlayer = (ctx, isHost, isReady, info) => {
@@ -49,12 +49,16 @@ const drawPlayer = (ctx, rectConfig, isHost, isPlayer, isReady, info) => {
     ctx.fillStyle = "#fee9d6"
     ctx.fillRect(rectInfo.x, rectInfo.y, rectInfo.w, rectInfo.h)
 
-    ctx.font = px2Rem(24) + "px " + fontFamily
+    ctx.font = MyRoomConfig.player.info.font
     ctx.fillStyle = "#4b4b4b"
     ctx.textAlign = "left"
     ctx.textBaseline = "middle"
     const text = info.name + (isPlayer ? "*" : "")
-    ctx.fillText(text, rectInfo.x + 10 * dpr, rectInfo.y + rectInfo.h / 2)
+    ctx.fillText(
+      text,
+      rectInfo.x + MyRoomConfig.player.button.text.paddingX,
+      rectInfo.y + rectInfo.h / 2
+    )
   }
 
   let buttonConfig = {}
@@ -74,7 +78,7 @@ const drawPlayer = (ctx, rectConfig, isHost, isPlayer, isReady, info) => {
         buttonConfig.textcolor = MyRoomConfig.player.button.disabled.textColor
       }
 
-      buttonConfig.text = "开始游戏"
+      buttonConfig.text = MyRoomConfig.player.button.text.start
     } else {
       //当前玩家是客机
       if (isReady) {
@@ -82,19 +86,19 @@ const drawPlayer = (ctx, rectConfig, isHost, isPlayer, isReady, info) => {
         buttonConfig.bgColor = MyRoomConfig.player.button.enabled.cancel.bgColor
         buttonConfig.textcolor =
           MyRoomConfig.player.button.enabled.cancel.textColor
-        buttonConfig.text = "取消准备"
+        buttonConfig.text = MyRoomConfig.player.button.text.doReady2
       } else {
         //未准备  按钮enabled_ok
         buttonConfig.bgColor = MyRoomConfig.player.button.enabled.ok.bgColor
         buttonConfig.textcolor = MyRoomConfig.player.button.enabled.ok.textColor
-        buttonConfig.text = "准备"
+        buttonConfig.text = MyRoomConfig.player.button.text.doReady
       }
     }
 
     ctx.fillStyle = buttonConfig.bgColor
     ctx.fillRect(rectButton.x, rectButton.y, rectButton.w, rectButton.h)
 
-    ctx.font = px2Rem(16) + "px " + fontFamily
+    ctx.font = MyRoomConfig.player.button.font
     ctx.fillStyle = buttonConfig.textcolor
     ctx.textAlign = "center"
     ctx.textBaseline = "middle"
@@ -118,17 +122,18 @@ const drawPlayer = (ctx, rectConfig, isHost, isPlayer, isReady, info) => {
       ctx.fillStyle = MyRoomConfig.guest.readyArea.bgColor
       ctx.fillRect(readyArea.x, readyArea.y, readyArea.w, readyArea.h)
 
-      ctx.font = px2Rem(16) + "px " + fontFamily
+      ctx.font = MyRoomConfig.player.button.font
       ctx.fillStyle = MyRoomConfig.guest.readyArea.textColor
       ctx.textAlign = "left"
       ctx.textBaseline = "middle"
-      ctx.fillText(
-        readyText,
-        readyArea.x + 20 * dpr,
-        readyArea.y + readyArea.h / 2
-      )
+      ctx.fillText(readyText, readyArea.x, readyArea.y + readyArea.h / 2)
     }
   }
+}
+
+// 绘制背景图
+_.background = ctx => {
+  DrawLib.background(ctx, MyRoomConfig.bgImgSrc, "tile")
 }
 
 export default _
