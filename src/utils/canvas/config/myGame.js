@@ -48,7 +48,7 @@ _.player.info.nowPlaying.area.h = _.player.info.area.h */
 
 _.card = {}
 _.card.w = 4 * vw
-_.card.h = 8 * vh
+_.card.h = 12 * vh
 _.card.font = px2Rem(12) + "px " + fontFamily
 
 _.card.front = {}
@@ -114,9 +114,9 @@ for (let i = 0; i < 5; i++) {
   let handsArea = {}
   handsArea.x =
     _.host.area.x +
-    _.player.area.padding +
-    (_.player.hands.w + _.player.area.padding) * i
-  handsArea.y = _.host.info.area.y + _.host.info.area.h + _.player.area.padding
+    _.player.area.paddingX +
+    (_.player.hands.w + _.player.area.paddingX) * i
+  handsArea.y = _.host.info.area.y + _.host.info.area.h + _.player.area.paddingY
   handsArea.w = _.player.hands.w
   handsArea.h = _.player.hands.h
   _.host.hands.areas.push(handsArea)
@@ -176,7 +176,7 @@ _.table.successCards.area.x =
 _.table.successCards.area.y = _.table.area.y + windowPaddingY
 _.table.successCards.area.w = _.card.w / 2
 _.table.successCards.area.h = _.card.h / 2
-_.table.successCards.margin = 4 * vw
+_.table.successCards.margin = 1 * vw
 /* 游戏记录区域 */
 _.history = {}
 _.history.bgColor = "#eeccaa"
@@ -223,10 +223,10 @@ for (let i = 0; i < 5; i++) {
   let handsArea = {}
   handsArea.x =
     _.guest.area.x +
-    _.player.area.padding +
-    (_.player.hands.w + _.player.area.padding) * i
+    _.player.area.paddingX +
+    (_.player.hands.w + _.player.area.paddingX) * i
   handsArea.y =
-    _.guest.info.area.y + _.guest.info.area.h + _.player.area.padding
+    _.guest.info.area.y + _.guest.info.area.h + _.player.area.paddingY
   handsArea.w = _.player.hands.w
   handsArea.h = _.player.hands.h
   _.guest.hands.areas.push(handsArea)
