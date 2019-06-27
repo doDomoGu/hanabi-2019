@@ -8,7 +8,7 @@
       ref="ctxModal"
       v-show="modalShow"
     ></canvas>
-    <ul
+    <!-- <ul
       id="log"
       :style="{
         left: logRect.x + 'px',
@@ -25,7 +25,7 @@
       >
         {{ l }}
       </li>
-    </ul>
+    </ul> -->
   </div>
 </template>
 

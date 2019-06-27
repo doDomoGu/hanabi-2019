@@ -1,7 +1,6 @@
 /* 游戏绘制方法库 */
 import { DrawLib } from "../draw"
 import { MyGameConfig } from "../config"
-import { px2Rem, fontFamily } from "../lib"
 
 const colors = ["white", "blue", "yellow", "red", "green"]
 const numbers = [1, 1, 1, 2, 2, 3, 3, 4, 4, 5]
@@ -57,11 +56,11 @@ _.endBtn = ctx => {
   ctx.fillStyle = btn.bgColor
   ctx.fillRect(btn.x, btn.y, btn.w, btn.h)
 
-  ctx.font = px2Rem(16) + "px " + fontFamily
+  ctx.font = btn.font
   ctx.fillStyle = btn.textColor
   ctx.textAlign = "center"
   ctx.textBaseline = "middle"
-  ctx.fillText("结束游戏", btn.x + btn.w / 2, btn.y + btn.h / 2)
+  ctx.fillText(btn.text, btn.x + btn.w / 2, btn.y + btn.h / 2)
 }
 
 //绘制主机玩家信息
@@ -82,9 +81,16 @@ _.guestPlayer = (ctx, isPlayerHost, info) => {
 
 //绘制单个玩家信息
 const player = (ctx, config) => {
+  console.log({
+    rect: config.rect,
+    font: MyGameConfig.player.info.font,
+    textColor: MyGameConfig.player.info.textColor,
+    text: config.text,
+    textAlign: "left"
+  })
   DrawLib.fillText(ctx, {
     rect: config.rect,
-    font: px2Rem(24) + "px " + fontFamily,
+    font: MyGameConfig.player.info.font,
     textColor: MyGameConfig.player.info.textColor,
     text: config.text,
     textAlign: "left"
@@ -119,7 +125,7 @@ const frontHands = (ctx, rects, hands) => {
     ctx.fillStyle = MyGameConfig.player.hands.front.bgColor[color]
     DrawLib.fillRoundedRect(ctx, rect, 4)
 
-    ctx.font = px2Rem(14) + "px " + fontFamily
+    ctx.font = MyGameConfig.player.hands.font
     ctx.fillStyle = MyGameConfig.player.hands.front.textColor[color]
     ctx.textAlign = "center"
     ctx.textBaseline = "middle"
@@ -142,7 +148,7 @@ const cardsNum = (ctx, config, num) => {
   ctx.fillStyle = config.bgColor
   DrawLib.fillRoundedRect(ctx, rect, 4)
 
-  ctx.font = px2Rem(12) + "px " + fontFamily
+  ctx.font = MyGameConfig.card.font
   ctx.fillStyle = config.textColor
   ctx.textAlign = "center"
   ctx.textBaseline = "bottom"
@@ -164,7 +170,7 @@ _.discardCards = (ctx, num) => {
 const _num = (ctx, rect, text) => {
   ctx.clearRect(rect.x, rect.y, rect.w, rect.h)
 
-  ctx.font = px2Rem(12) + "px " + fontFamily
+  ctx.font = MyGameConfig.table.num.font
   ctx.fillStyle = MyGameConfig.table.num.textColor
   ctx.textAlign = "center"
   ctx.textBaseline = "middle"
@@ -179,13 +185,13 @@ _.cueNum = (ctx, num) => {
 //剩余机会数
 _.chanceNum = (ctx, num) => {
   const rect = JSON.parse(JSON.stringify(MyGameConfig.table.num.area))
-  rect.y += MyGameConfig.table.num.area.h + MyGameConfig.window.padding
+  rect.y += MyGameConfig.table.num.area.h + MyGameConfig.table.num.padding
   _num(ctx, rect, "机会数:" + num)
 }
 //分数
 _.score = (ctx, num) => {
   const rect = JSON.parse(JSON.stringify(MyGameConfig.table.num.area))
-  rect.y += (MyGameConfig.table.num.area.h + MyGameConfig.window.padding) * 2
+  rect.y += (MyGameConfig.table.num.area.h + MyGameConfig.table.num.padding) * 2
   _num(ctx, rect, "分数:" + num)
 }
 
@@ -205,7 +211,7 @@ _.successCards = (ctx, successCards) => {
     ctx.fillStyle = MyGameConfig.card.front.bgColor[c]
     DrawLib.fillRoundedRect(ctx, rect, 4)
 
-    ctx.font = px2Rem(8) + "px " + fontFamily
+    ctx.font = MyGameConfig.card.font
     ctx.fillStyle = MyGameConfig.card.front.textColor[c]
     ctx.textAlign = "center"
     ctx.textBaseline = "middle"
@@ -226,7 +232,7 @@ _.nowPlaying = (ctx, isHost) => {
 
   DrawLib.fillText(ctx, {
     rect: rect,
-    font: px2Rem(16) + "px " + fontFamily,
+    font: MyGameConfig.player.info.font,
     textColor: "#333333",
     text: "当前回合",
     textAlign: "left"
@@ -239,7 +245,7 @@ _.topConfirmPlay = ctx => {
 
   const rectTip = MyGameConfig.top.tip.rect
 
-  ctx.font = px2Rem(24) + "px " + fontFamily
+  ctx.font = MyGameConfig.top.tip.font
   ctx.fillStyle = "#333"
   ctx.textAlign = "center"
   ctx.textBaseline = "middle"
@@ -253,7 +259,7 @@ _.topConfirmPlay = ctx => {
   ctx.fillStyle = MyGameConfig.btn.ok.bgColor
   DrawLib.fillRoundedRect(ctx, rectOk, 4)
 
-  ctx.font = px2Rem(12) + "px " + fontFamily
+  ctx.font = MyGameConfig.btn.font
   ctx.fillStyle = MyGameConfig.btn.ok.textColor
   ctx.textAlign = "center"
   ctx.textBaseline = "middle"
@@ -263,7 +269,7 @@ _.topConfirmPlay = ctx => {
   ctx.fillStyle = MyGameConfig.btn.cancel.bgColor
   DrawLib.fillRoundedRect(ctx, rectCancel, 4)
 
-  ctx.font = px2Rem(12) + "px " + fontFamily
+  ctx.font = MyGameConfig.btn.font
   ctx.fillStyle = MyGameConfig.btn.cancel.textColor
   ctx.textAlign = "center"
   ctx.textBaseline = "middle"
@@ -280,7 +286,7 @@ _.topConfirmCue = ctx => {
 
   const rectTip = MyGameConfig.top.tip.rect
 
-  ctx.font = px2Rem(24) + "px " + fontFamily
+  ctx.font = MyGameConfig.top.tip.font
   ctx.fillStyle = "#333"
   ctx.textAlign = "center"
   ctx.textBaseline = "middle"
@@ -294,7 +300,7 @@ _.topConfirmCue = ctx => {
   ctx.fillStyle = MyGameConfig.btn.cueNum.bgColor
   DrawLib.fillRoundedRect(ctx, rectCueNum, 4)
 
-  ctx.font = px2Rem(12) + "px " + fontFamily
+  ctx.font = MyGameConfig.btn.font
   ctx.fillStyle = MyGameConfig.btn.cueNum.textColor
   ctx.textAlign = "center"
   ctx.textBaseline = "middle"
@@ -308,7 +314,7 @@ _.topConfirmCue = ctx => {
   ctx.fillStyle = MyGameConfig.btn.ok.bgColor
   DrawLib.fillRoundedRect(ctx, rectCueColor, 4)
 
-  ctx.font = px2Rem(12) + "px " + fontFamily
+  ctx.font = MyGameConfig.btn.font
   ctx.fillStyle = MyGameConfig.btn.ok.textColor
   ctx.textAlign = "center"
   ctx.textBaseline = "middle"
@@ -322,7 +328,7 @@ _.topConfirmCue = ctx => {
   ctx.fillStyle = MyGameConfig.btn.cancel.bgColor
   DrawLib.fillRoundedRect(ctx, rectCancel, 4)
 
-  ctx.font = px2Rem(12) + "px " + fontFamily
+  ctx.font = MyGameConfig.btn.font
   ctx.fillStyle = MyGameConfig.btn.cancel.textColor
   ctx.textAlign = "center"
   ctx.textBaseline = "middle"
