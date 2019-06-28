@@ -7,7 +7,7 @@
 
 <script>
 import { getCtx } from "@/utils/canvas/lib"
-import { DrawLib, RoomListDraw } from "@/utils/canvas/draw"
+import { RoomListDraw } from "@/utils/canvas/draw"
 import {
   RoomListEventListener,
   NavbarEventListener
@@ -91,11 +91,3 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-#ctxMain {
-  z-index: 2;
-}
-#ctxBg {
-  z-index: 1;
-}
-</style>

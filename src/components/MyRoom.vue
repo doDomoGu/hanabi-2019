@@ -93,12 +93,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-#ctxMain {
-  z-index: 2;
-}
-#ctxBg {
-  z-index: 1;
-}
-</style>

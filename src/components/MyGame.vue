@@ -1,5 +1,5 @@
 <template>
-  <div id="my-game">
+  <div id="my-game" class="canvasContainter">
     <canvas id="ctxMain" class="ctx" ref="ctxMain"></canvas>
     <canvas id="ctxBg" class="ctx" ref="ctxBg"></canvas>
     <canvas
@@ -144,16 +144,6 @@ export default {
 }
 </script>
 <style scoped>
-#ctxMain {
-  z-index: 5;
-}
-#ctxBg {
-  z-index: 1;
-}
-#ctxModal {
-  z-index: 10;
-}
-
 #log {
   position: absolute;
   font-size: 16px;
@@ -172,11 +162,5 @@ export default {
 }
 #log li.odd {
   background: rgb(243, 130, 130);
-}
-
-#my-game {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
 }
 </style>

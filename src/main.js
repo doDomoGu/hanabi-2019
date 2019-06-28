@@ -3,9 +3,14 @@ import App from "./App.vue"
 import store from "./store"
 
 /* mint-ui */
-import Mint from "mint-ui"
+/* import Mint from "mint-ui"
+Vue.use(Mint) */
+
+import { Field, Button } from "mint-ui"
+Vue.component(Field.name, Field)
+Vue.component(Button.name, Button)
+
 import "mint-ui/lib/style.css"
-Vue.use(Mint)
 
 // import "@/assets/main.scss"
 
