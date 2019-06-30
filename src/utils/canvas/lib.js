@@ -58,14 +58,23 @@ const getEventPoint = (ctx, evt) => {
   const rect = ctx.canvas.getBoundingClientRect()
 
   const rate = ctx.canvas.width / ctx.canvas.clientWidth // rate canvas缩放的比率
-
+  
   const x = (Math.round(_evt.clientX) - rect.left) * rate
   const y = (Math.round(_evt.clientY) - rect.top) * rate
-
+  
   return {
     x: x,
     y: y
   }
+}
+
+const isInRect = (point, rect) => {
+  return (
+    point.x >= rect.x &&
+    point.x <= rect.x + rect.w &&
+    point.y >= rect.y &&
+    point.y <= rect.y + rect.h
+  )
 }
 
 // 读取图片src 返回Image对象
@@ -95,6 +104,7 @@ export {
   fontFamily,
   getCtx,
   getEventPoint,
+  isInRect,
   px2Rem,
   loadImg
 }

@@ -1,47 +1,35 @@
 /* 房间列表事件监听库 */
-import { getEventPoint } from "../lib"
+import { getEventPoint, isInRect, getCtx } from "../lib"
 // import DrawLib from "../draw/lib"
 import { RoomListDraw } from "../draw"
 import { RoomListConfig } from "../config"
 
 import { MessageBox } from "mint-ui"
 
+/*
+ * 获取点击的项目序号
+ * 参数 point: 点击/触摸的位置坐标
+ * 参数 itemConfig: roomList的item绘制设置
+ * 参数 listCount: list的总数
+ */
+function getListItemIndex(point, itemConfig, listCount) {
+  let index = -1 // 在区块范围内返回 ( 0 - [listCount] )之间， 否则返回 -1
+  let rect = { ...itemConfig.rect }
+
+  for (let i = 0; i < listCount; i++) {
+    if (isInRect(point, rect)) {
+      index = i
+      break
+    }
+    // rect.y 根据序号i的增加而增加
+    rect.y += parseInt(rect.h + itemConfig.padding)
+  }
+  
+  return index
+}
 export default function eventListener(t, evt) {
   const ctx = t[evt.target.id]
-
   const point = getEventPoint(ctx, evt)
-
-  /*
-   * 获取点击的项目序号
-   * 参数 point: 点击/触摸的位置坐标
-   * 参数 itemConfig: roomList的item绘制设置
-   * 参数 listCount: list的总数
-   */
-  function getListItemIndex(point, itemConfig, listCount) {
-    let index = -1 // 在区块范围内返回 [0-9]， 否则返回 -1
-
-    const rect = { ...itemConfig.rect }
-
-    // 判断point的x轴坐标在 x1 和 x2 范围之间
-    const x1 = rect.x
-    const x2 = rect.x + rect.w
-
-    if (point.x >= x1 && point.x <= x2) {
-      let y1, y2
-      for (let i = 0; i < listCount; i++) {
-        // y1和y2 根据序号i的变化而变化
-        y1 = rect.y + parseInt(rect.h + itemConfig.padding) * i
-        y2 = y1 + rect.h
-        // 判断point的y轴坐标在 y1 和 y2 范围之间
-        if (point.y >= y1 && point.y <= y2) {
-          index = i
-          break
-        }
-      }
-    }
-    return index
-  }
-
   const itemIndex = getListItemIndex(point, RoomListConfig.item, t.list.length)
 
   if (evt.type == "touchstart") {
@@ -70,3 +58,4 @@ export default function eventListener(t, evt) {
     }
   }
 }
+

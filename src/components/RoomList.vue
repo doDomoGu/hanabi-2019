@@ -50,14 +50,14 @@ export default {
     this.ctxMain.canvas.addEventListener(
       "touchstart",
       e => {
-        RoomListEventListener(this, e, this.ctxMain)
+        RoomListEventListener(this, e)
       },
       false
     )
     this.ctxMain.canvas.addEventListener(
       "touchend",
       e => {
-        RoomListEventListener(this, e, this.ctxMain)
+        RoomListEventListener(this, e)
       },
       false
     )
