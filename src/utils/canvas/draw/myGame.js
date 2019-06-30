@@ -9,35 +9,37 @@ let _ = {} //common
 
 //绘制背景
 _.bottomRect = ctx => {
-  //主机玩家区域背景
-  DrawLib.fillRect(ctx, {
-    rect: MyGameConfig.host.area,
-    color: MyGameConfig.player.bgColor
-  })
-  //主机玩家信息区域背景
-  DrawLib.fillRect(ctx, {
-    rect: MyGameConfig.host.info.area,
-    color: MyGameConfig.player.info.bgColor
-  })
-  //客机玩家区域背景
-  DrawLib.fillRect(ctx, {
-    rect: MyGameConfig.guest.area,
-    color: MyGameConfig.player.bgColor
-  })
-  //客机玩家信息区域背景
-  DrawLib.fillRect(ctx, {
-    rect: MyGameConfig.guest.info.area,
-    color: MyGameConfig.player.info.bgColor
-  })
-  //桌面区域背景
-  DrawLib.fillRect(ctx, {
-    rect: MyGameConfig.table.area,
-    color: MyGameConfig.table.bgColor
-  })
-  //游戏记录区域背景
-  DrawLib.fillRect(ctx, {
-    rect: MyGameConfig.history.area,
-    color: MyGameConfig.history.bgColor
+  DrawLib.background(ctx, MyGameConfig.bgImgSrc, "tile").then(()=>{
+    //主机玩家区域背景
+    DrawLib.fillRect(ctx, {
+      rect: MyGameConfig.host.area,
+      color: MyGameConfig.player.bgColor
+    })
+    //主机玩家信息区域背景
+    DrawLib.fillRect(ctx, {
+      rect: MyGameConfig.host.info.area,
+      color: MyGameConfig.player.info.bgColor
+    })
+    //客机玩家区域背景
+    DrawLib.fillRect(ctx, {
+      rect: MyGameConfig.guest.area,
+      color: MyGameConfig.player.bgColor
+    })
+    //客机玩家信息区域背景
+    DrawLib.fillRect(ctx, {
+      rect: MyGameConfig.guest.info.area,
+      color: MyGameConfig.player.info.bgColor
+    })
+    //桌面区域背景
+    DrawLib.fillRect(ctx, {
+      rect: MyGameConfig.table.area,
+      color: MyGameConfig.table.bgColor
+    })
+    //游戏记录区域背景
+    DrawLib.fillRect(ctx, {
+      rect: MyGameConfig.history.area,
+      color: MyGameConfig.history.bgColor
+    })
   })
 }
 
@@ -81,13 +83,13 @@ _.guestPlayer = (ctx, isPlayerHost, info) => {
 
 //绘制单个玩家信息
 const player = (ctx, config) => {
-  console.log({
+  /* console.log({
     rect: config.rect,
     font: MyGameConfig.player.info.font,
     textColor: MyGameConfig.player.info.textColor,
     text: config.text,
     textAlign: "left"
-  })
+  }) */
   DrawLib.fillText(ctx, {
     rect: config.rect,
     font: MyGameConfig.player.info.font,

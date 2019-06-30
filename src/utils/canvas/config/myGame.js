@@ -1,6 +1,7 @@
 /* 游戏页面绘制参数配置 */
 
 import { vw, vh, px2Rem, fontFamily } from "../lib"
+import bgImg from "@/assets/hanabi_bg2.jpg"
 
 let _ = {}
 
@@ -313,5 +314,7 @@ _.top.cue.cancel.rect.x = _.top.rect.w / 2 + 60 * vw
 _.top.cue.cancel.rect.y = _.top.rect.h / 2 + 20 * vh
 _.top.cue.cancel.rect.w = _.btn.area.w
 _.top.cue.cancel.rect.h = _.btn.area.h
+
+_.bgImgSrc = bgImg
 
 export default _
