@@ -29,7 +29,7 @@ _.player.info.textColor = "#4b4b4b"
 _.player.info.area = {}
 _.player.info.area.w = _.player.area.w - _.player.area.paddingX * 2
 _.player.info.area.h = 10 * vh
-_.player.info.font = px2Rem(20) + "px " + fontFamily
+_.player.info.font = px2Rem(16) + "px " + fontFamily
 
 _.player.info.nowPlaying = {}
 _.player.info.nowPlaying.area = {}
@@ -50,7 +50,7 @@ _.player.info.nowPlaying.area.h = _.player.info.area.h */
 _.card = {}
 _.card.w = 4 * vw
 _.card.h = 12 * vh
-_.card.font = px2Rem(12) + "px " + fontFamily
+_.card.font = px2Rem(8) + "px " + fontFamily
 
 _.card.front = {}
 _.card.front.bgColor = {}
@@ -81,6 +81,8 @@ _.player.hands.font = px2Rem(14) + "px " + fontFamily
 
 /* 主机玩家 */
 _.host = {}
+
+_.host.bgColor = "#cccccc"
 
 _.host.area = {}
 _.host.area.x = _.player.area.x
@@ -137,26 +139,28 @@ _.table.area.y = windowPaddingY
 _.table.area.w = 50 * vw - windowPaddingX
 _.table.area.h = 40 * vh
 
-_.table.libraryCards = {}
-_.table.libraryCards.bgColor = "#eeaacc"
-_.table.libraryCards.textColor = "#333333"
-_.table.libraryCards.title = "牌库"
-_.table.libraryCards.area = {}
-_.table.libraryCards.area.x = _.table.area.x + windowPaddingX
-_.table.libraryCards.area.y = _.table.area.y + windowPaddingY
-_.table.libraryCards.area.w = _.card.w
-_.table.libraryCards.area.h = _.card.h
+    /* 牌库 */
+  _.table.libraryCards = {}
+  _.table.libraryCards.bgColor = "#eeaacc"
+  _.table.libraryCards.textColor = "#333333"
+  _.table.libraryCards.title = "牌库"
+  _.table.libraryCards.area = {}
+  _.table.libraryCards.area.x = _.table.area.x + windowPaddingX
+  _.table.libraryCards.area.y = _.table.area.y + windowPaddingY
+  _.table.libraryCards.area.w = _.card.w
+  _.table.libraryCards.area.h = _.card.h
 
-_.table.discardCards = {}
-_.table.discardCards.bgColor = "#ccaaee"
-_.table.discardCards.textColor = "#333333"
-_.table.discardCards.title = "弃牌堆"
-_.table.discardCards.area = {}
-_.table.discardCards.area.w = _.card.w
-_.table.discardCards.area.h = _.card.h
-_.table.discardCards.area.x =
-  100 * vw - windowPaddingX - _.table.discardCards.area.w
-_.table.discardCards.area.y = _.table.area.y + windowPaddingY
+  /* 弃牌堆 */
+  _.table.discardCards = {}
+  _.table.discardCards.bgColor = "#ccaaee"
+  _.table.discardCards.textColor = "#333333"
+  _.table.discardCards.title = "弃牌堆"
+  _.table.discardCards.area = {}
+  _.table.discardCards.area.w = _.card.w
+  _.table.discardCards.area.h = _.card.h
+  _.table.discardCards.area.x =
+    100 * vw - windowPaddingX - _.table.discardCards.area.w - windowPaddingX
+  _.table.discardCards.area.y = _.table.area.y + windowPaddingY
 
 _.table.num = {}
 _.table.num.textColor = "#333333"
@@ -183,16 +187,18 @@ _.history = {}
 _.history.bgColor = "#eeccaa"
 _.history.area = {}
 _.history.area.x = _.table.area.x
-_.history.area.y = _.table.area.y + _.table.area.h
+_.history.area.y = _.table.area.y + _.table.area.h + 0 * vh
 _.history.area.w = _.table.area.w
-_.history.area.h = 10 * vh
+_.history.area.h = 40 * vh
 
 /* 客机玩家 */
 _.guest = {}
 
+_.guest.bgColor = "#dcdcdc"
+
 _.guest.area = {}
 _.guest.area.x = _.host.area.x
-_.guest.area.y = _.host.area.y + _.host.area.h + 4 * vh
+_.guest.area.y = _.host.area.y + _.host.area.h + 0 * vh
 _.guest.area.w = _.player.area.w
 _.guest.area.h = _.player.area.h
 

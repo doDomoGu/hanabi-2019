@@ -13,7 +13,7 @@ _.bottomRect = ctx => {
     //主机玩家区域背景
     DrawLib.fillRect(ctx, {
       rect: MyGameConfig.host.area,
-      color: MyGameConfig.player.bgColor
+      color: MyGameConfig.host.bgColor
     })
     //主机玩家信息区域背景
     DrawLib.fillRect(ctx, {
@@ -23,7 +23,7 @@ _.bottomRect = ctx => {
     //客机玩家区域背景
     DrawLib.fillRect(ctx, {
       rect: MyGameConfig.guest.area,
-      color: MyGameConfig.player.bgColor
+      color: MyGameConfig.guest.bgColor
     })
     //客机玩家信息区域背景
     DrawLib.fillRect(ctx, {
