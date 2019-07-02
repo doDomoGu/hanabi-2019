@@ -1,5 +1,8 @@
 <template>
   <div id="app" ref="app">
+    <div v-if="isLoading" id="loading">
+      Loading...
+    </div>
     <login v-if="!isLoading && isLogin === false" />
     <room-list v-if="!isLoading && isRoomList === true" />
     <my-room v-if="!isLoading && isInRoom === true" />
@@ -23,8 +26,6 @@ export default {
   },
   created() {
     if (getToken()) {
-      console.log(" ")
-      console.log(" checktoken 1")
       //本地(localstorage)有token 验证token
       this.$store.dispatch("auth/CheckToken").then(() => {
         if (this.isLogin) {
