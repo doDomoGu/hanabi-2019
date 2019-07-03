@@ -139,28 +139,28 @@ _.table.area.y = windowPaddingY
 _.table.area.w = 50 * vw - windowPaddingX
 _.table.area.h = 40 * vh
 
-    /* 牌库 */
-  _.table.libraryCards = {}
-  _.table.libraryCards.bgColor = "#eeaacc"
-  _.table.libraryCards.textColor = "#333333"
-  _.table.libraryCards.title = "牌库"
-  _.table.libraryCards.area = {}
-  _.table.libraryCards.area.x = _.table.area.x + windowPaddingX
-  _.table.libraryCards.area.y = _.table.area.y + windowPaddingY
-  _.table.libraryCards.area.w = _.card.w
-  _.table.libraryCards.area.h = _.card.h
+/* 牌库 */
+_.table.libraryCards = {}
+_.table.libraryCards.bgColor = "#eeaacc"
+_.table.libraryCards.textColor = "#333333"
+_.table.libraryCards.title = "牌库"
+_.table.libraryCards.area = {}
+_.table.libraryCards.area.x = _.table.area.x + windowPaddingX
+_.table.libraryCards.area.y = _.table.area.y + windowPaddingY
+_.table.libraryCards.area.w = _.card.w
+_.table.libraryCards.area.h = _.card.h
 
-  /* 弃牌堆 */
-  _.table.discardCards = {}
-  _.table.discardCards.bgColor = "#ccaaee"
-  _.table.discardCards.textColor = "#333333"
-  _.table.discardCards.title = "弃牌堆"
-  _.table.discardCards.area = {}
-  _.table.discardCards.area.w = _.card.w
-  _.table.discardCards.area.h = _.card.h
-  _.table.discardCards.area.x =
-    100 * vw - windowPaddingX - _.table.discardCards.area.w - windowPaddingX
-  _.table.discardCards.area.y = _.table.area.y + windowPaddingY
+/* 弃牌堆 */
+_.table.discardCards = {}
+_.table.discardCards.bgColor = "#ccaaee"
+_.table.discardCards.textColor = "#333333"
+_.table.discardCards.title = "弃牌堆"
+_.table.discardCards.area = {}
+_.table.discardCards.area.w = _.card.w
+_.table.discardCards.area.h = _.card.h
+_.table.discardCards.area.x =
+  100 * vw - windowPaddingX - _.table.discardCards.area.w - windowPaddingX
+_.table.discardCards.area.y = _.table.area.y + windowPaddingY
 
 _.table.num = {}
 _.table.num.textColor = "#333333"

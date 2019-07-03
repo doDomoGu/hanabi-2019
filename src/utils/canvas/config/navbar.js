@@ -1,6 +1,6 @@
 /* 导航栏绘制参数配置 */
 
-import { /* dpr, */ vw, vh, px2Rem, fontFamily } from "../lib"
+import { vw, vh, px2Rem, fontFamily } from "../lib"
 
 let _ = {}
 

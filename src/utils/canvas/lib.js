@@ -58,10 +58,10 @@ const getEventPoint = (ctx, evt) => {
   const rect = ctx.canvas.getBoundingClientRect()
 
   const rate = ctx.canvas.width / ctx.canvas.clientWidth // rate canvas缩放的比率
-  
+
   const x = (Math.round(_evt.clientX) - rect.left) * rate
   const y = (Math.round(_evt.clientY) - rect.top) * rate
-  
+
   return {
     x: x,
     y: y

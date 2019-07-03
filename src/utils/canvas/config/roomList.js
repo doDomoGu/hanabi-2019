@@ -26,24 +26,6 @@ _.item.bgColor = {}
 _.item.bgColor.actived = "#6699cc"
 _.item.bgColor.unactived = "#eeeeee"
 
-/* 
-
-
-_.item.color.actived = {}
-_.item.color.actived.background = {}
-_.item.color.actived.background = {}
-
-
-_.item.color.unactived = {}
-
-_.item.actived = {}
-_.item.actived.bgColor = "#6699cc"
-_.item.actived.textColor = "#ffffff"
-
-_.item.unactived = {}
-_.item.unactived.bgColor = "#eeeeee"
-_.item.unactived.textColor = "#333333" */
-
 _.item.rect = {}
 _.item.rect.x = 100 * vw - itemWidth - windowPaddingRight
 _.item.rect.y = NavbarConfig.rect.h + windowPaddingTop
