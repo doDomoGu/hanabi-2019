@@ -45,13 +45,13 @@ _.item = (ctx, index, item, actived) => {
 const drawItemBackground = (ctx, index, actived) => {
   // item区域属性
   const rect = getItemRect(index)
-  // console.log(rect)
-  // 根据 actived 赋予背景色和文字颜色
-  const bgColor = actived
-    ? RoomListConfig.item.actived.bgColor
-    : RoomListConfig.item.unactived.bgColor
 
-  ctx.fillStyle = bgColor
+  // 根据 actived 赋予背景色
+  ctx.fillStyle = actived
+    ? RoomListConfig.item.bgColor.actived
+    : RoomListConfig.item.bgColor.unactived
+
+  // 填充
   ctx.fillRect(rect.x, rect.y, rect.w, rect.h)
 }
 
@@ -60,11 +60,10 @@ const drawItemText = (ctx, index, item, actived) => {
   const rect = getItemRect(index)
 
   // 设置文字参数
-  const textColor = actived
-    ? RoomListConfig.item.actived.textColor
-    : RoomListConfig.item.unactived.textColor
-  ctx.font = RoomListConfig.item.font // 文字大小字体
-  ctx.fillStyle = textColor // 文字颜色
+  ctx.font = RoomListConfig.item.text.font // 文字大小字体
+  ctx.fillStyle = actived
+    ? RoomListConfig.item.text.color.actived
+    : RoomListConfig.item.text.color.unactived // 文字颜色
   ctx.textAlign = "left"
   ctx.textBaseline = "middle"
 
@@ -92,7 +91,7 @@ const drawItemText = (ctx, index, item, actived) => {
 const getItemRect = index => {
   let rect = { ...RoomListConfig.item.rect }
   // 根据 index 计算y偏移量
-  rect.y += parseInt(index) * parseInt(rect.h + RoomListConfig.item.padding)
+  rect.y += parseInt(index) * parseInt(rect.h + RoomListConfig.item.spacing)
   return rect
 }
 

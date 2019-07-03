@@ -2,22 +2,39 @@
 
 import { vw, vh, px2Rem, fontFamily } from "../lib"
 import NavbarConfig from "./navbar"
-import itemImg from "@/assets/background.jpg"
+// import itemImg from "@/assets/background.jpg"
 import bgImg from "@/assets/hanabi_bg2.jpg"
 
 let _ = {}
 
-// let padding = 2 * vh
-let itemMarginX = 6 * vw
-let itemMarginY = 6 * vh
-let itemPadding = 2 * vh
+const windowPaddingTop = 8 * vh // 视窗顶部留白距离
+const windowPaddingRight = 4 * vw // 视窗右边留白距离
 
-let itemWidth = 30 * vw
-let itemHeight = 6 * vh
+const itemSpacing = 2 * vh // 房间项间距
 
-// _.padding = 30 * dpr
+const itemWidth = 30 * vw
+const itemHeight = 6 * vh
 
 _.item = {}
+
+_.item.text = {}
+_.item.text.font = px2Rem(20) + "px " + fontFamily
+_.item.text.color = {}
+_.item.text.color.actived = "#ffffff"
+_.item.text.color.unactived = "#333333"
+_.item.bgColor = {}
+_.item.bgColor.actived = "#6699cc"
+_.item.bgColor.unactived = "#eeeeee"
+
+/* 
+
+
+_.item.color.actived = {}
+_.item.color.actived.background = {}
+_.item.color.actived.background = {}
+
+
+_.item.color.unactived = {}
 
 _.item.actived = {}
 _.item.actived.bgColor = "#6699cc"
@@ -25,11 +42,11 @@ _.item.actived.textColor = "#ffffff"
 
 _.item.unactived = {}
 _.item.unactived.bgColor = "#eeeeee"
-_.item.unactived.textColor = "#333333"
+_.item.unactived.textColor = "#333333" */
 
 _.item.rect = {}
-_.item.rect.x = 100 * vw - itemWidth - itemMarginX
-_.item.rect.y = NavbarConfig.rect.h + itemMarginY
+_.item.rect.x = 100 * vw - itemWidth - windowPaddingRight
+_.item.rect.y = NavbarConfig.rect.h + windowPaddingTop
 _.item.rect.w = itemWidth
 _.item.rect.h = itemHeight
 
@@ -37,14 +54,9 @@ _.item.titleX = _.item.rect.x + 1 * vw
 _.item.lockX = _.item.rect.x + _.item.rect.w - 8 * vw
 _.item.playerCountX = _.item.rect.x + _.item.rect.w - 6 * vw
 
-_.item.padding = itemPadding
+_.item.spacing = itemSpacing
 
-// _.item.margin = Math.floor((height - _.padding * 2 - _.item.rect.h * 10) / 9)
-// _.item.margin = _.item.margin > 120 ? 120 : _.item.margin
-
-_.item.font = px2Rem(20) + "px " + fontFamily
-
-_.item.itemImgSrc = itemImg
+//_.item.itemImgSrc = itemImg
 
 _.bgImgSrc = bgImg
 
