@@ -9,29 +9,33 @@ _.exitBtn = ctx => {
   const btn = MyRoomConfig.exitBtn
 
   ctx.fillStyle = btn.bgColor
-  ctx.fillRect(btn.x, btn.y, btn.w, btn.h)
+  ctx.fillRect(btn.rect.x, btn.rect.y, btn.rect.w, btn.rect.h)
 
   ctx.font = btn.font
   ctx.fillStyle = btn.textColor
   ctx.textAlign = "center"
   ctx.textBaseline = "middle"
-  ctx.fillText(btn.text, btn.x + btn.w / 2, btn.y + btn.h / 2)
+  ctx.fillText(
+    btn.text,
+    btn.rect.x + btn.rect.w / 2,
+    btn.rect.y + btn.rect.h / 2
+  )
 }
 
 _.hostPlayer = (ctx, isHost, isReady, info) => {
   const rectConfig = {
-    rect: MyRoomConfig.host.area,
-    info: MyRoomConfig.host.info.area,
-    button: MyRoomConfig.host.button
+    rect: MyRoomConfig.host.rect,
+    info: MyRoomConfig.host.info.rect,
+    button: MyRoomConfig.host.button.rect
   }
   drawPlayer(ctx, rectConfig, true, isHost, isReady, info)
 }
 
 _.guestPlayer = (ctx, isHost, isReady, info) => {
   const rectConfig = {
-    rect: MyRoomConfig.guest.area,
-    info: MyRoomConfig.guest.info.area,
-    button: MyRoomConfig.guest.button
+    rect: MyRoomConfig.guest.rect,
+    info: MyRoomConfig.guest.info.rect,
+    button: MyRoomConfig.guest.button.rect
   }
   drawPlayer(ctx, rectConfig, false, !isHost, isReady, info)
 }
@@ -49,14 +53,14 @@ const drawPlayer = (ctx, rectConfig, isHost, isPlayer, isReady, info) => {
     ctx.fillStyle = "#fee9d6"
     ctx.fillRect(rectInfo.x, rectInfo.y, rectInfo.w, rectInfo.h)
 
-    ctx.font = MyRoomConfig.player.info.font
+    ctx.font = MyRoomConfig.playerInfo.font
     ctx.fillStyle = "#4b4b4b"
     ctx.textAlign = "left"
     ctx.textBaseline = "middle"
     const text = info.name + (isPlayer ? "*" : "")
     ctx.fillText(
       text,
-      rectInfo.x + MyRoomConfig.player.button.text.paddingX,
+      rectInfo.x + MyRoomConfig.playerButton.paddingX,
       rectInfo.y + rectInfo.h / 2
     )
   }
@@ -70,35 +74,35 @@ const drawPlayer = (ctx, rectConfig, isHost, isPlayer, isReady, info) => {
       //当前玩家是主机
       if (isReady) {
         //客机玩家已准备 按钮enabled_ok
-        buttonConfig.bgColor = MyRoomConfig.player.button.enabled.ok.bgColor
-        buttonConfig.textcolor = MyRoomConfig.player.button.enabled.ok.textColor
+        buttonConfig.bgColor = MyRoomConfig.playerButton.enabled.ok.bgColor
+        buttonConfig.textcolor = MyRoomConfig.playerButton.enabled.ok.textColor
       } else {
         //客机玩家未准备 按钮disabled
-        buttonConfig.bgColor = MyRoomConfig.player.button.disabled.bgColor
-        buttonConfig.textcolor = MyRoomConfig.player.button.disabled.textColor
+        buttonConfig.bgColor = MyRoomConfig.playerButton.disabled.bgColor
+        buttonConfig.textcolor = MyRoomConfig.playerButton.disabled.textColor
       }
 
-      buttonConfig.text = MyRoomConfig.player.button.text.start
+      buttonConfig.text = MyRoomConfig.playerButton.text.start
     } else {
       //当前玩家是客机
       if (isReady) {
         //已准备  按钮enabled_cancel
-        buttonConfig.bgColor = MyRoomConfig.player.button.enabled.cancel.bgColor
+        buttonConfig.bgColor = MyRoomConfig.playerButton.enabled.cancel.bgColor
         buttonConfig.textcolor =
-          MyRoomConfig.player.button.enabled.cancel.textColor
-        buttonConfig.text = MyRoomConfig.player.button.text.doReady2
+          MyRoomConfig.playerButton.enabled.cancel.textColor
+        buttonConfig.text = MyRoomConfig.playerButton.text.doReady2
       } else {
         //未准备  按钮enabled_ok
-        buttonConfig.bgColor = MyRoomConfig.player.button.enabled.ok.bgColor
-        buttonConfig.textcolor = MyRoomConfig.player.button.enabled.ok.textColor
-        buttonConfig.text = MyRoomConfig.player.button.text.doReady
+        buttonConfig.bgColor = MyRoomConfig.playerButton.enabled.ok.bgColor
+        buttonConfig.textcolor = MyRoomConfig.playerButton.enabled.ok.textColor
+        buttonConfig.text = MyRoomConfig.playerButton.text.doReady
       }
     }
 
     ctx.fillStyle = buttonConfig.bgColor
     ctx.fillRect(rectButton.x, rectButton.y, rectButton.w, rectButton.h)
 
-    ctx.font = MyRoomConfig.player.button.font
+    ctx.font = MyRoomConfig.playerButton.font
     ctx.fillStyle = buttonConfig.textcolor
     ctx.textAlign = "center"
     ctx.textBaseline = "middle"
@@ -112,21 +116,30 @@ const drawPlayer = (ctx, rectConfig, isHost, isPlayer, isReady, info) => {
       //当前玩家是主机 渲染客机玩家状态
       let readyText
       if (isReady) {
-        readyText = "已准备"
+        readyText = MyRoomConfig.guest.readyArea.text.isReady
       } else {
-        readyText = "准备中"
+        readyText = MyRoomConfig.guest.readyArea.text.gettingReady
       }
 
       let readyArea = MyRoomConfig.guest.readyArea
 
       ctx.fillStyle = MyRoomConfig.guest.readyArea.bgColor
-      ctx.fillRect(readyArea.x, readyArea.y, readyArea.w, readyArea.h)
+      ctx.fillRect(
+        readyArea.rect.x,
+        readyArea.rect.y,
+        readyArea.rect.w,
+        readyArea.rect.h
+      )
 
-      ctx.font = MyRoomConfig.player.button.font
+      ctx.font = MyRoomConfig.playerButton.font
       ctx.fillStyle = MyRoomConfig.guest.readyArea.textColor
       ctx.textAlign = "left"
       ctx.textBaseline = "middle"
-      ctx.fillText(readyText, readyArea.x, readyArea.y + readyArea.h / 2)
+      ctx.fillText(
+        readyText,
+        readyArea.rect.x,
+        readyArea.rect.y + readyArea.rect.h / 2
+      )
     }
   }
 }

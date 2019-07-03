@@ -7,26 +7,26 @@ export default function eventListener(t, evt) {
 
   const point = getEventPoint(ctx, evt)
 
-  function isPath(point, areaName) {
-    let area
-    switch (areaName) {
+  function isPath(point, rectName) {
+    let rect
+    switch (rectName) {
       case "exitBtn":
-        area = MyRoomConfig.exitBtn
+        rect = MyRoomConfig.exitBtn.rect
         break
       case "startBtn":
-        area = MyRoomConfig.host.button
+        rect = MyRoomConfig.host.button.rect
         break
       case "readyBtn":
-        area = MyRoomConfig.guest.button
+        rect = MyRoomConfig.guest.button.rect
         break
       default:
-        area = { x: 0, y: 0, w: 0, h: 0 }
+        rect = { x: 0, y: 0, w: 0, h: 0 }
     }
     return (
-      point.x >= area.x &&
-      point.x <= area.x + area.w &&
-      point.y >= area.y &&
-      point.y <= area.y + area.h
+      point.x >= rect.x &&
+      point.x <= rect.x + rect.w &&
+      point.y >= rect.y &&
+      point.y <= rect.y + rect.h
     )
   }
 

@@ -22,7 +22,7 @@ function getListItemIndex(point, itemConfig, listCount) {
       break
     }
     // rect.y 根据序号i的增加而增加
-    rect.y += parseInt(rect.h + itemConfig.padding)
+    rect.y += parseInt(rect.h + itemConfig.spacing)
   }
   
   return index

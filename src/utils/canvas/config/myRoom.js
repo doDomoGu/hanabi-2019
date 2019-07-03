@@ -37,36 +37,29 @@ const playerButtonTextStart = "开始游戏"
 const playerButtonTextDoReady = "准备"
 const playerButtonTextDoReady2 = "取消准备"
 
-// _.player.rect = {}
-// _.player.rect.x = windowPaddingX
-// _.player.rect.y = windowPaddingY
-// _.player.info.rect = {}
-// _.player.info.rect.w = _.player.rect.w - playerPaddingX * 2
-// _.player.info.rect.h = 10 * vh
-// _.player.info.font = px2Rem(24) + "px " + fontFamily
+_.playerInfo = {}
+_.playerInfo.font = playerInfoFont
 
-// _.player.button = {}
-// _.player.button.rect = {}
-// _.player.button.rect.w = 14 * vw
-// _.player.button.rect.h = 8 * vh
-// _.player.button.font = px2Rem(18) + "px " + fontFamily
+_.playerButton = {}
+_.playerButton.font = playerButtonFont
 
-// _.player.button.enabled = {}
-// _.player.button.enabled.ok = {}
-// _.player.button.enabled.ok.bgColor = "#ff4400"
-// _.player.button.enabled.ok.textColor = "#ffffff"
-// _.player.button.enabled.cancel = {}
-// _.player.button.enabled.cancel.bgColor = "#0044ff"
-// _.player.button.enabled.cancel.textColor = "#ffffff"
-// _.player.button.disabled = {}
-// _.player.button.disabled.bgColor = "#cccccc"
-// _.player.button.disabled.textColor = "#ffffff"
+_.playerButton.enabled = {}
+_.playerButton.enabled.ok = {}
+_.playerButton.enabled.ok.bgColor = playerButtonEnabledOkBgColor
+_.playerButton.enabled.ok.textColor = playerButtonEnabledOkTextColor
+_.playerButton.enabled.cancel = {}
+_.playerButton.enabled.cancel.bgColor = playerButtonEnabledCancelBgColor
+_.playerButton.enabled.cancel.textColor = playerButtonEnabledCancelTextColor
 
-// _.player.button.text = {}
-// _.player.button.text.paddingX = 1 * vw
-// _.player.button.text.start = "开始游戏"
-// _.player.button.text.doReady = "准备"
-// _.player.button.text.doReady2 = "取消准备"
+_.playerButton.disabled = {}
+_.playerButton.disabled.bgColor = playerButtonDisabledBgColor
+_.playerButton.disabled.textColor = playerButtonDisabledTextColor
+
+_.playerButton.paddingX = playerButtonPaddingX
+_.playerButton.text = {}
+_.playerButton.text.start = playerButtonTextStart
+_.playerButton.text.doReady = playerButtonTextDoReady
+_.playerButton.text.doReady2 = playerButtonTextDoReady2
 
 /* 主机玩家 */
 _.host = {}
@@ -109,27 +102,33 @@ _.guest.info.rect.w = playerInfoRectW
 _.guest.info.rect.h = playerInfoRectH
 
 _.guest.button = {}
-_.guest.button.w = _.player.button.w
-_.guest.button.h = _.player.button.h
-_.guest.button.x = _.guest.area.x + playerPaddingX
-_.guest.button.y =
-  _.guest.area.y + _.player.area.h - _.player.area.paddingY - _.player.button.h
+_.guest.button.rect = {}
+_.guest.button.rect.x = _.guest.rect.x + playerPaddingX
+_.guest.button.rect.y =
+  _.guest.rect.y + playerRectH - playerPaddingY - playerButtonRectH
+_.guest.button.rect.w = playerButtonRectW
+_.guest.button.rect.h = playerButtonRectH
 
 _.guest.readyArea = {}
-_.guest.readyArea.x = _.guest.area.x + playerPaddingX
-_.guest.readyArea.y =
-  _.guest.area.y + _.player.area.h - _.player.area.paddingY - _.player.button.h
-_.guest.readyArea.w = _.player.button.w
-_.guest.readyArea.h = _.player.button.h
+_.guest.readyArea.rect = {}
+_.guest.readyArea.rect.x = _.guest.rect.x + playerPaddingX
+_.guest.readyArea.rect.y =
+  _.guest.rect.y + playerRectH - playerPaddingY - playerButtonRectH
+_.guest.readyArea.rect.w = playerButtonRectW
+_.guest.readyArea.rect.h = playerButtonRectH
 _.guest.readyArea.bgColor = "#dddddd"
 _.guest.readyArea.textColor = "#ff6352"
+_.guest.readyArea.text = {}
+_.guest.readyArea.text.isReady = "已准备"
+_.guest.readyArea.text.gettingReady = "准备中"
 
 /* 退出按钮 */
 _.exitBtn = {}
-_.exitBtn.w = 100 * vw
-_.exitBtn.h = 8 * vh
-_.exitBtn.x = 0 * vw
-_.exitBtn.y = 100 * vh - _.exitBtn.h
+_.exitBtn.rect = {}
+_.exitBtn.rect.w = 100 * vw
+_.exitBtn.rect.h = 8 * vh
+_.exitBtn.rect.x = 0 * vw
+_.exitBtn.rect.y = 100 * vh - _.exitBtn.rect.h
 _.exitBtn.bgColor = "#e90200"
 _.exitBtn.textColor = "#ffffff"
 _.exitBtn.font = px2Rem(18) + "px " + fontFamily
