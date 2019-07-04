@@ -108,7 +108,7 @@ _.fillText = (ctx, config) => {
 }
 
 _.btn = (ctx, config) => {
-  ctx.fillStyle = config.rect.color ? config.rect.color : "#ffffff"
+  ctx.fillStyle = config.bgColor ? config.bgColor : "#ffffff"
   ctx.fillRect(config.rect.x, config.rect.y, config.rect.w, config.rect.h)
 
   ctx.font = config.text.font
@@ -119,7 +119,7 @@ _.btn = (ctx, config) => {
   let _y = 0
 
   if (ctx.textAlign == "left") {
-    _x = config.rect.x + 10
+    _x = config.rect.x + (config.paddingX ? config.paddingX : 0)
     _y = config.rect.y + config.rect.h / 2
   } else if (ctx.textAlign == "center") {
     _x = config.rect.x + config.rect.w / 2
