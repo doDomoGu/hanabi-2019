@@ -8,7 +8,8 @@ let _ = {}
 const windowPaddingX = 2 * vw //视窗内左右留白
 const windowPaddingY = 3 * vh //视窗内上下留白
 
-const playerRectBgColor = "#cccccc"
+const hostRectBgColor = "#cccccc" //主机玩家区域背景颜色
+const guestRectBgColor = "#dcdcdc" //客机玩家区域背景颜色
 
 const playerRectW = 50 * vw - windowPaddingX //玩家区域宽度
 const playerRectH = 40 * vh //玩家区域高度
@@ -136,7 +137,7 @@ _.card.back.textColor = cardBackTextColor
 /* 主机玩家 */
 _.host = {}
 
-_.host.bgColor = playerRectBgColor
+_.host.bgColor = hostRectBgColor
 
 _.host.rect = {}
 _.host.rect.x = windowPaddingX
@@ -245,7 +246,7 @@ _.history.rect.h = 40 * vh
 /* 客机玩家 */
 _.guest = {}
 
-_.guest.bgColor = "#dcdcdc"
+_.guest.bgColor = guestRectBgColor
 
 _.guest.rect = {}
 _.guest.rect.x = windowPaddingX
