@@ -17,25 +17,40 @@ const playerRectH = 40 * vh //玩家区域高度
 
 const playerInfoRectW = playerRectW - playerPaddingX * 2 //玩家信息区域宽度
 const playerInfoRectH = 10 * vh //玩家信息区域高度
-const playerInfoFont = px2Rem(24) + "px " + fontFamily
+const playerInfoFont = px2Rem(24) + "px " + fontFamily //玩家信息区域字体样式
 
-const playerButtonRectW = 14 * vw
-const playerButtonRectH = 8 * vh
-const playerButtonFont = px2Rem(18) + "px " + fontFamily
+const playerButtonRectW = 14 * vw //玩家按钮宽度
+const playerButtonRectH = 8 * vh //玩家按钮高度
+const playerButtonFont = px2Rem(18) + "px " + fontFamily //玩家按钮字体样式
 
-const playerButtonEnabledOkBgColor = "#ff4400"
-const playerButtonEnabledOkTextColor = "#ffffff"
+const playerButtonEnabledOkBgColor = "#ff4400" //确定按钮的背景颜色
+const playerButtonEnabledOkTextColor = "#ffffff" //确定按钮的文字颜色
 
-const playerButtonEnabledCancelBgColor = "#0044ff"
-const playerButtonEnabledCancelTextColor = "#ffffff"
+const playerButtonEnabledCancelBgColor = "#0044ff" //取消按钮的背景颜色
+const playerButtonEnabledCancelTextColor = "#ffffff" //取消按钮的文字颜色
 
-const playerButtonDisabledBgColor = "#cccccc"
-const playerButtonDisabledTextColor = "#ffffff"
+const playerButtonDisabledBgColor = "#cccccc" //"不可用"按钮的背景颜色
+const playerButtonDisabledTextColor = "#ffffff" //"不可用"按钮的文字颜色
 
-const playerButtonPaddingX = 1 * vw
-const playerButtonTextStart = "开始游戏"
-const playerButtonTextDoReady = "准备"
-const playerButtonTextDoReady2 = "取消准备"
+const playerButtonPaddingX = 1 * vw //按钮内左留白
+const playerButtonTextStart = "开始游戏" //“开始”按钮文字内容
+const playerButtonTextDoReady = "准备" // "准备"按钮文字内容
+const playerButtonTextDoReady2 = "取消准备" //"取消准备"按钮文字内容
+
+//当前玩家为主机，客机玩家准备状态显示区域
+const readyAreaBgColor = "#dddddd" //客机玩家准备状态区域背景颜色
+const readyAreaTextColor = "#ff6352" //客机玩家准备状态区域文字颜色
+const readyAreaTextIsReady = "已准备" //客机玩家准备状态区域"已准备"文字内容
+const readyAreaTextGettingReady = "准备中" //客机玩家准备状态区域"准备中"文字内容
+
+const exitBtnRectW = 100 * vw //退出按钮宽度
+const exitBtnRectH = 8 * vh //退出按钮高度
+const exitBtnRectX = 0 * vw //退出按钮距左边开始位置
+const exitBtnRectY = 100 * vh - exitBtnRectH //退出按钮距顶部开始位置
+const exitBtnBgColor = "#e90200" //退出按钮背景颜色
+const exitBtnTextColor = "#ffffff" //退出按钮文字颜色
+const exitBtnFont = px2Rem(18) + "px " + fontFamily //退出按钮字体样式
+const exitBtnText = "退出房间" //退出按钮文字内容
 
 _.playerInfo = {}
 _.playerInfo.font = playerInfoFont
@@ -116,23 +131,23 @@ _.guest.readyArea.rect.y =
   _.guest.rect.y + playerRectH - playerPaddingY - playerButtonRectH
 _.guest.readyArea.rect.w = playerButtonRectW
 _.guest.readyArea.rect.h = playerButtonRectH
-_.guest.readyArea.bgColor = "#dddddd"
-_.guest.readyArea.textColor = "#ff6352"
+_.guest.readyArea.bgColor = readyAreaBgColor
+_.guest.readyArea.textColor = readyAreaTextColor
 _.guest.readyArea.text = {}
-_.guest.readyArea.text.isReady = "已准备"
-_.guest.readyArea.text.gettingReady = "准备中"
+_.guest.readyArea.text.isReady = readyAreaTextIsReady
+_.guest.readyArea.text.gettingReady = readyAreaTextGettingReady
 
 /* 退出按钮 */
 _.exitBtn = {}
 _.exitBtn.rect = {}
-_.exitBtn.rect.w = 100 * vw
-_.exitBtn.rect.h = 8 * vh
-_.exitBtn.rect.x = 0 * vw
-_.exitBtn.rect.y = 100 * vh - _.exitBtn.rect.h
-_.exitBtn.bgColor = "#e90200"
-_.exitBtn.textColor = "#ffffff"
-_.exitBtn.font = px2Rem(18) + "px " + fontFamily
-_.exitBtn.text = "退出房间"
+_.exitBtn.rect.w = exitBtnRectW
+_.exitBtn.rect.h = exitBtnRectH
+_.exitBtn.rect.x = exitBtnRectX
+_.exitBtn.rect.y = exitBtnRectY
+_.exitBtn.bgColor = exitBtnBgColor
+_.exitBtn.textColor = exitBtnTextColor
+_.exitBtn.font = exitBtnFont
+_.exitBtn.text = exitBtnText
 
 _.bgImgSrc = bgImg
 
