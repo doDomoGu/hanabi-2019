@@ -29,72 +29,109 @@ const playerInfoNowPlayingRectH = playerInfoRectH
 const playerInfoContentRectW = playerInfoRectW - playerInfoNowPlayingRectW
 const playerInfoContentRectH = playerInfoRectH
 
+const cardRectW = 4 * vw
+const cardRectH = 12 * vh
+const cardFont = px2Rem(8) + "px " + fontFamily
+
+const cardFrontBgColor = {
+  white: "#ffffff",
+  blue: "#2222ff",
+  yellow: "#ffff22",
+  red: "#ff2222",
+  green: "#22ff22"
+}
+const cardFrontTextColor = {
+  white: "#333333",
+  blue: "#eeeeee",
+  yellow: "#333333",
+  red: "#ffffff",
+  green: "#333333"
+}
+
+const cardBackBgColor = "#999999"
+const cardBackTextColor = "#ffffff"
+
+const handsRectW = cardRectW
+const handsRectH = cardRectH
+const handsSpacing = 2 * vw //手牌之间间隔
+const handsFont = px2Rem(14) + "px " + fontFamily //手牌字体样式
+
+const tableBgColor = "#aaeecc"
+const tableRectW = 50 * vw - windowPaddingX
+const tableRectH = 40 * vw
+const tableRectX = 50 * vw
+const tableRectY = windowPaddingY
+
+const tableNumTextColor = "#333333"
+const tableNumFont = px2Rem(12) + "px " + fontFamily
+const tableNumRectW = 6 * vw
+const tableNumRectH = 6 * vh
+const tableNumSpacing = 1 * vh
+
+const libraryBgColor = "#eeaacc"
+const libraryTextColor = "#333333"
+const libraryTextContent = "牌库"
+
+const discardPileBgColor = "#ccaaee"
+const discardPileTextColor = "#333333"
+const discardPileTextContent = "弃牌堆"
 /* 玩家基础参数 */
 _.player = {}
 _.player.bgColor = playerRectBgColor
-// _.player.area = {}
-// _.player.area.x = windowPaddingX
-// _.player.area.y = windowPaddingY
-// _.player.area.w = 48 * vw //玩家区域宽度
-// _.player.area.h = 40 * vh //玩家区域高度
-// _.player.area.paddingX = 2 * vw //玩家区域内留白
-// _.player.area.paddingY = 4 * vh //玩家区域内留白
+// _.player.rect = {}
+// _.player.rect.x = windowPaddingX
+// _.player.rect.y = windowPaddingY
+// _.player.rect.w = 48 * vw //玩家区域宽度
+// _.player.rect.h = 40 * vh //玩家区域高度
+// _.player.rect.paddingX = 2 * vw //玩家区域内留白
+// _.player.rect.paddingY = 4 * vh //玩家区域内留白
 
 _.player.info = {}
 // _.player.info.bgColor = "#fee9d6"
 // _.player.info.textColor = "#4b4b4b"
-_.player.info.area = {}
-// _.player.info.area.w = _.player.area.w - _.player.area.paddingX * 2
-// _.player.info.area.h = 10 * vh
+_.player.info.rect = {}
+// _.player.info.rect.w = _.player.rect.w - _.player.rect.paddingX * 2
+// _.player.info.rect.h = 10 * vh
 // _.player.info.font = px2Rem(16) + "px " + fontFamily
 
 _.player.info.nowPlaying = {}
-_.player.info.nowPlaying.area = {}
-// _.player.info.nowPlaying.area.w = 20 * vw
-// _.player.info.nowPlaying.area.h = _.player.info.area.h
+_.player.info.nowPlaying.rect = {}
+// _.player.info.nowPlaying.rect.w = 20 * vw
+// _.player.info.nowPlaying.rect.h = _.player.info.rect.h
 
 _.player.info.content = {}
-_.player.info.content.area = {}
-// _.player.info.content.area.w =
-//   _.player.info.area.w - _.player.info.nowPlaying.area.w
-// _.player.info.content.area.h = _.player.info.area.h
+_.player.info.content.rect = {}
+// _.player.info.content.rect.w =
+//   _.player.info.rect.w - _.player.info.nowPlaying.rect.w
+// _.player.info.content.rect.h = _.player.info.rect.h
 
 /* _.player.info.nowPlaying = {}
-_.player.info.nowPlaying.area = {}
-_.player.info.nowPlaying.area.w = 80 * dpr
-_.player.info.nowPlaying.area.h = _.player.info.area.h */
+_.player.info.nowPlaying.rect = {}
+_.player.info.nowPlaying.rect.w = 80 * dpr
+_.player.info.nowPlaying.rect.h = _.player.info.rect.h */
 
 _.card = {}
-_.card.w = 4 * vw
-_.card.h = 12 * vh
-_.card.font = px2Rem(8) + "px " + fontFamily
+_.card.rect = {}
+_.card.rect.w = cardRectW
+_.card.rect.h = cardRectH
+_.card.font = cardFont
 
 _.card.front = {}
-_.card.front.bgColor = {}
-_.card.front.bgColor.white = "#ffffff"
-_.card.front.bgColor.blue = "#2222ff"
-_.card.front.bgColor.yellow = "#ffff22"
-_.card.front.bgColor.red = "#ff2222"
-_.card.front.bgColor.green = "#22ff22"
-
-_.card.front.textColor = {}
-_.card.front.textColor.white = "#333333"
-_.card.front.textColor.blue = "#eeeeee"
-_.card.front.textColor.yellow = "#333333"
-_.card.front.textColor.red = "#ffffff"
-_.card.front.textColor.green = "#333333"
+_.card.front.bgColor = cardFrontBgColor
+_.card.front.textColor = cardFrontTextColor
 
 _.card.back = {}
-_.card.back.bgColor = "#999999"
-_.card.back.textColor = "#ffffff"
+_.card.back.bgColor = cardBackBgColor
+_.card.back.textColor = cardBackTextColor
 
-_.player.hands = {}
-_.player.hands.front = _.card.front
-_.player.hands.back = _.card.back
-_.player.hands.w = _.card.w
-_.player.hands.h = _.card.h
-_.player.hands.margin = 2 * vw
-_.player.hands.font = px2Rem(14) + "px " + fontFamily
+// _.player.hands = {}
+// _.player.hands.front = _.card.front
+// _.player.hands.back = _.card.back
+// _.player.hands.rect = {}
+// _.player.hands.rect.w = _.card.rect.w
+// _.player.hands.rect.h = _.card.rect.h
+// _.player.hands.spacing = handsSpacing
+// _.player.hands.font = handsFont
 
 /* 主机玩家 */
 _.host = {}
@@ -131,36 +168,33 @@ _.host.info.nowPlaying.rect.y = _.host.info.rect.y
 _.host.hands = {}
 _.host.hands.rects = []
 for (let i = 0; i < 5; i++) {
-  let handsArea = {}
-  handsArea.x =
-    _.host.rect.x +
-    _.player.rect.paddingX +
-    (_.player.hands.w + _.player.rect.paddingX) * i
-  handsArea.y = _.host.info.rect.y + _.host.info.rect.h + _.player.rect.paddingY
-  handsArea.w = _.player.hands.w
-  handsArea.h = _.player.hands.h
-  _.host.hands.rects.push(handsArea)
+  let rect = {}
+  rect.x = _.host.rect.x + playerRectPaddingX + (handsRectW + handsSpacing) * i
+  rect.y = _.host.info.rect.y + _.host.info.rect.h + playerRectPaddingY
+  rect.w = handsRectW
+  rect.h = handsRectH
+  _.host.hands.rects.push(rect)
 }
 /* _.host.button = {}
-_.host.button.x = _.host.area.x + _.player.area.padding
-_.host.button.y = _.host.area.y + _.player.area.h - _.player.area.padding - _.player.button.h
+_.host.button.x = _.host.rect.x + _.player.rect.padding
+_.host.button.y = _.host.rect.y + _.player.rect.h - _.player.rect.padding - _.player.button.h
 _.host.button.w = _.player.button.w
 _.host.button.h = _.player.button.h */
 
 /* 桌面区域 */
 _.table = {}
-_.table.bgColor = "#aaeecc"
+_.table.bgColor = tableBgColor
 _.table.rect = {}
-_.table.rect.x = 50 * vw
-_.table.rect.y = windowPaddingY
-_.table.rect.w = 50 * vw - windowPaddingX
-_.table.rect.h = 40 * vh
+_.table.rect.w = tableRectW
+_.table.rect.h = tableRectH
+_.table.rect.x = tableRectX
+_.table.rect.y = tableRectY
 
 /* 牌库 */
 _.table.libraryCards = {}
-_.table.libraryCards.bgColor = "#eeaacc"
-_.table.libraryCards.textColor = "#333333"
-_.table.libraryCards.title = "牌库"
+_.table.libraryCards.bgColor = libraryBgColor
+_.table.libraryCards.textColor = libraryTextColor
+_.table.libraryCards.title = libraryTextContent
 _.table.libraryCards.rect = {}
 _.table.libraryCards.rect.x = _.table.rect.x + windowPaddingX
 _.table.libraryCards.rect.y = _.table.rect.y + windowPaddingY
@@ -169,9 +203,9 @@ _.table.libraryCards.rect.h = _.card.h
 
 /* 弃牌堆 */
 _.table.discardCards = {}
-_.table.discardCards.bgColor = "#ccaaee"
-_.table.discardCards.textColor = "#333333"
-_.table.discardCards.title = "弃牌堆"
+_.table.discardCards.bgColor = discardPileBgColor
+_.table.discardCards.textColor = discardPileTextColor
+_.table.discardCards.title = discardPileTextContent
 _.table.discardCards.rect = {}
 _.table.discardCards.rect.w = _.card.w
 _.table.discardCards.rect.h = _.card.h
@@ -180,16 +214,16 @@ _.table.discardCards.rect.x =
 _.table.discardCards.rect.y = _.table.rect.y + windowPaddingY
 
 _.table.num = {}
-_.table.num.textColor = "#333333"
-_.table.num.font = px2Rem(12) + "px " + fontFamily
+_.table.num.textColor = tableNumTextColor
+_.table.num.font = tableNumFont
 _.table.num.rect = {}
 _.table.num.rect.x =
   _.table.libraryCards.rect.x + _.table.libraryCards.rect.w + windowPaddingX
 _.table.num.rect.y = _.table.rect.y + windowPaddingY
-_.table.num.rect.w = 6 * vw
-_.table.num.rect.h = 6 * vh
+_.table.num.rect.w = tableNumRectW
+_.table.num.rect.h = tableNumRectH
 
-_.table.num.padding = 1 * vh
+_.table.num.spacing = tableNumSpacing
 
 _.table.successCards = {}
 _.table.successCards.rect = {}

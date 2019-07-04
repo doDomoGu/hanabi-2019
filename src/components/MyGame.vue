@@ -47,10 +47,10 @@ export default {
       selectCardIsHost: false,
       selectCardIndex: -1,
       logRect: {
-        x: MyGameConfig.history.area.x / dpr,
-        y: MyGameConfig.history.area.y / dpr,
-        w: MyGameConfig.history.area.w / dpr,
-        h: MyGameConfig.history.area.h / dpr
+        x: MyGameConfig.history.rect.x / dpr,
+        y: MyGameConfig.history.rect.y / dpr,
+        w: MyGameConfig.history.rect.w / dpr,
+        h: MyGameConfig.history.rect.h / dpr
       }
     }
   },
@@ -78,29 +78,29 @@ export default {
     }
   },
   watch: {
-    hostPlayer(val) {
-      MyGameDraw.hostPlayer(this.ctxMain, this.isHost, val)
-    },
-    guestPlayer(val) {
-      MyGameDraw.guestPlayer(this.ctxMain, this.isHost, val)
-    },
-    cardInfo(val) {
-      //手牌
-      MyGameDraw.hostHands(this.ctxMain, this.isHost, val.hostHands)
-      MyGameDraw.guestHands(this.ctxMain, this.isHost, val.guestHands)
-      //牌库 弃牌堆
-      MyGameDraw.libraryCards(this.ctxMain, val.libraryCardsNum)
-      MyGameDraw.discardCards(this.ctxMain, val.discardCardsNum)
-      //数字:提示数/机会数/分数  cueNum/chanceNum/score
-      MyGameDraw.cueNum(this.ctxMain, val.cueNum)
-      MyGameDraw.chanceNum(this.ctxMain, val.chanceNum)
-      MyGameDraw.score(this.ctxMain, val.score)
-      //成功打出的卡牌
-      MyGameDraw.successCards(this.ctxMain, val.successCards)
-    },
-    gameInfo(val) {
-      MyGameDraw.nowPlaying(this.ctxMain, val.roundPlayerIsHost)
-    }
+    // hostPlayer(val) {
+    //   MyGameDraw.hostPlayer(this.ctxMain, this.isHost, val)
+    // },
+    // guestPlayer(val) {
+    //   MyGameDraw.guestPlayer(this.ctxMain, this.isHost, val)
+    // },
+    // cardInfo(val) {
+    //   //手牌
+    //   MyGameDraw.hostHands(this.ctxMain, this.isHost, val.hostHands)
+    //   MyGameDraw.guestHands(this.ctxMain, this.isHost, val.guestHands)
+    //   //牌库 弃牌堆
+    //   MyGameDraw.libraryCards(this.ctxMain, val.libraryCardsNum)
+    //   MyGameDraw.discardCards(this.ctxMain, val.discardCardsNum)
+    //   //数字:提示数/机会数/分数  cueNum/chanceNum/score
+    //   MyGameDraw.cueNum(this.ctxMain, val.cueNum)
+    //   MyGameDraw.chanceNum(this.ctxMain, val.chanceNum)
+    //   MyGameDraw.score(this.ctxMain, val.score)
+    //   //成功打出的卡牌
+    //   MyGameDraw.successCards(this.ctxMain, val.successCards)
+    // },
+    // gameInfo(val) {
+    //   MyGameDraw.nowPlaying(this.ctxMain, val.roundPlayerIsHost)
+    // }
   },
   mounted() {
     // 初始化定义canvasContext
@@ -109,8 +109,8 @@ export default {
     this.ctxModal = getCtx(this.$refs.ctxModal)
 
     MyGameDraw.bottomRect(this.ctxBg)
-    MyGameDraw.endBtn(this.ctxMain)
-    MyGameDraw.topRect(this.ctxModal)
+    // MyGameDraw.endBtn(this.ctxMain)
+    // MyGameDraw.topRect(this.ctxModal)
 
     this.$store.dispatch("myRoom/GetInfo", { force: true })
 
@@ -120,20 +120,20 @@ export default {
       this.$store.dispatch("myGame/GetInfo")
     }, 5000)
 
-    this.ctxMain.canvas.addEventListener(
-      "click",
-      e => {
-        MyGameEventListener.main(this, e)
-      },
-      false
-    )
-    this.ctxModal.canvas.addEventListener(
-      "click",
-      e => {
-        MyGameEventListener.modal(this, e)
-      },
-      false
-    )
+    // this.ctxMain.canvas.addEventListener(
+    //   "click",
+    //   e => {
+    //     MyGameEventListener.main(this, e)
+    //   },
+    //   false
+    // )
+    // this.ctxModal.canvas.addEventListener(
+    //   "click",
+    //   e => {
+    //     MyGameEventListener.modal(this, e)
+    //   },
+    //   false
+    // )
     // this.canvas.addEventListener('touchstart',this.eventListener,false)
     // this.canvas.addEventListener('touchend',this.eventListener,false)
   },

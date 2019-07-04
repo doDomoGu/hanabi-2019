@@ -5,39 +5,39 @@ import { MyGameConfig } from "../config"
 const colors = ["white", "blue", "yellow", "red", "green"]
 const numbers = [1, 1, 1, 2, 2, 3, 3, 4, 4, 5]
 
-let _ = {} //common
+let _ = {}
 
-//绘制背景
+//绘制底部背景
 _.bottomRect = ctx => {
-  DrawLib.background(ctx, MyGameConfig.bgImgSrc, "tile").then(()=>{
+  DrawLib.background(ctx, MyGameConfig.bgImgSrc, "tile").then(() => {
     //主机玩家区域背景
     DrawLib.fillRect(ctx, {
-      rect: MyGameConfig.host.area,
+      rect: MyGameConfig.host.rect,
       color: MyGameConfig.host.bgColor
     })
     //主机玩家信息区域背景
     DrawLib.fillRect(ctx, {
-      rect: MyGameConfig.host.info.area,
+      rect: MyGameConfig.host.info.rect,
       color: MyGameConfig.player.info.bgColor
     })
     //客机玩家区域背景
     DrawLib.fillRect(ctx, {
-      rect: MyGameConfig.guest.area,
+      rect: MyGameConfig.guest.rect,
       color: MyGameConfig.guest.bgColor
     })
     //客机玩家信息区域背景
     DrawLib.fillRect(ctx, {
-      rect: MyGameConfig.guest.info.area,
+      rect: MyGameConfig.guest.info.rect,
       color: MyGameConfig.player.info.bgColor
     })
     //桌面区域背景
     DrawLib.fillRect(ctx, {
-      rect: MyGameConfig.table.area,
+      rect: MyGameConfig.table.rect,
       color: MyGameConfig.table.bgColor
     })
     //游戏记录区域背景
     DrawLib.fillRect(ctx, {
-      rect: MyGameConfig.history.area,
+      rect: MyGameConfig.history.rect,
       color: MyGameConfig.history.bgColor
     })
   })
@@ -68,7 +68,7 @@ _.endBtn = ctx => {
 //绘制主机玩家信息
 _.hostPlayer = (ctx, isPlayerHost, info) => {
   player(ctx, {
-    rect: MyGameConfig.host.info.content.area,
+    rect: MyGameConfig.host.info.content.rect,
     text: info.name + (isPlayerHost ? "*" : "")
   })
 }
@@ -76,7 +76,7 @@ _.hostPlayer = (ctx, isPlayerHost, info) => {
 //绘制客机玩家信息
 _.guestPlayer = (ctx, isPlayerHost, info) => {
   player(ctx, {
-    rect: MyGameConfig.guest.info.content.area,
+    rect: MyGameConfig.guest.info.content.rect,
     text: info.name + (!isPlayerHost ? "*" : "")
   })
 }
@@ -101,7 +101,7 @@ const player = (ctx, config) => {
 
 //绘制主机玩家手牌
 _.hostHands = (ctx, isPlayerHost, hands) => {
-  const rects = JSON.parse(JSON.stringify(MyGameConfig.host.hands.areas))
+  const rects = JSON.parse(JSON.stringify(MyGameConfig.host.hands.rects))
 
   if (isPlayerHost) {
     backHands(ctx, rects, hands)
@@ -111,7 +111,7 @@ _.hostHands = (ctx, isPlayerHost, hands) => {
 }
 //绘制客机玩家手牌
 _.guestHands = (ctx, isPlayerHost, hands) => {
-  const rects = JSON.parse(JSON.stringify(MyGameConfig.guest.hands.areas))
+  const rects = JSON.parse(JSON.stringify(MyGameConfig.guest.hands.rects))
   if (isPlayerHost) {
     frontHands(ctx, rects, hands)
   } else {
@@ -146,7 +146,7 @@ const backHands = (ctx, rects, hands) => {
 
 //绘制卡牌带数字
 const cardsNum = (ctx, config, num) => {
-  const rect = config.area
+  const rect = config.rect
   ctx.fillStyle = config.bgColor
   DrawLib.fillRoundedRect(ctx, rect, 4)
 
@@ -181,26 +181,26 @@ const _num = (ctx, rect, text) => {
 
 //剩余提示数
 _.cueNum = (ctx, num) => {
-  const rect = JSON.parse(JSON.stringify(MyGameConfig.table.num.area))
+  const rect = JSON.parse(JSON.stringify(MyGameConfig.table.num.rect))
   _num(ctx, rect, "提示数:" + num)
 }
 //剩余机会数
 _.chanceNum = (ctx, num) => {
-  const rect = JSON.parse(JSON.stringify(MyGameConfig.table.num.area))
-  rect.y += MyGameConfig.table.num.area.h + MyGameConfig.table.num.padding
+  const rect = JSON.parse(JSON.stringify(MyGameConfig.table.num.rect))
+  rect.y += MyGameConfig.table.num.rect.h + MyGameConfig.table.num.padding
   _num(ctx, rect, "机会数:" + num)
 }
 //分数
 _.score = (ctx, num) => {
-  const rect = JSON.parse(JSON.stringify(MyGameConfig.table.num.area))
-  rect.y += (MyGameConfig.table.num.area.h + MyGameConfig.table.num.padding) * 2
+  const rect = JSON.parse(JSON.stringify(MyGameConfig.table.num.rect))
+  rect.y += (MyGameConfig.table.num.rect.h + MyGameConfig.table.num.padding) * 2
   _num(ctx, rect, "分数:" + num)
 }
 
 //绘制成功打出的卡牌
 _.successCards = (ctx, successCards) => {
   //TODO
-  const rect = JSON.parse(JSON.stringify(MyGameConfig.table.successCards.area))
+  const rect = JSON.parse(JSON.stringify(MyGameConfig.table.successCards.rect))
 
   ctx.clearRect(
     rect.x,
@@ -224,8 +224,8 @@ _.successCards = (ctx, successCards) => {
 }
 
 _.nowPlaying = (ctx, isHost) => {
-  const rectHost = MyGameConfig.host.info.nowPlaying.area
-  const rectGuest = MyGameConfig.guest.info.nowPlaying.area
+  const rectHost = MyGameConfig.host.info.nowPlaying.rect
+  const rectGuest = MyGameConfig.guest.info.nowPlaying.rect
 
   ctx.clearRect(rectHost.x, rectHost.y, rectHost.w, rectHost.h)
   ctx.clearRect(rectGuest.x, rectGuest.y, rectGuest.w, rectGuest.h)
