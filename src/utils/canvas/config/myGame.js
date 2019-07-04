@@ -5,42 +5,59 @@ import bgImg from "@/assets/hanabi_bg2.jpg"
 
 let _ = {}
 
-/* 基础参数 */
-// _.window = {}
-// _.window.padding = 10 * dpr // 窗口留白
+const windowPaddingX = 2 * vw //视窗内左右留白
+const windowPaddingY = 3 * vh //视窗内上下留白
 
-const windowPaddingX = 2 * vw
-const windowPaddingY = 3 * vh
+const playerRectBgColor = "#cccccc"
+
+const playerRectW = 50 * vw - windowPaddingX //玩家区域宽度
+const playerRectH = 40 * vh //玩家区域高度
+
+const playerRectPaddingX = 2 * vw //玩家区域内左右留白
+const playerRectPaddingY = 4 * vh //玩家区域内上下留白
+
+const playerInfoRectW = playerRectW - playerRectPaddingX * 2 //玩家信息区域宽度
+const playerInfoRectH = 10 * vh //玩家信息区域高度
+const playerInfoFont = px2Rem(16) + "px " + fontFamily //玩家信息区域字体样式
+
+const playerInfoBgColor = "#fee9d6"
+const playerInfoTextColor = "#4b4b4b"
+
+const playerInfoNowPlayingRectW = 20 * vw
+const playerInfoNowPlayingRectH = playerInfoRectH
+
+const playerInfoContentRectW = playerInfoRectW - playerInfoNowPlayingRectW
+const playerInfoContentRectH = playerInfoRectH
 
 /* 玩家基础参数 */
 _.player = {}
-_.player.bgColor = "#cccccc"
-_.player.area = {}
-_.player.area.x = windowPaddingX
-_.player.area.y = windowPaddingY
-_.player.area.w = 48 * vw //玩家区域宽度
-_.player.area.h = 40 * vh //玩家区域高度
-_.player.area.paddingX = 2 * vw //玩家区域内留白
-_.player.area.paddingY = 4 * vh //玩家区域内留白
+_.player.bgColor = playerRectBgColor
+// _.player.area = {}
+// _.player.area.x = windowPaddingX
+// _.player.area.y = windowPaddingY
+// _.player.area.w = 48 * vw //玩家区域宽度
+// _.player.area.h = 40 * vh //玩家区域高度
+// _.player.area.paddingX = 2 * vw //玩家区域内留白
+// _.player.area.paddingY = 4 * vh //玩家区域内留白
 
 _.player.info = {}
-_.player.info.bgColor = "#fee9d6"
-_.player.info.textColor = "#4b4b4b"
+// _.player.info.bgColor = "#fee9d6"
+// _.player.info.textColor = "#4b4b4b"
 _.player.info.area = {}
-_.player.info.area.w = _.player.area.w - _.player.area.paddingX * 2
-_.player.info.area.h = 10 * vh
-_.player.info.font = px2Rem(16) + "px " + fontFamily
+// _.player.info.area.w = _.player.area.w - _.player.area.paddingX * 2
+// _.player.info.area.h = 10 * vh
+// _.player.info.font = px2Rem(16) + "px " + fontFamily
 
 _.player.info.nowPlaying = {}
 _.player.info.nowPlaying.area = {}
-_.player.info.nowPlaying.area.w = 20 * vw
-_.player.info.nowPlaying.area.h = _.player.info.area.h
+// _.player.info.nowPlaying.area.w = 20 * vw
+// _.player.info.nowPlaying.area.h = _.player.info.area.h
 
 _.player.info.content = {}
 _.player.info.content.area = {}
-_.player.info.content.area.w =
-  _.player.info.area.w - _.player.info.nowPlaying.area.w
-_.player.info.content.area.h = _.player.info.area.h
+// _.player.info.content.area.w =
+//   _.player.info.area.w - _.player.info.nowPlaying.area.w
+// _.player.info.content.area.h = _.player.info.area.h
 
 /* _.player.info.nowPlaying = {}
 _.player.info.nowPlaying.area = {}
@@ -82,47 +99,47 @@ _.player.hands.font = px2Rem(14) + "px " + fontFamily
 /* 主机玩家 */
 _.host = {}
 
-_.host.bgColor = "#cccccc"
+_.host.bgColor = playerRectBgColor
 
-_.host.area = {}
-_.host.area.x = _.player.area.x
-_.host.area.y = _.player.area.y
-_.host.area.w = _.player.area.w
-_.host.area.h = _.player.area.h
+_.host.rect = {}
+_.host.rect.x = windowPaddingX
+_.host.rect.y = windowPaddingY
+_.host.rect.w = playerRectW
+_.host.rect.h = playerRectH
 
 _.host.info = {}
-_.host.info.area = {}
-_.host.info.area.x = _.host.area.x + _.player.area.paddingX
-_.host.info.area.y = _.host.area.y + _.player.area.paddingY
-_.host.info.area.w = _.player.info.area.w
-_.host.info.area.h = _.player.info.area.h
+_.host.info.rect = {}
+_.host.info.rect.x = _.host.rect.x + playerRectPaddingX
+_.host.info.rect.y = _.host.rect.y + playerRectPaddingY
+_.host.info.rect.w = playerInfoRectW
+_.host.info.rect.h = playerInfoRectH
 
 _.host.info.content = {}
-_.host.info.content.area = {}
-_.host.info.content.area.w = _.player.info.content.area.w
-_.host.info.content.area.h = _.player.info.content.area.h
-_.host.info.content.area.x = _.host.info.area.x
-_.host.info.content.area.y = _.host.info.area.y
+_.host.info.content.rect = {}
+_.host.info.content.rect.w = playerInfoContentRectW
+_.host.info.content.rect.h = playerInfoContentRectH
+_.host.info.content.rect.x = _.host.info.rect.x
+_.host.info.content.rect.y = _.host.info.rect.y
 
 _.host.info.nowPlaying = {}
-_.host.info.nowPlaying.area = {}
-_.host.info.nowPlaying.area.w = _.player.info.nowPlaying.area.w
-_.host.info.nowPlaying.area.h = _.player.info.nowPlaying.area.h
-_.host.info.nowPlaying.area.x = _.host.info.area.x + _.host.info.content.area.w
-_.host.info.nowPlaying.area.y = _.host.info.area.y
+_.host.info.nowPlaying.rect = {}
+_.host.info.nowPlaying.rect.w = playerInfoNowPlayingRectW
+_.host.info.nowPlaying.rect.h = playerInfoNowPlayingRectH
+_.host.info.nowPlaying.rect.x = _.host.info.rect.x + _.host.info.content.rect.w
+_.host.info.nowPlaying.rect.y = _.host.info.rect.y
 
 _.host.hands = {}
-_.host.hands.areas = []
+_.host.hands.rects = []
 for (let i = 0; i < 5; i++) {
   let handsArea = {}
   handsArea.x =
-    _.host.area.x +
-    _.player.area.paddingX +
-    (_.player.hands.w + _.player.area.paddingX) * i
-  handsArea.y = _.host.info.area.y + _.host.info.area.h + _.player.area.paddingY
+    _.host.rect.x +
+    _.player.rect.paddingX +
+    (_.player.hands.w + _.player.rect.paddingX) * i
+  handsArea.y = _.host.info.rect.y + _.host.info.rect.h + _.player.rect.paddingY
   handsArea.w = _.player.hands.w
   handsArea.h = _.player.hands.h
-  _.host.hands.areas.push(handsArea)
+  _.host.hands.rects.push(handsArea)
 }
 /* _.host.button = {}
 _.host.button.x = _.host.area.x + _.player.area.padding
@@ -133,110 +150,110 @@ _.host.button.h = _.player.button.h */
 /* 桌面区域 */
 _.table = {}
 _.table.bgColor = "#aaeecc"
-_.table.area = {}
-_.table.area.x = 50 * vw
-_.table.area.y = windowPaddingY
-_.table.area.w = 50 * vw - windowPaddingX
-_.table.area.h = 40 * vh
+_.table.rect = {}
+_.table.rect.x = 50 * vw
+_.table.rect.y = windowPaddingY
+_.table.rect.w = 50 * vw - windowPaddingX
+_.table.rect.h = 40 * vh
 
 /* 牌库 */
 _.table.libraryCards = {}
 _.table.libraryCards.bgColor = "#eeaacc"
 _.table.libraryCards.textColor = "#333333"
 _.table.libraryCards.title = "牌库"
-_.table.libraryCards.area = {}
-_.table.libraryCards.area.x = _.table.area.x + windowPaddingX
-_.table.libraryCards.area.y = _.table.area.y + windowPaddingY
-_.table.libraryCards.area.w = _.card.w
-_.table.libraryCards.area.h = _.card.h
+_.table.libraryCards.rect = {}
+_.table.libraryCards.rect.x = _.table.rect.x + windowPaddingX
+_.table.libraryCards.rect.y = _.table.rect.y + windowPaddingY
+_.table.libraryCards.rect.w = _.card.w
+_.table.libraryCards.rect.h = _.card.h
 
 /* 弃牌堆 */
 _.table.discardCards = {}
 _.table.discardCards.bgColor = "#ccaaee"
 _.table.discardCards.textColor = "#333333"
 _.table.discardCards.title = "弃牌堆"
-_.table.discardCards.area = {}
-_.table.discardCards.area.w = _.card.w
-_.table.discardCards.area.h = _.card.h
-_.table.discardCards.area.x =
-  100 * vw - windowPaddingX - _.table.discardCards.area.w - windowPaddingX
-_.table.discardCards.area.y = _.table.area.y + windowPaddingY
+_.table.discardCards.rect = {}
+_.table.discardCards.rect.w = _.card.w
+_.table.discardCards.rect.h = _.card.h
+_.table.discardCards.rect.x =
+  100 * vw - windowPaddingX - _.table.discardCards.rect.w - windowPaddingX
+_.table.discardCards.rect.y = _.table.rect.y + windowPaddingY
 
 _.table.num = {}
 _.table.num.textColor = "#333333"
 _.table.num.font = px2Rem(12) + "px " + fontFamily
-_.table.num.area = {}
-_.table.num.area.x =
-  _.table.libraryCards.area.x + _.table.libraryCards.area.w + windowPaddingX
-_.table.num.area.y = _.table.area.y + windowPaddingY
-_.table.num.area.w = 6 * vw
-_.table.num.area.h = 6 * vh
+_.table.num.rect = {}
+_.table.num.rect.x =
+  _.table.libraryCards.rect.x + _.table.libraryCards.rect.w + windowPaddingX
+_.table.num.rect.y = _.table.rect.y + windowPaddingY
+_.table.num.rect.w = 6 * vw
+_.table.num.rect.h = 6 * vh
 
 _.table.num.padding = 1 * vh
 
 _.table.successCards = {}
-_.table.successCards.area = {}
-_.table.successCards.area.x =
-  _.table.num.area.x + _.table.num.area.w + windowPaddingX
-_.table.successCards.area.y = _.table.area.y + windowPaddingY
-_.table.successCards.area.w = _.card.w / 2
-_.table.successCards.area.h = _.card.h / 2
+_.table.successCards.rect = {}
+_.table.successCards.rect.x =
+  _.table.num.rect.x + _.table.num.rect.w + windowPaddingX
+_.table.successCards.rect.y = _.table.rect.y + windowPaddingY
+_.table.successCards.rect.w = _.card.w / 2
+_.table.successCards.rect.h = _.card.h / 2
 _.table.successCards.margin = 1 * vw
 /* 游戏记录区域 */
 _.history = {}
 _.history.bgColor = "#eeccaa"
-_.history.area = {}
-_.history.area.x = _.table.area.x
-_.history.area.y = _.table.area.y + _.table.area.h + 0 * vh
-_.history.area.w = _.table.area.w
-_.history.area.h = 40 * vh
+_.history.rect = {}
+_.history.rect.x = _.table.rect.x
+_.history.rect.y = _.table.rect.y + _.table.rect.h + 0 * vh
+_.history.rect.w = _.table.rect.w
+_.history.rect.h = 40 * vh
 
 /* 客机玩家 */
 _.guest = {}
 
 _.guest.bgColor = "#dcdcdc"
 
-_.guest.area = {}
-_.guest.area.x = _.host.area.x
-_.guest.area.y = _.host.area.y + _.host.area.h + 0 * vh
-_.guest.area.w = _.player.area.w
-_.guest.area.h = _.player.area.h
+_.guest.rect = {}
+_.guest.rect.x = windowPaddingX
+_.guest.rect.y = _.host.rect.y + _.host.rect.h
+_.guest.rect.w = playerRectW
+_.guest.rect.h = playerRectH
 
 _.guest.info = {}
-_.guest.info.area = {}
-_.guest.info.area.x = _.guest.area.x + _.player.area.paddingX
-_.guest.info.area.y = _.guest.area.y + _.player.area.paddingY
-_.guest.info.area.w = _.player.info.area.w
-_.guest.info.area.h = _.player.info.area.h
+_.guest.info.rect = {}
+_.guest.info.rect.x = _.guest.rect.x + playerRectPaddingX
+_.guest.info.rect.y = _.guest.rect.y + playerRectPaddingY
+_.guest.info.rect.w = playerInfoRectW
+_.guest.info.rect.h = playerInfoRectH
 
 _.guest.info.content = {}
-_.guest.info.content.area = {}
-_.guest.info.content.area.w = _.player.info.content.area.w
-_.guest.info.content.area.h = _.player.info.content.area.h
-_.guest.info.content.area.x = _.guest.info.area.x
-_.guest.info.content.area.y = _.guest.info.area.y
+_.guest.info.content.rect = {}
+_.guest.info.content.rect.w = _.player.info.content.rect.w
+_.guest.info.content.rect.h = _.player.info.content.rect.h
+_.guest.info.content.rect.x = _.guest.info.rect.x
+_.guest.info.content.rect.y = _.guest.info.rect.y
 
 _.guest.info.nowPlaying = {}
-_.guest.info.nowPlaying.area = {}
-_.guest.info.nowPlaying.area.w = _.player.info.nowPlaying.area.w
-_.guest.info.nowPlaying.area.h = _.player.info.nowPlaying.area.h
-_.guest.info.nowPlaying.area.x =
-  _.guest.info.area.x + _.guest.info.content.area.w
-_.guest.info.nowPlaying.area.y = _.guest.info.area.y
+_.guest.info.nowPlaying.rect = {}
+_.guest.info.nowPlaying.rect.w = _.player.info.nowPlaying.rect.w
+_.guest.info.nowPlaying.rect.h = _.player.info.nowPlaying.rect.h
+_.guest.info.nowPlaying.rect.x =
+  _.guest.info.rect.x + _.guest.info.content.rect.w
+_.guest.info.nowPlaying.rect.y = _.guest.info.rect.y
 
 _.guest.hands = {}
-_.guest.hands.areas = []
+_.guest.hands.rects = []
 for (let i = 0; i < 5; i++) {
   let handsArea = {}
   handsArea.x =
-    _.guest.area.x +
-    _.player.area.paddingX +
-    (_.player.hands.w + _.player.area.paddingX) * i
+    _.guest.rect.x +
+    _.player.rect.paddingX +
+    (_.player.hands.w + _.player.rect.paddingX) * i
   handsArea.y =
-    _.guest.info.area.y + _.guest.info.area.h + _.player.area.paddingY
+    _.guest.info.rect.y + _.guest.info.rect.h + _.player.rect.paddingY
   handsArea.w = _.player.hands.w
   handsArea.h = _.player.hands.h
-  _.guest.hands.areas.push(handsArea)
+  _.guest.hands.rects.push(handsArea)
 }
 
 /* 结束按钮 */
@@ -252,9 +269,9 @@ _.endBtn.text = "结束游戏"
 
 /* 按钮 */
 _.btn = {}
-_.btn.area = {}
-_.btn.area.w = 4 * vw
-_.btn.area.h = 2 * vh
+_.btn.rect = {}
+_.btn.rect.w = 4 * vw
+_.btn.rect.h = 2 * vh
 _.btn.font = px2Rem(12) + "px " + fontFamily
 _.btn.ok = {}
 _.btn.ok.bgColor = "#44ff44"
@@ -291,35 +308,35 @@ _.top.play.ok = {}
 _.top.play.ok.rect = {}
 _.top.play.ok.rect.x = _.top.rect.w / 2 - 100 * vw
 _.top.play.ok.rect.y = _.top.rect.h / 2 + 40 * vh
-_.top.play.ok.rect.w = _.btn.area.w
-_.top.play.ok.rect.h = _.btn.area.h
+_.top.play.ok.rect.w = _.btn.rect.w
+_.top.play.ok.rect.h = _.btn.rect.h
 
 _.top.play.cancel = {}
 _.top.play.cancel.rect = {}
 _.top.play.cancel.rect.x = _.top.rect.w / 2
 _.top.play.cancel.rect.y = _.top.rect.h / 2 + 40 * vh
-_.top.play.cancel.rect.w = _.btn.area.w
-_.top.play.cancel.rect.h = _.btn.area.h
+_.top.play.cancel.rect.w = _.btn.rect.w
+_.top.play.cancel.rect.h = _.btn.rect.h
 
 _.top.cue = {}
 _.top.cue.num = {}
 _.top.cue.num.rect = {}
-_.top.cue.num.rect.x = _.top.rect.w / 2 - 60 * vw - _.btn.area.w
+_.top.cue.num.rect.x = _.top.rect.w / 2 - 60 * vw - _.btn.rect.w
 _.top.cue.num.rect.y = _.top.rect.h / 2 + 20 * vh
-_.top.cue.num.rect.w = _.btn.area.w
-_.top.cue.num.rect.h = _.btn.area.h
+_.top.cue.num.rect.w = _.btn.rect.w
+_.top.cue.num.rect.h = _.btn.rect.h
 _.top.cue.color = {}
 _.top.cue.color.rect = {}
-_.top.cue.color.rect.x = _.top.rect.w / 2 - _.btn.area.w / 2
+_.top.cue.color.rect.x = _.top.rect.w / 2 - _.btn.rect.w / 2
 _.top.cue.color.rect.y = _.top.rect.h / 2 + 20 * vh
-_.top.cue.color.rect.w = _.btn.area.w
-_.top.cue.color.rect.h = _.btn.area.h
+_.top.cue.color.rect.w = _.btn.rect.w
+_.top.cue.color.rect.h = _.btn.rect.h
 _.top.cue.cancel = {}
 _.top.cue.cancel.rect = {}
 _.top.cue.cancel.rect.x = _.top.rect.w / 2 + 60 * vw
 _.top.cue.cancel.rect.y = _.top.rect.h / 2 + 20 * vh
-_.top.cue.cancel.rect.w = _.btn.area.w
-_.top.cue.cancel.rect.h = _.btn.area.h
+_.top.cue.cancel.rect.w = _.btn.rect.w
+_.top.cue.cancel.rect.h = _.btn.rect.h
 
 _.bgImgSrc = bgImg
 
