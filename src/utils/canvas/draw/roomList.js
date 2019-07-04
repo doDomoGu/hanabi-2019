@@ -69,7 +69,8 @@ const drawItemText = (ctx, index, item, actived) => {
 
   // 绘制房间名称
   const _index = parseInt(index) + 1
-  const text = (_index < 10 ? "00" + _index : "0" + _index) + "   " + item.title
+  const text =
+    (_index < 10 ? "00" + _index : "0" + _index) + "      " + item.title
   ctx.fillText(text, RoomListConfig.item.titleX, rect.y + rect.h / 2)
 
   // 绘制房间上锁符号
@@ -81,8 +82,8 @@ const drawItemText = (ctx, index, item, actived) => {
 
   // 绘制房间人数信息
   ctx.fillText(
-    item.playerCount + "/2",
-    RoomListConfig.item.playerCountX,
+    item.playerNum + "/2",
+    RoomListConfig.item.playerNumX,
     rect.y + rect.h / 2
   )
 }

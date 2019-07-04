@@ -21,9 +21,9 @@ const itemSpacing = 2 * vh //房间项间距
 const itemW = 30 * vw //房间项宽度
 const itemH = 6 * vh //房间项高度
 
-const itemTitleOffsetX = 1 * vw //房间项标题距离左边偏移量
-const itemLockOffsetX = 15 * vw //房间项标题左偏移量
-const itemPlayerNumOffsetX = 20 * vw //房间项标题左偏移量
+const itemTitleOffsetX = 2 * vw //房间项标题距离左边偏移量
+const itemLockOffsetX = 22 * vw //房间项标题左偏移量
+const itemPlayerNumOffsetX = 24 * vw //房间项标题左偏移量
 
 _.item = {}
 
@@ -44,7 +44,7 @@ _.item.rect.h = itemH
 
 _.item.titleX = _.item.rect.x + itemTitleOffsetX
 _.item.lockX = _.item.rect.x + itemLockOffsetX
-_.item.playerCountX = _.item.rect.x + itemPlayerNumOffsetX
+_.item.playerNumX = _.item.rect.x + itemPlayerNumOffsetX
 
 _.item.spacing = itemSpacing
 
