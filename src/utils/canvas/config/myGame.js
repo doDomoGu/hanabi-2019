@@ -6,11 +6,14 @@ import bgImg from "@/assets/hanabi_bg2.jpg"
 const windowPaddingX = 2 * vw //视窗内左右留白
 const windowPaddingY = 3 * vh //视窗内上下留白
 
+const endBtnRectW = 100 * vw
+const endBtnRectH = 8 * vh
+
 const hostRectBgColor = "#cccccc" //主机玩家区域背景颜色
 const guestRectBgColor = "#dcdcdc" //客机玩家区域背景颜色
 
 const playerRectW = 50 * vw - windowPaddingX //玩家区域宽度
-const playerRectH = 40 * vh //玩家区域高度
+const playerRectH = (100 * vh - endBtnRectH) / 2 - windowPaddingY //玩家区域高度
 
 const playerRectPaddingX = 2 * vw //玩家区域内左右留白
 const playerRectPaddingY = 4 * vh //玩家区域内上下留白
@@ -75,8 +78,6 @@ const discardPileBgColor = "#ccaaee"
 const discardPileTextColor = "#333333"
 const discardPileTextContent = "弃牌堆"
 
-const endBtnRectW = 100 * vw
-const endBtnRectH = 8 * vh
 const endBtnBgColor = "#e90200"
 const endBtnTextColor = "#ffffff"
 const endBtnTextFont = px2Rem(18) + "px " + fontFamily
@@ -96,12 +97,12 @@ _.player = {}
 // _.player.rect.paddingY = 4 * vh //玩家区域内留白
 
 _.player.info = {}
-// _.player.info.bgColor = "#fee9d6"
-// _.player.info.textColor = "#4b4b4b"
+_.player.info.bgColor = playerInfoBgColor
+_.player.info.textColor = playerInfoTextColor
 _.player.info.rect = {}
 // _.player.info.rect.w = _.player.rect.w - _.player.rect.paddingX * 2
 // _.player.info.rect.h = 10 * vh
-// _.player.info.font = px2Rem(16) + "px " + fontFamily
+_.player.info.font = playerInfoFont
 
 _.player.info.nowPlaying = {}
 _.player.info.nowPlaying.rect = {}
