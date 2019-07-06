@@ -78,7 +78,7 @@ const discardPileTextColor = "#333333"
 const discardPileTextContent = "弃牌堆"
 /* 玩家基础参数 */
 _.player = {}
-_.player.bgColor = playerRectBgColor
+// _.player.bgColor = playerRectBgColor
 // _.player.rect = {}
 // _.player.rect.x = windowPaddingX
 // _.player.rect.y = windowPaddingY
