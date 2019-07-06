@@ -51,18 +51,23 @@ _.topRect = ctx => {
   })
 }
 
-//绘制结束按钮
+// 绘制结束按钮
 _.endBtn = ctx => {
   const btn = MyGameConfig.endBtn
 
   ctx.fillStyle = btn.bgColor
-  ctx.fillRect(btn.x, btn.y, btn.w, btn.h)
+  ctx.fillRect(btn.rect.x, btn.rect.y, btn.rect.w, btn.rect.h)
 
-  ctx.font = btn.font
-  ctx.fillStyle = btn.textColor
+  ctx.font = btn.text.font
+  ctx.fillStyle = btn.text.color
   ctx.textAlign = "center"
   ctx.textBaseline = "middle"
-  ctx.fillText(btn.text, btn.x + btn.w / 2, btn.y + btn.h / 2)
+
+  ctx.fillText(
+    btn.text.content,
+    btn.rect.x + btn.rect.w / 2,
+    btn.rect.y + btn.rect.h / 2
+  )
 }
 
 //绘制主机玩家信息

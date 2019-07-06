@@ -78,9 +78,9 @@ export default {
     }
   },
   watch: {
-    // hostPlayer(val) {
-    //   MyGameDraw.hostPlayer(this.ctxMain, this.isHost, val)
-    // },
+    hostPlayer(val) {
+      MyGameDraw.hostPlayer(this.ctxMain, this.isHost, val)
+    }
     // guestPlayer(val) {
     //   MyGameDraw.guestPlayer(this.ctxMain, this.isHost, val)
     // },
@@ -109,7 +109,7 @@ export default {
     this.ctxModal = getCtx(this.$refs.ctxModal)
 
     MyGameDraw.bottomRect(this.ctxBg)
-    // MyGameDraw.endBtn(this.ctxMain)
+    MyGameDraw.endBtn(this.ctxMain)
     // MyGameDraw.topRect(this.ctxModal)
 
     this.$store.dispatch("myRoom/GetInfo", { force: true })

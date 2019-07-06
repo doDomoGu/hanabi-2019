@@ -3,8 +3,6 @@
 import { vw, vh, px2Rem, fontFamily } from "../lib"
 import bgImg from "@/assets/hanabi_bg2.jpg"
 
-let _ = {}
-
 const windowPaddingX = 2 * vw //视窗内左右留白
 const windowPaddingY = 3 * vh //视窗内上下留白
 
@@ -76,6 +74,16 @@ const libraryTextContent = "牌库"
 const discardPileBgColor = "#ccaaee"
 const discardPileTextColor = "#333333"
 const discardPileTextContent = "弃牌堆"
+
+const endBtnRectW = 100 * vw
+const endBtnRectH = 8 * vh
+const endBtnBgColor = "#e90200"
+const endBtnTextColor = "#ffffff"
+const endBtnTextFont = px2Rem(18) + "px " + fontFamily
+const endBtnTextContent = "结束游戏"
+
+let _ = {}
+
 /* 玩家基础参数 */
 _.player = {}
 // _.player.bgColor = playerRectBgColor
@@ -279,28 +287,28 @@ _.guest.info.nowPlaying.rect.y = _.guest.info.rect.y
 _.guest.hands = {}
 _.guest.hands.rects = []
 for (let i = 0; i < 5; i++) {
-  let handsArea = {}
-  handsArea.x =
-    _.guest.rect.x +
-    _.player.rect.paddingX +
-    (_.player.hands.w + _.player.rect.paddingX) * i
-  handsArea.y =
-    _.guest.info.rect.y + _.guest.info.rect.h + _.player.rect.paddingY
-  handsArea.w = _.player.hands.w
-  handsArea.h = _.player.hands.h
-  _.guest.hands.rects.push(handsArea)
+  let rect = {}
+  rect.x = _.guest.rect.x + playerRectPaddingX + (handsRectW + handsSpacing) * i
+  rect.y = _.guest.info.rect.y + _.guest.info.rect.h + playerRectPaddingY
+  rect.w = handsRectW
+  rect.h = handsRectH
+  _.guest.hands.rects.push(rect)
 }
 
 /* 结束按钮 */
 _.endBtn = {}
-_.endBtn.w = 100 * vw
-_.endBtn.h = 8 * vh
-_.endBtn.x = 0 * vw
-_.endBtn.y = 100 * vh - _.endBtn.h
-_.endBtn.bgColor = "#e90200"
-_.endBtn.textColor = "#ffffff"
-_.endBtn.font = px2Rem(18) + "px " + fontFamily
-_.endBtn.text = "结束游戏"
+_.endBtn.rect = {}
+_.endBtn.rect.w = endBtnRectW
+_.endBtn.rect.h = endBtnRectH
+_.endBtn.rect.x = (100 * vw - _.endBtn.rect.w) / 2
+_.endBtn.rect.y = 100 * vh - _.endBtn.rect.h
+
+_.endBtn.bgColor = endBtnBgColor
+
+_.endBtn.text = {}
+_.endBtn.text.color = endBtnTextColor
+_.endBtn.text.font = endBtnTextFont
+_.endBtn.text.content = endBtnTextContent
 
 /* 按钮 */
 _.btn = {}
