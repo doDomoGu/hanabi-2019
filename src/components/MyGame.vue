@@ -80,27 +80,27 @@ export default {
   watch: {
     hostPlayer(val) {
       MyGameDraw.hostPlayer(this.ctxMain, this.isHost, val)
+    },
+    guestPlayer(val) {
+      MyGameDraw.guestPlayer(this.ctxMain, this.isHost, val)
+    },
+    cardInfo(val) {
+      //手牌
+      MyGameDraw.hostHands(this.ctxMain, this.isHost, val.hostHands)
+      MyGameDraw.guestHands(this.ctxMain, this.isHost, val.guestHands)
+      //牌库 弃牌堆
+      // MyGameDraw.libraryCards(this.ctxMain, val.libraryCardsNum)
+      // MyGameDraw.discardCards(this.ctxMain, val.discardCardsNum)
+      // //数字:提示数/机会数/分数  cueNum/chanceNum/score
+      // MyGameDraw.cueNum(this.ctxMain, val.cueNum)
+      // MyGameDraw.chanceNum(this.ctxMain, val.chanceNum)
+      // MyGameDraw.score(this.ctxMain, val.score)
+      // //成功打出的卡牌
+      // MyGameDraw.successCards(this.ctxMain, val.successCards)
+    },
+    gameInfo(val) {
+      MyGameDraw.nowPlaying(this.ctxMain, val.roundPlayerIsHost)
     }
-    // guestPlayer(val) {
-    //   MyGameDraw.guestPlayer(this.ctxMain, this.isHost, val)
-    // },
-    // cardInfo(val) {
-    //   //手牌
-    //   MyGameDraw.hostHands(this.ctxMain, this.isHost, val.hostHands)
-    //   MyGameDraw.guestHands(this.ctxMain, this.isHost, val.guestHands)
-    //   //牌库 弃牌堆
-    //   MyGameDraw.libraryCards(this.ctxMain, val.libraryCardsNum)
-    //   MyGameDraw.discardCards(this.ctxMain, val.discardCardsNum)
-    //   //数字:提示数/机会数/分数  cueNum/chanceNum/score
-    //   MyGameDraw.cueNum(this.ctxMain, val.cueNum)
-    //   MyGameDraw.chanceNum(this.ctxMain, val.chanceNum)
-    //   MyGameDraw.score(this.ctxMain, val.score)
-    //   //成功打出的卡牌
-    //   MyGameDraw.successCards(this.ctxMain, val.successCards)
-    // },
-    // gameInfo(val) {
-    //   MyGameDraw.nowPlaying(this.ctxMain, val.roundPlayerIsHost)
-    // }
   },
   mounted() {
     // 初始化定义canvasContext

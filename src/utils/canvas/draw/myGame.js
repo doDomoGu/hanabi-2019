@@ -129,11 +129,11 @@ const frontHands = (ctx, rects, hands) => {
   hands.forEach((c, i) => {
     let color = colors[c.color]
     let rect = rects[i]
-    ctx.fillStyle = MyGameConfig.player.hands.front.bgColor[color]
+    ctx.fillStyle = MyGameConfig.hands.front.bgColor[color]
     DrawLib.fillRoundedRect(ctx, rect, 4)
 
-    ctx.font = MyGameConfig.player.hands.font
-    ctx.fillStyle = MyGameConfig.player.hands.front.textColor[color]
+    ctx.font = MyGameConfig.hands.font
+    ctx.fillStyle = MyGameConfig.hands.front.textColor[color]
     ctx.textAlign = "center"
     ctx.textBaseline = "middle"
     ctx.fillText(numbers[c.num], rect.x + rect.w / 2, rect.y + rect.h / 2)
@@ -144,7 +144,7 @@ const frontHands = (ctx, rects, hands) => {
 const backHands = (ctx, rects, hands) => {
   hands.forEach((c, i) => {
     let rect = rects[i]
-    ctx.fillStyle = MyGameConfig.player.hands.back.bgColor
+    ctx.fillStyle = MyGameConfig.hands.back.bgColor
     DrawLib.fillRoundedRect(ctx, rect, 4)
   })
 }

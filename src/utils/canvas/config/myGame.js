@@ -55,8 +55,12 @@ const cardBackTextColor = "#ffffff"
 
 const handsRectW = cardRectW
 const handsRectH = cardRectH
-const handsSpacing = 2 * vw //手牌之间间隔
+const handsFrontBgColor = cardFrontBgColor
+const handsFrontTextColor = cardFrontTextColor
+const handsBackBgColor = cardBackBgColor
+const handsBackTextColor = cardBackTextColor
 const handsFont = px2Rem(14) + "px " + fontFamily //手牌字体样式
+const handsSpacing = 2 * vw //手牌之间间隔
 
 const tableBgColor = "#aaeecc"
 const tableRectW = 50 * vw - windowPaddingX
@@ -133,6 +137,18 @@ _.card.front.textColor = cardFrontTextColor
 _.card.back = {}
 _.card.back.bgColor = cardBackBgColor
 _.card.back.textColor = cardBackTextColor
+
+_.hands = {}
+_.hands.rect = {}
+_.hands.rect.w = handsRectW
+_.hands.rect.h = handsRectH
+_.hands.font = handsFont
+_.hands.front = {}
+_.hands.front.bgColor = handsFrontBgColor
+_.hands.front.textColor = handsFrontTextColor
+_.hands.back = {}
+_.hands.back.bgColor = handsBackBgColor
+_.hands.back.textColor = handsBackTextColor
 
 // _.player.hands = {}
 // _.player.hands.front = _.card.front
@@ -272,15 +288,15 @@ _.guest.info.rect.h = playerInfoRectH
 
 _.guest.info.content = {}
 _.guest.info.content.rect = {}
-_.guest.info.content.rect.w = _.player.info.content.rect.w
-_.guest.info.content.rect.h = _.player.info.content.rect.h
+_.guest.info.content.rect.w = playerInfoContentRectW
+_.guest.info.content.rect.h = playerInfoContentRectH
 _.guest.info.content.rect.x = _.guest.info.rect.x
 _.guest.info.content.rect.y = _.guest.info.rect.y
 
 _.guest.info.nowPlaying = {}
 _.guest.info.nowPlaying.rect = {}
-_.guest.info.nowPlaying.rect.w = _.player.info.nowPlaying.rect.w
-_.guest.info.nowPlaying.rect.h = _.player.info.nowPlaying.rect.h
+_.guest.info.nowPlaying.rect.w = playerInfoNowPlayingRectW
+_.guest.info.nowPlaying.rect.h = playerInfoNowPlayingRectH
 _.guest.info.nowPlaying.rect.x =
   _.guest.info.rect.x + _.guest.info.content.rect.w
 _.guest.info.nowPlaying.rect.y = _.guest.info.rect.y
