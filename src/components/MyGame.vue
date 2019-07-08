@@ -89,8 +89,8 @@ export default {
       MyGameDraw.hostHands(this.ctxMain, this.isHost, val.hostHands)
       MyGameDraw.guestHands(this.ctxMain, this.isHost, val.guestHands)
       //牌库 弃牌堆
-      // MyGameDraw.libraryCards(this.ctxMain, val.libraryCardsNum)
-      // MyGameDraw.discardCards(this.ctxMain, val.discardCardsNum)
+      MyGameDraw.libraryCards(this.ctxMain, val.libraryCardsNum)
+      MyGameDraw.discardCards(this.ctxMain, val.discardCardsNum)
       // //数字:提示数/机会数/分数  cueNum/chanceNum/score
       // MyGameDraw.cueNum(this.ctxMain, val.cueNum)
       // MyGameDraw.chanceNum(this.ctxMain, val.chanceNum)

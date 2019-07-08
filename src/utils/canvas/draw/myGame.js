@@ -37,8 +37,8 @@ _.bottomRect = ctx => {
     })
     //游戏记录区域背景
     DrawLib.fillRect(ctx, {
-      rect: MyGameConfig.history.rect,
-      color: MyGameConfig.history.bgColor
+      rect: MyGameConfig.table.history.rect,
+      color: MyGameConfig.table.history.bgColor
     })
   })
 }

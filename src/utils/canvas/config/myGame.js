@@ -16,7 +16,7 @@ const playerRectW = 50 * vw - windowPaddingX //玩家区域宽度
 const playerRectH = (100 * vh - endBtnRectH) / 2 - windowPaddingY //玩家区域高度
 
 const playerRectPaddingX = 2 * vw //玩家区域内左右留白
-const playerRectPaddingY = 4 * vh //玩家区域内上下留白
+const playerRectPaddingY = 3 * vh //玩家区域内上下留白
 
 const playerInfoRectW = playerRectW - playerRectPaddingX * 2 //玩家信息区域宽度
 const playerInfoRectH = 10 * vh //玩家信息区域高度
@@ -64,9 +64,15 @@ const handsSpacing = 2 * vw //手牌之间间隔
 
 const tableBgColor = "#aaeecc"
 const tableRectW = 50 * vw - windowPaddingX
-const tableRectH = 40 * vw
+const tableRectH = 100 * vh - endBtnRectH - windowPaddingY * 2
 const tableRectX = 50 * vw
 const tableRectY = windowPaddingY
+
+const tableRectPaddingX = 2 * vw
+const tableRectPaddingY = 3 * vh
+
+const tableHistoryRectW = tableRectW - tableRectPaddingX * 2
+const tableHistoryRectH = 30 * vh
 
 const tableNumTextColor = "#333333"
 const tableNumFont = px2Rem(12) + "px " + fontFamily
@@ -222,10 +228,10 @@ _.table.libraryCards.bgColor = libraryBgColor
 _.table.libraryCards.textColor = libraryTextColor
 _.table.libraryCards.title = libraryTextContent
 _.table.libraryCards.rect = {}
-_.table.libraryCards.rect.x = _.table.rect.x + windowPaddingX
-_.table.libraryCards.rect.y = _.table.rect.y + windowPaddingY
-_.table.libraryCards.rect.w = _.card.w
-_.table.libraryCards.rect.h = _.card.h
+_.table.libraryCards.rect.x = _.table.rect.x + tableRectPaddingX
+_.table.libraryCards.rect.y = _.table.rect.y + tableRectPaddingY
+_.table.libraryCards.rect.w = cardRectW
+_.table.libraryCards.rect.h = cardRectH
 
 /* 弃牌堆 */
 _.table.discardCards = {}
@@ -233,11 +239,11 @@ _.table.discardCards.bgColor = discardPileBgColor
 _.table.discardCards.textColor = discardPileTextColor
 _.table.discardCards.title = discardPileTextContent
 _.table.discardCards.rect = {}
-_.table.discardCards.rect.w = _.card.w
-_.table.discardCards.rect.h = _.card.h
-_.table.discardCards.rect.x =
-  100 * vw - windowPaddingX - _.table.discardCards.rect.w - windowPaddingX
-_.table.discardCards.rect.y = _.table.rect.y + windowPaddingY
+_.table.discardCards.rect.w = cardRectW
+_.table.discardCards.rect.h = cardRectH
+_.table.discardCards.rect.x = _.table.rect.x + tableRectPaddingX
+_.table.discardCards.rect.y =
+  _.table.libraryCards.rect.y + _.table.libraryCards.rect.h + tableRectPaddingY
 
 _.table.num = {}
 _.table.num.textColor = tableNumTextColor
@@ -259,14 +265,16 @@ _.table.successCards.rect.y = _.table.rect.y + windowPaddingY
 _.table.successCards.rect.w = _.card.w / 2
 _.table.successCards.rect.h = _.card.h / 2
 _.table.successCards.margin = 1 * vw
+
 /* 游戏记录区域 */
-_.history = {}
-_.history.bgColor = "#eeccaa"
-_.history.rect = {}
-_.history.rect.x = _.table.rect.x
-_.history.rect.y = _.table.rect.y + _.table.rect.h + 0 * vh
-_.history.rect.w = _.table.rect.w
-_.history.rect.h = 40 * vh
+_.table.history = {}
+_.table.history.bgColor = "#eeccaa"
+_.table.history.rect = {}
+_.table.history.rect.w = tableHistoryRectW
+_.table.history.rect.h = tableHistoryRectH
+_.table.history.rect.x = _.table.rect.x + tableRectPaddingX
+_.table.history.rect.y =
+  _.table.rect.y + _.table.rect.h - _.table.history.rect.h - tableRectPaddingY
 
 /* 客机玩家 */
 _.guest = {}
