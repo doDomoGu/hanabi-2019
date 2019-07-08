@@ -72,7 +72,7 @@ const tableRectPaddingX = 2 * vw
 const tableRectPaddingY = 3 * vh
 
 const tableHistoryRectW = tableRectW - tableRectPaddingX * 2
-const tableHistoryRectH = 30 * vh
+const tableHistoryRectH = 48 * vh
 
 const tableNumTextColor = "#333333"
 const tableNumFont = px2Rem(12) + "px " + fontFamily
@@ -260,11 +260,11 @@ _.table.num.spacing = tableNumSpacing
 _.table.successCards = {}
 _.table.successCards.rect = {}
 _.table.successCards.rect.x =
-  _.table.num.rect.x + _.table.num.rect.w + windowPaddingX
-_.table.successCards.rect.y = _.table.rect.y + windowPaddingY
-_.table.successCards.rect.w = _.card.w / 2
-_.table.successCards.rect.h = _.card.h / 2
-_.table.successCards.margin = 1 * vw
+  _.table.num.rect.x + _.table.num.rect.w + tableRectPaddingX
+_.table.successCards.rect.y = _.table.rect.y + tableRectPaddingY
+_.table.successCards.rect.w = cardRectW
+_.table.successCards.rect.h = cardRectH
+_.table.successCards.spacing = 1 * vw
 
 /* 游戏记录区域 */
 _.table.history = {}

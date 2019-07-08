@@ -192,25 +192,25 @@ _.cueNum = (ctx, num) => {
 //剩余机会数
 _.chanceNum = (ctx, num) => {
   const rect = JSON.parse(JSON.stringify(MyGameConfig.table.num.rect))
-  rect.y += MyGameConfig.table.num.rect.h + MyGameConfig.table.num.padding
+  rect.y += MyGameConfig.table.num.rect.h + MyGameConfig.table.num.spacing
   _num(ctx, rect, "机会数:" + num)
 }
 //分数
 _.score = (ctx, num) => {
   const rect = JSON.parse(JSON.stringify(MyGameConfig.table.num.rect))
-  rect.y += (MyGameConfig.table.num.rect.h + MyGameConfig.table.num.padding) * 2
+  rect.y += (MyGameConfig.table.num.rect.h + MyGameConfig.table.num.spacing) * 2
   _num(ctx, rect, "分数:" + num)
 }
 
 //绘制成功打出的卡牌
 _.successCards = (ctx, successCards) => {
   //TODO
-  const rect = JSON.parse(JSON.stringify(MyGameConfig.table.successCards.rect))
+  let rect = JSON.parse(JSON.stringify(MyGameConfig.table.successCards.rect))
 
   ctx.clearRect(
     rect.x,
     rect.y,
-    (rect.w + MyGameConfig.table.successCards.margin) * 5,
+    (rect.w + MyGameConfig.table.successCards.spacing) * 5,
     rect.h
   )
 
@@ -224,7 +224,7 @@ _.successCards = (ctx, successCards) => {
     ctx.textBaseline = "middle"
     ctx.fillText(successCards[i], rect.x + rect.w / 2, rect.y + rect.h / 2)
 
-    rect.x += rect.w + MyGameConfig.table.successCards.margin
+    rect.x += rect.w + MyGameConfig.table.successCards.spacing
   })
 }
 

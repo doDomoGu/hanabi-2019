@@ -8,7 +8,7 @@
       ref="ctxModal"
       v-show="modalShow"
     ></canvas>
-    <!-- <ul
+    <ul
       id="log"
       :style="{
         left: logRect.x + 'px',
@@ -25,12 +25,12 @@
       >
         {{ l }}
       </li>
-    </ul> -->
+    </ul>
   </div>
 </template>
 
 <script>
-import { dpr, getCtx } from "@/utils/canvas/lib"
+import { getCtx } from "@/utils/canvas/lib"
 import { /* DrawLib, */ MyGameDraw } from "@/utils/canvas/draw"
 import { MyGameConfig } from "@/utils/canvas/config"
 
@@ -46,12 +46,7 @@ export default {
       modalShow: false,
       selectCardIsHost: false,
       selectCardIndex: -1,
-      logRect: {
-        x: MyGameConfig.history.rect.x / dpr,
-        y: MyGameConfig.history.rect.y / dpr,
-        w: MyGameConfig.history.rect.w / dpr,
-        h: MyGameConfig.history.rect.h / dpr
-      }
+      logRect: {}
     }
   },
   computed: {
@@ -92,11 +87,11 @@ export default {
       MyGameDraw.libraryCards(this.ctxMain, val.libraryCardsNum)
       MyGameDraw.discardCards(this.ctxMain, val.discardCardsNum)
       // //数字:提示数/机会数/分数  cueNum/chanceNum/score
-      // MyGameDraw.cueNum(this.ctxMain, val.cueNum)
-      // MyGameDraw.chanceNum(this.ctxMain, val.chanceNum)
-      // MyGameDraw.score(this.ctxMain, val.score)
+      MyGameDraw.cueNum(this.ctxMain, val.cueNum)
+      MyGameDraw.chanceNum(this.ctxMain, val.chanceNum)
+      MyGameDraw.score(this.ctxMain, val.score)
       // //成功打出的卡牌
-      // MyGameDraw.successCards(this.ctxMain, val.successCards)
+      MyGameDraw.successCards(this.ctxMain, val.successCards)
     },
     gameInfo(val) {
       MyGameDraw.nowPlaying(this.ctxMain, val.roundPlayerIsHost)
@@ -107,6 +102,15 @@ export default {
     this.ctxMain = getCtx(this.$refs.ctxMain)
     this.ctxBg = getCtx(this.$refs.ctxBg)
     this.ctxModal = getCtx(this.$refs.ctxModal)
+
+    const rate = this.ctxMain.canvas.width / this.ctxMain.canvas.clientWidth
+
+    this.logRect = {
+      x: MyGameConfig.table.history.rect.x / rate,
+      y: MyGameConfig.table.history.rect.y / rate,
+      w: MyGameConfig.table.history.rect.w / rate,
+      h: MyGameConfig.table.history.rect.h / rate
+    }
 
     MyGameDraw.bottomRect(this.ctxBg)
     MyGameDraw.endBtn(this.ctxMain)
