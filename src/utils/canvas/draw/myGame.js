@@ -46,8 +46,18 @@ _.bottomRect = ctx => {
 //canvas_top 遮罩背景
 _.topRect = ctx => {
   DrawLib.fillRect(ctx, {
-    rect: MyGameConfig.top.rect,
-    color: MyGameConfig.top.bgColor
+    rect: {
+      x: 0,
+      y: 0,
+      w: ctx.canvas.width,
+      h: ctx.canvas.height
+    },
+    color: MyGameConfig.modal.bgColor
+  })
+
+  DrawLib.fillRect(ctx, {
+    rect: MyGameConfig.modal.rect,
+    color: MyGameConfig.modal.rect.bgColor
   })
 }
 
@@ -250,9 +260,9 @@ _.topConfirmPlay = ctx => {
   DrawLib.clear(ctx)
   _.topRect(ctx)
 
-  const rectTip = MyGameConfig.top.tip.rect
+  const rectTip = MyGameConfig.modal.tip.rect
 
-  ctx.font = MyGameConfig.top.tip.font
+  ctx.font = MyGameConfig.modal.tip.font
   ctx.fillStyle = "#333"
   ctx.textAlign = "center"
   ctx.textBaseline = "middle"
@@ -262,7 +272,7 @@ _.topConfirmPlay = ctx => {
     rectTip.y + rectTip.h / 2
   )
 
-  const rectOk = MyGameConfig.top.play.ok.rect
+  const rectOk = MyGameConfig.modal.play.ok.rect
   ctx.fillStyle = MyGameConfig.btn.ok.bgColor
   DrawLib.fillRoundedRect(ctx, rectOk, 4)
 
@@ -272,7 +282,7 @@ _.topConfirmPlay = ctx => {
   ctx.textBaseline = "middle"
   ctx.fillText("确定", rectOk.x + rectOk.w / 2, rectOk.y + rectOk.h / 2)
 
-  const rectCancel = MyGameConfig.top.play.cancel.rect
+  const rectCancel = MyGameConfig.modal.play.cancel.rect
   ctx.fillStyle = MyGameConfig.btn.cancel.bgColor
   DrawLib.fillRoundedRect(ctx, rectCancel, 4)
 
@@ -291,9 +301,9 @@ _.topConfirmCue = ctx => {
   DrawLib.clear(ctx)
   _.topRect(ctx)
 
-  const rectTip = MyGameConfig.top.tip.rect
+  const rectTip = MyGameConfig.modal.tip.rect
 
-  ctx.font = MyGameConfig.top.tip.font
+  ctx.font = MyGameConfig.modal.tip.font
   ctx.fillStyle = "#333"
   ctx.textAlign = "center"
   ctx.textBaseline = "middle"
@@ -303,7 +313,7 @@ _.topConfirmCue = ctx => {
     rectTip.y + rectTip.h / 2
   )
 
-  const rectCueNum = MyGameConfig.top.cue.num.rect
+  const rectCueNum = MyGameConfig.modal.cue.num.rect
   ctx.fillStyle = MyGameConfig.btn.cueNum.bgColor
   DrawLib.fillRoundedRect(ctx, rectCueNum, 4)
 
@@ -317,7 +327,7 @@ _.topConfirmCue = ctx => {
     rectCueNum.y + rectCueNum.h / 2
   )
 
-  const rectCueColor = MyGameConfig.top.cue.color.rect
+  const rectCueColor = MyGameConfig.modal.cue.color.rect
   ctx.fillStyle = MyGameConfig.btn.ok.bgColor
   DrawLib.fillRoundedRect(ctx, rectCueColor, 4)
 
@@ -331,7 +341,7 @@ _.topConfirmCue = ctx => {
     rectCueColor.y + rectCueColor.h / 2
   )
 
-  const rectCancel = MyGameConfig.top.cue.cancel.rect
+  const rectCancel = MyGameConfig.modal.cue.cancel.rect
   ctx.fillStyle = MyGameConfig.btn.cancel.bgColor
   DrawLib.fillRoundedRect(ctx, rectCancel, 4)
 

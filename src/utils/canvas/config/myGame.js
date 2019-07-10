@@ -93,6 +93,17 @@ const endBtnTextColor = "#ffffff"
 const endBtnTextFont = px2Rem(18) + "px " + fontFamily
 const endBtnTextContent = "结束游戏"
 
+const modalBgColor = "rgba(222,222,222,0.8)"
+const modalRectBgColor = "#ffffff"
+
+const modalRectW = 50 * vw
+const modalRectH = 50 * vh
+
+const modalRectPaddingX = 1 * vw
+const modalRectPaddingY = 1 * vh
+
+const modalBtnSpacing = 12 * vw
+
 let _ = {}
 
 /* 玩家基础参数 */
@@ -354,57 +365,62 @@ _.btn.cueColor = {}
 _.btn.cueColor.bgColor = "#44ffff"
 _.btn.cueColor.textColor = "#ff4444"
 
-_.top = {}
+_.modal = {}
 
-_.top.rect = {}
-_.top.rect.x = 0 * vw
-_.top.rect.y = 0 * vh
-_.top.rect.w = 100 * vw
-_.top.rect.h = 100 * vh
-_.top.bgColor = "rgba(222,222,222,0.9)"
+_.modal.bgColor = modalBgColor
 
-_.top.tip = {}
-_.top.tip.rect = {}
-_.top.tip.rect.w = _.top.rect.w
-_.top.tip.rect.h = 50 * vw
-_.top.tip.rect.x = 0 * vh
-_.top.tip.rect.y = _.top.rect.h / 2 - _.top.tip.rect.h
-_.top.tip.font = px2Rem(24) + "px " + fontFamily
+_.modal.rect = {}
+_.modal.rect.w = modalRectW
+_.modal.rect.h = modalRectH
+_.modal.rect.x = (100 * vw - _.modal.rect.w) / 2
+_.modal.rect.y = (100 * vh - _.modal.rect.h) / 2
 
-_.top.play = {}
-_.top.play.ok = {}
-_.top.play.ok.rect = {}
-_.top.play.ok.rect.x = _.top.rect.w / 2 - 100 * vw
-_.top.play.ok.rect.y = _.top.rect.h / 2 + 40 * vh
-_.top.play.ok.rect.w = _.btn.rect.w
-_.top.play.ok.rect.h = _.btn.rect.h
+_.modal.rect.bgColor = modalRectBgColor
 
-_.top.play.cancel = {}
-_.top.play.cancel.rect = {}
-_.top.play.cancel.rect.x = _.top.rect.w / 2
-_.top.play.cancel.rect.y = _.top.rect.h / 2 + 40 * vh
-_.top.play.cancel.rect.w = _.btn.rect.w
-_.top.play.cancel.rect.h = _.btn.rect.h
+_.modal.tip = {}
+_.modal.tip.rect = {}
+_.modal.tip.rect.w = _.modal.rect.w
+_.modal.tip.rect.h = 10 * vh
+_.modal.tip.rect.x = _.modal.rect.x
+_.modal.tip.rect.y = _.modal.rect.y + modalRectPaddingY
+_.modal.tip.font = px2Rem(20) + "px " + fontFamily
 
-_.top.cue = {}
-_.top.cue.num = {}
-_.top.cue.num.rect = {}
-_.top.cue.num.rect.x = _.top.rect.w / 2 - 60 * vw - _.btn.rect.w
-_.top.cue.num.rect.y = _.top.rect.h / 2 + 20 * vh
-_.top.cue.num.rect.w = _.btn.rect.w
-_.top.cue.num.rect.h = _.btn.rect.h
-_.top.cue.color = {}
-_.top.cue.color.rect = {}
-_.top.cue.color.rect.x = _.top.rect.w / 2 - _.btn.rect.w / 2
-_.top.cue.color.rect.y = _.top.rect.h / 2 + 20 * vh
-_.top.cue.color.rect.w = _.btn.rect.w
-_.top.cue.color.rect.h = _.btn.rect.h
-_.top.cue.cancel = {}
-_.top.cue.cancel.rect = {}
-_.top.cue.cancel.rect.x = _.top.rect.w / 2 + 60 * vw
-_.top.cue.cancel.rect.y = _.top.rect.h / 2 + 20 * vh
-_.top.cue.cancel.rect.w = _.btn.rect.w
-_.top.cue.cancel.rect.h = _.btn.rect.h
+_.modal.play = {}
+_.modal.play.ok = {}
+_.modal.play.ok.rect = {}
+_.modal.play.ok.rect.x = _.modal.rect.w / 2 - 100 * vw
+_.modal.play.ok.rect.y = _.modal.rect.h / 2 + 40 * vh
+_.modal.play.ok.rect.w = _.btn.rect.w
+_.modal.play.ok.rect.h = _.btn.rect.h
+
+_.modal.play.cancel = {}
+_.modal.play.cancel.rect = {}
+_.modal.play.cancel.rect.x = _.modal.rect.w / 2
+_.modal.play.cancel.rect.y = _.modal.rect.h / 2 + 40 * vh
+_.modal.play.cancel.rect.w = _.btn.rect.w
+_.modal.play.cancel.rect.h = _.btn.rect.h
+
+_.modal.cue = {}
+_.modal.cue.num = {}
+_.modal.cue.num.rect = {}
+_.modal.cue.num.rect.x =
+  50 * vw - _.btn.rect.w / 2 - _.btn.rect.w - modalBtnSpacing
+_.modal.cue.num.rect.y = _.modal.rect.h / 2 + 20 * vh
+_.modal.cue.num.rect.w = _.btn.rect.w
+_.modal.cue.num.rect.h = _.btn.rect.h
+_.modal.cue.color = {}
+_.modal.cue.color.rect = {}
+_.modal.cue.color.rect.x = 50 * vw - _.btn.rect.w / 2
+_.modal.cue.color.rect.y = _.modal.rect.h / 2 + 20 * vh
+_.modal.cue.color.rect.w = _.btn.rect.w
+_.modal.cue.color.rect.h = _.btn.rect.h
+_.modal.cue.cancel = {}
+_.modal.cue.cancel.rect = {}
+_.modal.cue.cancel.rect.x =
+  50 * vw - _.btn.rect.w / 2 + _.btn.rect.w + modalBtnSpacing
+_.modal.cue.cancel.rect.y = _.modal.rect.h / 2 + 20 * vh
+_.modal.cue.cancel.rect.w = _.btn.rect.w
+_.modal.cue.cancel.rect.h = _.btn.rect.h
 
 _.bgImgSrc = bgImg
 
