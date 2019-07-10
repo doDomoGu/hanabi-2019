@@ -124,13 +124,13 @@ export default {
       this.$store.dispatch("myGame/GetInfo")
     }, 5000)
 
-    // this.ctxMain.canvas.addEventListener(
-    //   "click",
-    //   e => {
-    //     MyGameEventListener.main(this, e)
-    //   },
-    //   false
-    // )
+    this.ctxMain.canvas.addEventListener(
+      "click",
+      e => {
+        MyGameEventListener.main(this, e)
+      },
+      false
+    )
     // this.ctxModal.canvas.addEventListener(
     //   "click",
     //   e => {
@@ -138,8 +138,6 @@ export default {
     //   },
     //   false
     // )
-    // this.canvas.addEventListener('touchstart',this.eventListener,false)
-    // this.canvas.addEventListener('touchend',this.eventListener,false)
   },
   destroyed() {
     // 离开页面 清除定时器

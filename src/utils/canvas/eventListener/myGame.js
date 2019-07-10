@@ -9,20 +9,20 @@ const main = (t, evt) => {
 
   const point = getEventPoint(ctx, evt)
 
-  const isPath = (point, areaName) => {
-    let area
-    switch (areaName) {
+  const isPath = (point, rectName) => {
+    let rect
+    switch (rectName) {
       case "endBtn":
-        area = MyGameConfig.endBtn
+        rect = MyGameConfig.endBtn.rect
         break
       default:
-        area = { x: 0, y: 0, w: 0, h: 0 }
+        rect = { x: 0, y: 0, w: 0, h: 0 }
     }
     return (
-      point.x >= area.x &&
-      point.x <= area.x + area.w &&
-      point.y >= area.y &&
-      point.y <= area.y + area.h
+      point.x >= rect.x &&
+      point.x <= rect.x + rect.w &&
+      point.y >= rect.y &&
+      point.y <= rect.y + rect.h
     )
   }
 
@@ -41,12 +41,12 @@ const main = (t, evt) => {
     return index
   }
   const getHostHandsIndex = point => {
-    const rects = MyGameConfig.host.hands.areas
+    const rects = MyGameConfig.host.hands.rects
     return getHandsIndex(rects, point)
   }
 
   const getGuestHandsIndex = point => {
-    const rects = MyGameConfig.guest.hands.areas
+    const rects = MyGameConfig.guest.hands.rects
     return getHandsIndex(rects, point)
   }
 
@@ -80,32 +80,32 @@ const modal = (t, evt) => {
 
   const point = getEventPoint(ctx, evt)
 
-  const isPath = (point, areaName) => {
-    let area
-    switch (areaName) {
+  const isPath = (point, rectName) => {
+    let rect
+    switch (rectName) {
       case "playOkBtn":
-        area = MyGameConfig.top.play.ok.rect
+        rect = MyGameConfig.top.play.ok.rect
         break
       case "playCancelBtn":
-        area = MyGameConfig.top.play.cancel.rect
+        rect = MyGameConfig.top.play.cancel.rect
         break
       case "cueNumBtn":
-        area = MyGameConfig.top.cue.num.rect
+        rect = MyGameConfig.top.cue.num.rect
         break
       case "cueColorBtn":
-        area = MyGameConfig.top.cue.color.rect
+        rect = MyGameConfig.top.cue.color.rect
         break
       case "cueCancelBtn":
-        area = MyGameConfig.top.cue.cancel.rect
+        rect = MyGameConfig.top.cue.cancel.rect
         break
       default:
-        area = { x: 0, y: 0, w: 0, h: 0 }
+        rect = { x: 0, y: 0, w: 0, h: 0 }
     }
     return (
-      point.x >= area.x &&
-      point.x <= area.x + area.w &&
-      point.y >= area.y &&
-      point.y <= area.y + area.h
+      point.x >= rect.x &&
+      point.x <= rect.x + rect.w &&
+      point.y >= rect.y &&
+      point.y <= rect.y + rect.h
     )
   }
 
