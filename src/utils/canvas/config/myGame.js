@@ -93,7 +93,7 @@ const endBtnTextColor = "#ffffff"
 const endBtnTextFont = px2Rem(18) + "px " + fontFamily
 const endBtnTextContent = "结束游戏"
 
-const modalBgColor = "rgba(222,222,222,0.8)"
+const modalBgColor = "rgba(222,222,222,0.2)"
 const modalRectBgColor = "#ffffff"
 
 const modalRectW = 50 * vw

@@ -131,13 +131,13 @@ export default {
       },
       false
     )
-    // this.ctxModal.canvas.addEventListener(
-    //   "click",
-    //   e => {
-    //     MyGameEventListener.modal(this, e)
-    //   },
-    //   false
-    // )
+    this.ctxModal.canvas.addEventListener(
+      "click",
+      e => {
+        MyGameEventListener.modal(this, e)
+      },
+      false
+    )
   },
   destroyed() {
     // 离开页面 清除定时器
