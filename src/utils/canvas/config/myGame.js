@@ -100,7 +100,7 @@ const modalRectW = 50 * vw
 const modalRectH = 50 * vh
 
 const modalRectPaddingX = 1 * vw
-const modalRectPaddingY = 1 * vh
+const modalRectPaddingY = 5 * vh
 
 const modalBtnSpacing = 12 * vw
 
@@ -349,8 +349,8 @@ _.endBtn.text.content = endBtnTextContent
 /* 按钮 */
 _.btn = {}
 _.btn.rect = {}
-_.btn.rect.w = 4 * vw
-_.btn.rect.h = 2 * vh
+_.btn.rect.w = 8 * vw
+_.btn.rect.h = 4 * vh
 _.btn.font = px2Rem(12) + "px " + fontFamily
 _.btn.ok = {}
 _.btn.ok.bgColor = "#44ff44"
