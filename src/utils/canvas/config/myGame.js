@@ -104,6 +104,17 @@ const modalRectPaddingY = 5 * vh
 
 const modalBtnSpacing = 12 * vw
 
+const modalBtnOkBgColor = "#44ff44"
+const modalBtnOkTextColor = "#ff44ff"
+
+const modalBtnCancelBgColor = "#ff4444"
+const modalBtnCancelTextColor = "#44ffff"
+
+const modalBtnCueNumBgColor = "#ffff44"
+const modalBtnCueNumTextColor = "#4444ff"
+const modalBtnCueColorBgColor = "#44ffff"
+const modalBtnCueColorTextColor = "#ff4444"
+
 let _ = {}
 
 /* 玩家基础参数 */
@@ -388,14 +399,16 @@ _.modal.tip.font = px2Rem(20) + "px " + fontFamily
 _.modal.play = {}
 _.modal.play.ok = {}
 _.modal.play.ok.rect = {}
-_.modal.play.ok.rect.x = _.modal.rect.x + _.modal.rect.w / 2 - 10 * vw - _.btn.rect.w
+_.modal.play.ok.rect.x =
+  _.modal.rect.x + _.modal.rect.w / 2 - 10 * vw - _.btn.rect.w
 _.modal.play.ok.rect.y = _.modal.rect.h / 2 + 40 * vh
 _.modal.play.ok.rect.w = _.btn.rect.w
 _.modal.play.ok.rect.h = _.btn.rect.h
 
 _.modal.play.cancel = {}
 _.modal.play.cancel.rect = {}
-_.modal.play.cancel.rect.x = _.modal.rect.x + _.modal.rect.w / 2 + 10 * vw - _.btn.rect.w
+_.modal.play.cancel.rect.x =
+  _.modal.rect.x + _.modal.rect.w / 2 + 10 * vw - _.btn.rect.w
 _.modal.play.cancel.rect.y = _.modal.rect.h / 2 + 40 * vh
 _.modal.play.cancel.rect.w = _.btn.rect.w
 _.modal.play.cancel.rect.h = _.btn.rect.h
