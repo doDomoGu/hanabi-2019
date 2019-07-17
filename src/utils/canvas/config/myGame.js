@@ -104,6 +104,11 @@ const modalRectPaddingY = 5 * vh
 
 const modalBtnSpacing = 12 * vw
 
+const modalBtnRectW = 8 * vw
+const modalBtnRectH = 4 * vh
+
+const modalBtnTextFont = px2Rem(12) + "px " + fontFamily
+
 const modalBtnOkBgColor = "#44ff44"
 const modalBtnOkTextColor = "#ff44ff"
 
@@ -358,23 +363,23 @@ _.endBtn.text.font = endBtnTextFont
 _.endBtn.text.content = endBtnTextContent
 
 /* 按钮 */
-_.btn = {}
-_.btn.rect = {}
-_.btn.rect.w = 8 * vw
-_.btn.rect.h = 4 * vh
-_.btn.font = px2Rem(12) + "px " + fontFamily
-_.btn.ok = {}
-_.btn.ok.bgColor = "#44ff44"
-_.btn.ok.textColor = "#ff44ff"
-_.btn.cancel = {}
-_.btn.cancel.bgColor = "#ff4444"
-_.btn.cancel.textColor = "#44ffff"
-_.btn.cueNum = {}
-_.btn.cueNum.bgColor = "#ffff44"
-_.btn.cueNum.textColor = "#4444ff"
-_.btn.cueColor = {}
-_.btn.cueColor.bgColor = "#44ffff"
-_.btn.cueColor.textColor = "#ff4444"
+// _.btn = {}
+// _.btn.rect = {}
+// _.btn.rect.w = 8 * vw
+// _.btn.rect.h = 4 * vh
+// _.btn.font = px2Rem(12) + "px " + fontFamily
+// _.btn.ok = {}
+// _.btn.ok.bgColor = "#44ff44"
+// _.btn.ok.textColor = "#ff44ff"
+// _.btn.cancel = {}
+// _.btn.cancel.bgColor = "#ff4444"
+// _.btn.cancel.textColor = "#44ffff"
+// _.btn.cueNum = {}
+// _.btn.cueNum.bgColor = "#ffff44"
+// _.btn.cueNum.textColor = "#4444ff"
+// _.btn.cueColor = {}
+// _.btn.cueColor.bgColor = "#44ffff"
+// _.btn.cueColor.textColor = "#ff4444"
 
 _.modal = {}
 
@@ -388,7 +393,7 @@ _.modal.rect.y = (100 * vh - _.modal.rect.h) / 2
 
 _.modal.rect.bgColor = modalRectBgColor
 
-_.modal.tip = {}
+_.modal.tip = {} // 对话框上部文字区域
 _.modal.tip.rect = {}
 _.modal.tip.rect.w = _.modal.rect.w
 _.modal.tip.rect.h = 10 * vh
@@ -396,44 +401,48 @@ _.modal.tip.rect.x = _.modal.rect.x
 _.modal.tip.rect.y = _.modal.rect.y + modalRectPaddingY
 _.modal.tip.font = px2Rem(20) + "px " + fontFamily
 
-_.modal.play = {}
-_.modal.play.ok = {}
-_.modal.play.ok.rect = {}
-_.modal.play.ok.rect.x =
-  _.modal.rect.x + _.modal.rect.w / 2 - 10 * vw - _.btn.rect.w
-_.modal.play.ok.rect.y = _.modal.rect.h / 2 + 40 * vh
-_.modal.play.ok.rect.w = _.btn.rect.w
-_.modal.play.ok.rect.h = _.btn.rect.h
+_.modal.btn = {} // 对话框下部操作区域
 
-_.modal.play.cancel = {}
-_.modal.play.cancel.rect = {}
-_.modal.play.cancel.rect.x =
-  _.modal.rect.x + _.modal.rect.w / 2 + 10 * vw - _.btn.rect.w
-_.modal.play.cancel.rect.y = _.modal.rect.h / 2 + 40 * vh
-_.modal.play.cancel.rect.w = _.btn.rect.w
-_.modal.play.cancel.rect.h = _.btn.rect.h
+_.modal.btn.play = {} // 操作区域(出牌play)
+_.modal.btn.play.ok = {} // 确认出牌按钮
+_.modal.btn.play.ok.rect = {}
+_.modal.btn.play.ok.rect.x =
+  _.modal.rect.x + _.modal.rect.w / 2 - modalBtnRectW - modalBtnSpacing / 2
+_.modal.btn.play.ok.rect.y =
+  _.modal.tip.rect.y + _.modal.tip.rect.h + modalRectPaddingY
+_.modal.btn.play.ok.rect.w = modalBtnRectW
+_.modal.btn.play.ok.rect.h = modalBtnRectH
 
-_.modal.cue = {}
-_.modal.cue.num = {}
-_.modal.cue.num.rect = {}
-_.modal.cue.num.rect.x =
+_.modal.btn.play.cancel = {} // 取消出牌按钮
+_.modal.btn.play.cancel.rect = {}
+_.modal.btn.play.cancel.rect.x =
+_.modal.rect.x + _.modal.rect.w / 2 + modalBtnSpacing / 2
+_.modal.btn.play.cancel.rect.y =
+  _.modal.tip.rect.y + _.modal.tip.rect.h + modalRectPaddingY
+_.modal.btn.play.cancel.rect.w = modalBtnRectW
+_.modal.btn.play.cancel.rect.h = modalBtnRectH
+
+_.modal.btn.cue = {} // 操作区域(提示cue)
+_.modal.btn.cue.num = {}
+_.modal.btn.cue.num.rect = {}
+_.modal.btn.cue.num.rect.x =
   50 * vw - _.btn.rect.w / 2 - _.btn.rect.w - modalBtnSpacing
-_.modal.cue.num.rect.y = _.modal.rect.h / 2 + 20 * vh
-_.modal.cue.num.rect.w = _.btn.rect.w
-_.modal.cue.num.rect.h = _.btn.rect.h
-_.modal.cue.color = {}
-_.modal.cue.color.rect = {}
-_.modal.cue.color.rect.x = 50 * vw - _.btn.rect.w / 2
-_.modal.cue.color.rect.y = _.modal.rect.h / 2 + 20 * vh
-_.modal.cue.color.rect.w = _.btn.rect.w
-_.modal.cue.color.rect.h = _.btn.rect.h
-_.modal.cue.cancel = {}
-_.modal.cue.cancel.rect = {}
-_.modal.cue.cancel.rect.x =
+_.modal.btn.cue.num.rect.y = _.modal.rect.h / 2 + 20 * vh
+_.modal.btn.cue.num.rect.w = modalBtnRectW
+_.modal.btn.cue.num.rect.h = modalBtnRectH
+_.modal.btn.cue.color = {}
+_.modal.btn.cue.color.rect = {}
+_.modal.btn.cue.color.rect.x = 50 * vw - _.btn.rect.w / 2
+_.modal.btn.cue.color.rect.y = _.modal.rect.h / 2 + 20 * vh
+_.modal.btn.cue.color.rect.w = modalBtnRectW
+_.modal.btn.cue.color.rect.h = modalBtnRectH
+_.modal.btn.cue.cancel = {}
+_.modal.btn.cue.cancel.rect = {}
+_.modal.btn.cue.cancel.rect.x =
   50 * vw - _.btn.rect.w / 2 + _.btn.rect.w + modalBtnSpacing
-_.modal.cue.cancel.rect.y = _.modal.rect.h / 2 + 20 * vh
-_.modal.cue.cancel.rect.w = _.btn.rect.w
-_.modal.cue.cancel.rect.h = _.btn.rect.h
+_.modal.btn.cue.cancel.rect.y = _.modal.rect.h / 2 + 20 * vh
+_.modal.btn.cue.cancel.rect.w = modalBtnRectW
+_.modal.btn.cue.cancel.rect.h = modalBtnRectH
 
 _.bgImgSrc = bgImg
 
