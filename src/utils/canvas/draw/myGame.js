@@ -107,10 +107,13 @@ const player = (ctx, config) => {
   }) */
   DrawLib.fillText(ctx, {
     rect: config.rect,
-    font: MyGameConfig.player.info.font,
-    textColor: MyGameConfig.player.info.textColor,
-    text: config.text,
-    textAlign: "left"
+    text: {
+      font: MyGameConfig.player.info.font,
+      color: MyGameConfig.player.info.textColor,
+      content: config.text,
+      align: "left"
+    },
+    paddingX: MyGameConfig.player.info.paddingX
   })
 }
 
@@ -249,10 +252,12 @@ _.nowPlaying = (ctx, isHost) => {
 
   DrawLib.fillText(ctx, {
     rect: rect,
-    font: MyGameConfig.player.info.font,
-    textColor: "#333333",
-    text: "当前回合",
-    textAlign: "left"
+    text: {
+      font: MyGameConfig.player.info.font,
+      color: "#333333",
+      align: "left",
+      content: "当前回合"
+    }
   })
 }
 
@@ -260,17 +265,8 @@ _.topConfirmPlay = ctx => {
   DrawLib.clear(ctx)
   _.topRect(ctx)
 
-  const rectTip = MyGameConfig.modal.tip.rect
+  DrawLib.fillText(ctx, MyGameConfig.modal.tip.play)
 
-  ctx.font = MyGameConfig.modal.tip.font
-  ctx.fillStyle = "#333"
-  ctx.textAlign = "center"
-  ctx.textBaseline = "middle"
-  ctx.fillText(
-    "确定要打出这张牌么",
-    rectTip.x + rectTip.w / 2,
-    rectTip.y + rectTip.h / 2
-  )
   DrawLib.btn(ctx, MyGameConfig.modal.btn.play.ok)
   DrawLib.btn(ctx, MyGameConfig.modal.btn.play.cancel)
 }
@@ -279,17 +275,7 @@ _.topConfirmCue = ctx => {
   DrawLib.clear(ctx)
   _.topRect(ctx)
 
-  const rectTip = MyGameConfig.modal.tip.rect
-
-  ctx.font = MyGameConfig.modal.tip.font
-  ctx.fillStyle = "#333"
-  ctx.textAlign = "center"
-  ctx.textBaseline = "middle"
-  ctx.fillText(
-    "确定要提示这张牌么",
-    rectTip.x + rectTip.w / 2,
-    rectTip.y + rectTip.h / 2
-  )
+  DrawLib.fillText(ctx, MyGameConfig.modal.tip.cue)
 
   DrawLib.btn(ctx, MyGameConfig.modal.btn.cue.num)
   DrawLib.btn(ctx, MyGameConfig.modal.btn.cue.color)

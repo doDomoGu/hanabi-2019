@@ -21,6 +21,7 @@ const playerRectPaddingY = 3 * vh //玩家区域内上下留白
 const playerInfoRectW = playerRectW - playerRectPaddingX * 2 //玩家信息区域宽度
 const playerInfoRectH = 10 * vh //玩家信息区域高度
 const playerInfoFont = px2Rem(16) + "px " + fontFamily //玩家信息区域字体样式
+const playerInfoPaddingX = 1 * vw
 
 const playerInfoBgColor = "#fee9d6"
 const playerInfoTextColor = "#4b4b4b"
@@ -99,29 +100,41 @@ const modalRectBgColor = "#ffffff"
 const modalRectW = 50 * vw
 const modalRectH = 50 * vh
 
-const modalRectPaddingX = 1 * vw
+// const modalRectPaddingX = 1 * vw
 const modalRectPaddingY = 5 * vh
+
+const modalTipRectW = modalRectW
+const modalTipRectH = modalRectH / 5
+const modalTipTextFont = px2Rem(20) + "px " + fontFamily
+const modalTipTextAlign = "center"
+const modalTipTextBaseline = "middle"
+
+const modalTipPlayTextContent = "确定要打出这张牌么"
+const modalTipCueTextContent = "确定要提示这张牌么"
 
 const modalBtnSpacing = 6 * vw
 
 const modalBtnRectW = 8 * vw
 const modalBtnRectH = 4 * vh
-
 const modalBtnTextFont = px2Rem(12) + "px " + fontFamily
 const modalBtnTextAlign = "center"
 const modalBtnTextBaseline = "middle"
 
 const modalBtnOkBgColor = "#44ff44"
 const modalBtnOkTextColor = "#ff44ff"
+const modalBtnOkTextContent = "确定"
 
 const modalBtnCancelBgColor = "#ff4444"
 const modalBtnCancelTextColor = "#44ffff"
+const modalBtnCancelTextContent = "取消"
 
 const modalBtnCueNumBgColor = "#ffff44"
 const modalBtnCueNumTextColor = "#4444ff"
+const modalBtnCueNumTextContent = "提示数字"
 
 const modalBtnCueColorBgColor = "#44ffff"
 const modalBtnCueColorTextColor = "#ff4444"
+const modalBtnCueColorTextContent = "提示颜色"
 
 let _ = {}
 
@@ -143,6 +156,7 @@ _.player.info.rect = {}
 // _.player.info.rect.w = _.player.rect.w - _.player.rect.paddingX * 2
 // _.player.info.rect.h = 10 * vh
 _.player.info.font = playerInfoFont
+_.player.info.paddingX = playerInfoPaddingX
 
 _.player.info.nowPlaying = {}
 _.player.info.nowPlaying.rect = {}
@@ -379,12 +393,47 @@ _.modal.rect.y = (100 * vh - _.modal.rect.h) / 2
 _.modal.rect.bgColor = modalRectBgColor
 
 _.modal.tip = {} // 对话框上部文字区域
-_.modal.tip.rect = {}
-_.modal.tip.rect.w = _.modal.rect.w
-_.modal.tip.rect.h = 10 * vh
-_.modal.tip.rect.x = _.modal.rect.x
-_.modal.tip.rect.y = _.modal.rect.y + modalRectPaddingY
-_.modal.tip.font = px2Rem(20) + "px " + fontFamily
+
+// 出牌时的文字
+_.modal.tip.play = {
+  rect: {
+    x: _.modal.rect.x,
+    y: _.modal.rect.y + modalRectPaddingY,
+    w: modalTipRectW,
+    h: modalTipRectH
+  },
+  text: {
+    font: modalTipTextFont,
+    color: modalBtnOkTextColor,
+    align: modalTipTextAlign,
+    baseline: modalTipTextBaseline,
+    content: modalTipPlayTextContent
+  }
+}
+
+// 提示时的文字
+_.modal.tip.cue = {
+  rect: {
+    x: _.modal.rect.x,
+    y: _.modal.rect.y + modalRectPaddingY,
+    w: modalTipRectW,
+    h: modalTipRectH
+  },
+  text: {
+    font: modalTipTextFont,
+    color: modalBtnOkTextColor,
+    align: modalTipTextAlign,
+    baseline: modalTipTextBaseline,
+    content: modalTipCueTextContent
+  }
+}
+
+// _.modal.tip.rect = {}
+// _.modal.tip.rect.w = _.modal.rect.w
+// _.modal.tip.rect.h = 10 * vh
+// _.modal.tip.rect.x = _.modal.tip.rect.y = _.modal.rect.y + modalRectPaddingY
+
+// _.modal.tip.text.font = px2Rem(20) + "px " + fontFamily
 
 _.modal.btn = {} // 对话框下部操作区域
 
@@ -397,7 +446,7 @@ _.modal.btn.play.ok = {
   rect: {
     x:
       _.modal.rect.x + _.modal.rect.w / 2 - modalBtnRectW - modalBtnSpacing / 2,
-    y: _.modal.tip.rect.y + _.modal.tip.rect.h + modalRectPaddingY,
+    y: _.modal.tip.play.rect.y + _.modal.tip.play.rect.h + modalRectPaddingY,
     w: modalBtnRectW,
     h: modalBtnRectH
   },
@@ -407,15 +456,15 @@ _.modal.btn.play.ok = {
     color: modalBtnOkTextColor,
     align: modalBtnTextAlign,
     baseline: modalBtnTextBaseline,
-    content: "确定"
+    content: modalBtnOkTextContent
   }
 }
 
-// 取消出牌按钮
+// 取消出牌的按钮
 _.modal.btn.play.cancel = {
   rect: {
     x: _.modal.rect.x + _.modal.rect.w / 2 + modalBtnSpacing / 2,
-    y: _.modal.tip.rect.y + _.modal.tip.rect.h + modalRectPaddingY,
+    y: _.modal.tip.play.rect.y + _.modal.tip.play.rect.h + modalRectPaddingY,
     w: modalBtnRectW,
     h: modalBtnRectH
   },
@@ -425,12 +474,13 @@ _.modal.btn.play.cancel = {
     color: modalBtnCancelTextColor,
     align: modalBtnTextAlign,
     baseline: modalBtnTextBaseline,
-    content: "取消"
+    content: modalBtnCancelTextContent
   }
 }
 
 _.modal.btn.cue = {} // 操作区域(提示cue)
 
+// 确认提示数字的按钮
 _.modal.btn.cue.num = {
   rect: {
     x:
@@ -439,7 +489,7 @@ _.modal.btn.cue.num = {
       modalBtnRectW / 2 -
       modalBtnSpacing -
       modalBtnRectW,
-    y: _.modal.tip.rect.y + _.modal.tip.rect.h + modalRectPaddingY,
+    y: _.modal.tip.cue.rect.y + _.modal.tip.cue.rect.h + modalRectPaddingY,
     w: modalBtnRectW,
     h: modalBtnRectH
   },
@@ -449,14 +499,15 @@ _.modal.btn.cue.num = {
     color: modalBtnCueNumTextColor,
     align: modalBtnTextAlign,
     baseline: modalBtnTextBaseline,
-    content: "提示数字"
+    content: modalBtnCueNumTextContent
   }
 }
 
+// 确认提示颜色的按钮
 _.modal.btn.cue.color = {
   rect: {
     x: _.modal.rect.x + _.modal.rect.w / 2 - modalBtnRectW / 2,
-    y: _.modal.tip.rect.y + _.modal.tip.rect.h + modalRectPaddingY,
+    y: _.modal.tip.cue.rect.y + _.modal.tip.cue.rect.h + modalRectPaddingY,
     w: modalBtnRectW,
     h: modalBtnRectH
   },
@@ -466,15 +517,16 @@ _.modal.btn.cue.color = {
     color: modalBtnCueColorTextColor,
     align: modalBtnTextAlign,
     baseline: modalBtnTextBaseline,
-    content: "提示颜色"
+    content: modalBtnCueColorTextContent
   }
 }
 
+// 取消提示的按钮
 _.modal.btn.cue.cancel = {
   rect: {
     x:
       _.modal.rect.x + _.modal.rect.w / 2 + modalBtnRectW / 2 + modalBtnSpacing,
-    y: _.modal.tip.rect.y + _.modal.tip.rect.h + modalRectPaddingY,
+    y: _.modal.tip.cue.rect.y + _.modal.tip.cue.rect.h + modalRectPaddingY,
     w: modalBtnRectW,
     h: modalBtnRectH
   },
@@ -484,7 +536,7 @@ _.modal.btn.cue.cancel = {
     color: modalBtnCancelTextColor,
     align: modalBtnTextAlign,
     baseline: modalBtnTextBaseline,
-    content: "取消"
+    content: modalBtnCancelTextContent
   }
 }
 
