@@ -271,30 +271,8 @@ _.topConfirmPlay = ctx => {
     rectTip.x + rectTip.w / 2,
     rectTip.y + rectTip.h / 2
   )
-
-  const rectOk = MyGameConfig.modal.play.ok.rect
-  ctx.fillStyle = MyGameConfig.btn.ok.bgColor
-  DrawLib.fillRoundedRect(ctx, rectOk, 4)
-
-  ctx.font = MyGameConfig.btn.font
-  ctx.fillStyle = MyGameConfig.btn.ok.textColor
-  ctx.textAlign = "center"
-  ctx.textBaseline = "middle"
-  ctx.fillText("确定", rectOk.x + rectOk.w / 2, rectOk.y + rectOk.h / 2)
-
-  const rectCancel = MyGameConfig.modal.play.cancel.rect
-  ctx.fillStyle = MyGameConfig.btn.cancel.bgColor
-  DrawLib.fillRoundedRect(ctx, rectCancel, 4)
-
-  ctx.font = MyGameConfig.btn.font
-  ctx.fillStyle = MyGameConfig.btn.cancel.textColor
-  ctx.textAlign = "center"
-  ctx.textBaseline = "middle"
-  ctx.fillText(
-    "取消",
-    rectCancel.x + rectCancel.w / 2,
-    rectCancel.y + rectCancel.h / 2
-  )
+  DrawLib.btn(ctx, MyGameConfig.modal.btn.play.ok)
+  DrawLib.btn(ctx, MyGameConfig.modal.btn.play.cancel)
 }
 
 _.topConfirmCue = ctx => {
@@ -313,47 +291,9 @@ _.topConfirmCue = ctx => {
     rectTip.y + rectTip.h / 2
   )
 
-  const rectCueNum = MyGameConfig.modal.cue.num.rect
-  ctx.fillStyle = MyGameConfig.btn.cueNum.bgColor
-  DrawLib.fillRoundedRect(ctx, rectCueNum, 4)
-
-  ctx.font = MyGameConfig.btn.font
-  ctx.fillStyle = MyGameConfig.btn.cueNum.textColor
-  ctx.textAlign = "center"
-  ctx.textBaseline = "middle"
-  ctx.fillText(
-    "提示数字",
-    rectCueNum.x + rectCueNum.w / 2,
-    rectCueNum.y + rectCueNum.h / 2
-  )
-
-  const rectCueColor = MyGameConfig.modal.cue.color.rect
-  ctx.fillStyle = MyGameConfig.btn.ok.bgColor
-  DrawLib.fillRoundedRect(ctx, rectCueColor, 4)
-
-  ctx.font = MyGameConfig.btn.font
-  ctx.fillStyle = MyGameConfig.btn.ok.textColor
-  ctx.textAlign = "center"
-  ctx.textBaseline = "middle"
-  ctx.fillText(
-    "提示颜色",
-    rectCueColor.x + rectCueColor.w / 2,
-    rectCueColor.y + rectCueColor.h / 2
-  )
-
-  const rectCancel = MyGameConfig.modal.cue.cancel.rect
-  ctx.fillStyle = MyGameConfig.btn.cancel.bgColor
-  DrawLib.fillRoundedRect(ctx, rectCancel, 4)
-
-  ctx.font = MyGameConfig.btn.font
-  ctx.fillStyle = MyGameConfig.btn.cancel.textColor
-  ctx.textAlign = "center"
-  ctx.textBaseline = "middle"
-  ctx.fillText(
-    "取消",
-    rectCancel.x + rectCancel.w / 2,
-    rectCancel.y + rectCancel.h / 2
-  )
+  DrawLib.btn(ctx, MyGameConfig.modal.btn.cue.num)
+  DrawLib.btn(ctx, MyGameConfig.modal.btn.cue.color)
+  DrawLib.btn(ctx, MyGameConfig.modal.btn.cue.cancel)
 }
 
 export default _

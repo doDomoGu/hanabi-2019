@@ -102,12 +102,14 @@ const modalRectH = 50 * vh
 const modalRectPaddingX = 1 * vw
 const modalRectPaddingY = 5 * vh
 
-const modalBtnSpacing = 12 * vw
+const modalBtnSpacing = 6 * vw
 
 const modalBtnRectW = 8 * vw
 const modalBtnRectH = 4 * vh
 
 const modalBtnTextFont = px2Rem(12) + "px " + fontFamily
+const modalBtnTextAlign = "center"
+const modalBtnTextBaseline = "middle"
 
 const modalBtnOkBgColor = "#44ff44"
 const modalBtnOkTextColor = "#ff44ff"
@@ -117,6 +119,7 @@ const modalBtnCancelTextColor = "#44ffff"
 
 const modalBtnCueNumBgColor = "#ffff44"
 const modalBtnCueNumTextColor = "#4444ff"
+
 const modalBtnCueColorBgColor = "#44ffff"
 const modalBtnCueColorTextColor = "#ff4444"
 
@@ -362,25 +365,7 @@ _.endBtn.text.color = endBtnTextColor
 _.endBtn.text.font = endBtnTextFont
 _.endBtn.text.content = endBtnTextContent
 
-/* 按钮 */
-// _.btn = {}
-// _.btn.rect = {}
-// _.btn.rect.w = 8 * vw
-// _.btn.rect.h = 4 * vh
-// _.btn.font = px2Rem(12) + "px " + fontFamily
-// _.btn.ok = {}
-// _.btn.ok.bgColor = "#44ff44"
-// _.btn.ok.textColor = "#ff44ff"
-// _.btn.cancel = {}
-// _.btn.cancel.bgColor = "#ff4444"
-// _.btn.cancel.textColor = "#44ffff"
-// _.btn.cueNum = {}
-// _.btn.cueNum.bgColor = "#ffff44"
-// _.btn.cueNum.textColor = "#4444ff"
-// _.btn.cueColor = {}
-// _.btn.cueColor.bgColor = "#44ffff"
-// _.btn.cueColor.textColor = "#ff4444"
-
+/* 对话框 */
 _.modal = {}
 
 _.modal.bgColor = modalBgColor
@@ -403,46 +388,105 @@ _.modal.tip.font = px2Rem(20) + "px " + fontFamily
 
 _.modal.btn = {} // 对话框下部操作区域
 
-_.modal.btn.play = {} // 操作区域(出牌play)
-_.modal.btn.play.ok = {} // 确认出牌按钮
-_.modal.btn.play.ok.rect = {}
-_.modal.btn.play.ok.rect.x =
-  _.modal.rect.x + _.modal.rect.w / 2 - modalBtnRectW - modalBtnSpacing / 2
-_.modal.btn.play.ok.rect.y =
-  _.modal.tip.rect.y + _.modal.tip.rect.h + modalRectPaddingY
-_.modal.btn.play.ok.rect.w = modalBtnRectW
-_.modal.btn.play.ok.rect.h = modalBtnRectH
+_.modal.btn.font = modalBtnTextFont
 
-_.modal.btn.play.cancel = {} // 取消出牌按钮
-_.modal.btn.play.cancel.rect = {}
-_.modal.btn.play.cancel.rect.x =
-_.modal.rect.x + _.modal.rect.w / 2 + modalBtnSpacing / 2
-_.modal.btn.play.cancel.rect.y =
-  _.modal.tip.rect.y + _.modal.tip.rect.h + modalRectPaddingY
-_.modal.btn.play.cancel.rect.w = modalBtnRectW
-_.modal.btn.play.cancel.rect.h = modalBtnRectH
+_.modal.btn.play = {} // 操作区域(出牌play)
+
+// 确认出牌的按钮
+_.modal.btn.play.ok = {
+  rect: {
+    x:
+      _.modal.rect.x + _.modal.rect.w / 2 - modalBtnRectW - modalBtnSpacing / 2,
+    y: _.modal.tip.rect.y + _.modal.tip.rect.h + modalRectPaddingY,
+    w: modalBtnRectW,
+    h: modalBtnRectH
+  },
+  bgColor: modalBtnOkBgColor,
+  text: {
+    font: modalBtnTextFont,
+    color: modalBtnOkTextColor,
+    align: modalBtnTextAlign,
+    baseline: modalBtnTextBaseline,
+    content: "确定"
+  }
+}
+
+// 取消出牌按钮
+_.modal.btn.play.cancel = {
+  rect: {
+    x: _.modal.rect.x + _.modal.rect.w / 2 + modalBtnSpacing / 2,
+    y: _.modal.tip.rect.y + _.modal.tip.rect.h + modalRectPaddingY,
+    w: modalBtnRectW,
+    h: modalBtnRectH
+  },
+  bgColor: modalBtnCancelBgColor,
+  text: {
+    font: modalBtnTextFont,
+    color: modalBtnCancelTextColor,
+    align: modalBtnTextAlign,
+    baseline: modalBtnTextBaseline,
+    content: "取消"
+  }
+}
 
 _.modal.btn.cue = {} // 操作区域(提示cue)
-_.modal.btn.cue.num = {}
-_.modal.btn.cue.num.rect = {}
-_.modal.btn.cue.num.rect.x =
-  50 * vw - _.btn.rect.w / 2 - _.btn.rect.w - modalBtnSpacing
-_.modal.btn.cue.num.rect.y = _.modal.rect.h / 2 + 20 * vh
-_.modal.btn.cue.num.rect.w = modalBtnRectW
-_.modal.btn.cue.num.rect.h = modalBtnRectH
-_.modal.btn.cue.color = {}
-_.modal.btn.cue.color.rect = {}
-_.modal.btn.cue.color.rect.x = 50 * vw - _.btn.rect.w / 2
-_.modal.btn.cue.color.rect.y = _.modal.rect.h / 2 + 20 * vh
-_.modal.btn.cue.color.rect.w = modalBtnRectW
-_.modal.btn.cue.color.rect.h = modalBtnRectH
-_.modal.btn.cue.cancel = {}
-_.modal.btn.cue.cancel.rect = {}
-_.modal.btn.cue.cancel.rect.x =
-  50 * vw - _.btn.rect.w / 2 + _.btn.rect.w + modalBtnSpacing
-_.modal.btn.cue.cancel.rect.y = _.modal.rect.h / 2 + 20 * vh
-_.modal.btn.cue.cancel.rect.w = modalBtnRectW
-_.modal.btn.cue.cancel.rect.h = modalBtnRectH
+
+_.modal.btn.cue.num = {
+  rect: {
+    x:
+      _.modal.rect.x +
+      _.modal.rect.w / 2 -
+      modalBtnRectW / 2 -
+      modalBtnSpacing -
+      modalBtnRectW,
+    y: _.modal.tip.rect.y + _.modal.tip.rect.h + modalRectPaddingY,
+    w: modalBtnRectW,
+    h: modalBtnRectH
+  },
+  bgColor: modalBtnCueNumBgColor,
+  text: {
+    font: modalBtnTextFont,
+    color: modalBtnCueNumTextColor,
+    align: modalBtnTextAlign,
+    baseline: modalBtnTextBaseline,
+    content: "提示数字"
+  }
+}
+
+_.modal.btn.cue.color = {
+  rect: {
+    x: _.modal.rect.x + _.modal.rect.w / 2 - modalBtnRectW / 2,
+    y: _.modal.tip.rect.y + _.modal.tip.rect.h + modalRectPaddingY,
+    w: modalBtnRectW,
+    h: modalBtnRectH
+  },
+  bgColor: modalBtnCueColorBgColor,
+  text: {
+    font: modalBtnTextFont,
+    color: modalBtnCueColorTextColor,
+    align: modalBtnTextAlign,
+    baseline: modalBtnTextBaseline,
+    content: "提示颜色"
+  }
+}
+
+_.modal.btn.cue.cancel = {
+  rect: {
+    x:
+      _.modal.rect.x + _.modal.rect.w / 2 + modalBtnRectW / 2 + modalBtnSpacing,
+    y: _.modal.tip.rect.y + _.modal.tip.rect.h + modalRectPaddingY,
+    w: modalBtnRectW,
+    h: modalBtnRectH
+  },
+  bgColor: modalBtnCancelBgColor,
+  text: {
+    font: modalBtnTextFont,
+    color: modalBtnCancelTextColor,
+    align: modalBtnTextAlign,
+    baseline: modalBtnTextBaseline,
+    content: "取消"
+  }
+}
 
 _.bgImgSrc = bgImg
 
