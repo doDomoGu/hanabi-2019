@@ -18,7 +18,7 @@ _.bottomRect = ctx => {
     //主机玩家信息区域背景
     DrawLib.fillRect(ctx, {
       rect: MyGameConfig.host.info.rect,
-      color: MyGameConfig.player.info.bgColor
+      color: MyGameConfig.host.info.bgColor
     })
     //客机玩家区域背景
     DrawLib.fillRect(ctx, {
@@ -28,7 +28,7 @@ _.bottomRect = ctx => {
     //客机玩家信息区域背景
     DrawLib.fillRect(ctx, {
       rect: MyGameConfig.guest.info.rect,
-      color: MyGameConfig.player.info.bgColor
+      color: MyGameConfig.guest.info.bgColor
     })
     //桌面区域背景
     DrawLib.fillRect(ctx, {
@@ -43,8 +43,8 @@ _.bottomRect = ctx => {
   })
 }
 
-//canvas_top 遮罩背景
-_.topRect = ctx => {
+//canvas_modal 对话框画布初始化   绘制遮罩及对话框区域背景
+const initModal = ctx => {
   DrawLib.fillRect(ctx, {
     rect: {
       x: 0,
@@ -82,39 +82,16 @@ _.endBtn = ctx => {
 
 //绘制主机玩家信息
 _.hostPlayer = (ctx, isPlayerHost, info) => {
-  player(ctx, {
-    rect: MyGameConfig.host.info.content.rect,
-    text: info.name + (isPlayerHost ? "*" : "")
-  })
+  const config = { ...MyGameConfig.host.info.content }
+  config.text.content = info.name + (isPlayerHost ? "*" : "")
+  DrawLib.fillText(ctx, config)
 }
 
 //绘制客机玩家信息
 _.guestPlayer = (ctx, isPlayerHost, info) => {
-  player(ctx, {
-    rect: MyGameConfig.guest.info.content.rect,
-    text: info.name + (!isPlayerHost ? "*" : "")
-  })
-}
-
-//绘制单个玩家信息
-const player = (ctx, config) => {
-  /* console.log({
-    rect: config.rect,
-    font: MyGameConfig.player.info.font,
-    textColor: MyGameConfig.player.info.textColor,
-    text: config.text,
-    textAlign: "left"
-  }) */
-  DrawLib.fillText(ctx, {
-    rect: config.rect,
-    text: {
-      font: MyGameConfig.player.info.font,
-      color: MyGameConfig.player.info.textColor,
-      content: config.text,
-      align: "left"
-    },
-    paddingX: MyGameConfig.player.info.paddingX
-  })
+  const config = { ...MyGameConfig.guest.info.content }
+  config.text.content = info.name + (!isPlayerHost ? "*" : "")
+  DrawLib.fillText(ctx, config)
 }
 
 //绘制主机玩家手牌
@@ -253,7 +230,7 @@ _.nowPlaying = (ctx, isHost) => {
   DrawLib.fillText(ctx, {
     rect: rect,
     text: {
-      font: MyGameConfig.player.info.font,
+      font: MyGameConfig.host.info.font,
       color: "#333333",
       align: "left",
       content: "当前回合"
@@ -264,9 +241,9 @@ _.nowPlaying = (ctx, isHost) => {
 // "出牌"的弹出对话框
 _.playModal = ctx => {
   DrawLib.clear(ctx)
-  _.topRect(ctx)
+  initModal(ctx)
 
-  DrawLib.fillText(ctx, MyGameConfig.modal.tip.play)
+  DrawLib.fillText(ctx, MyGameConfig.modal.tip.play, false)
 
   DrawLib.btn(ctx, MyGameConfig.modal.btn.play.ok)
   DrawLib.btn(ctx, MyGameConfig.modal.btn.play.cancel)
@@ -275,9 +252,9 @@ _.playModal = ctx => {
 // "提示卡牌"的弹出对话框
 _.cueModal = ctx => {
   DrawLib.clear(ctx)
-  _.topRect(ctx)
+  initModal(ctx)
 
-  DrawLib.fillText(ctx, MyGameConfig.modal.tip.cue)
+  DrawLib.fillText(ctx, MyGameConfig.modal.tip.cue, false)
 
   DrawLib.btn(ctx, MyGameConfig.modal.btn.cue.num)
   DrawLib.btn(ctx, MyGameConfig.modal.btn.cue.color)

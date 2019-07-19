@@ -84,19 +84,19 @@ const modal = (t, evt) => {
     let rect
     switch (rectName) {
       case "playOkBtn":
-        rect = MyGameConfig.modal.play.ok.rect
+        rect = MyGameConfig.modal.btn.play.ok.rect
         break
       case "playCancelBtn":
-        rect = MyGameConfig.modal.play.cancel.rect
+        rect = MyGameConfig.modal.btn.play.cancel.rect
         break
       case "cueNumBtn":
-        rect = MyGameConfig.modal.cue.num.rect
+        rect = MyGameConfig.modal.btn.cue.num.rect
         break
       case "cueColorBtn":
-        rect = MyGameConfig.modal.cue.color.rect
+        rect = MyGameConfig.modal.btn.cue.color.rect
         break
       case "cueCancelBtn":
-        rect = MyGameConfig.modal.cue.cancel.rect
+        rect = MyGameConfig.modal.btn.cue.cancel.rect
         break
       default:
         rect = { x: 0, y: 0, w: 0, h: 0 }

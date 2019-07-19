@@ -114,7 +114,6 @@ export default {
 
     MyGameDraw.bottomRect(this.ctxBg)
     MyGameDraw.endBtn(this.ctxMain)
-    // MyGameDraw.topRect(this.ctxModal)
 
     this.$store.dispatch("myRoom/GetInfo", { force: true })
 

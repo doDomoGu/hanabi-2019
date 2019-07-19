@@ -25,6 +25,8 @@ const playerInfoPaddingX = 1 * vw
 
 const playerInfoBgColor = "#fee9d6" //玩家信息区域背景色
 const playerInfoTextColor = "#4b4b4b" //玩家信息区域文本颜色
+const playerInfoTextAlign = "left" //玩家信息区域文本颜色
+const playerInfoTextBaseline = "middle" //玩家信息区域文本颜色
 
 const playerInfoNowPlayingRectW = 20 * vw //玩家信息区域中显示"当前回合"区域的宽度
 const playerInfoNowPlayingRectH = playerInfoRectH //玩家信息区域中显示"当前回合"区域的高度
@@ -141,42 +143,6 @@ const modalBtnCueColorTextContent = "提示颜色"
 
 let _ = {}
 
-/* 玩家基础参数 */
-_.player = {}
-// _.player.bgColor = playerRectBgColor
-// _.player.rect = {}
-// _.player.rect.x = windowPaddingX
-// _.player.rect.y = windowPaddingY
-// _.player.rect.w = 48 * vw //玩家区域宽度
-// _.player.rect.h = 40 * vh //玩家区域高度
-// _.player.rect.paddingX = 2 * vw //玩家区域内留白
-// _.player.rect.paddingY = 4 * vh //玩家区域内留白
-
-_.player.info = {}
-_.player.info.bgColor = playerInfoBgColor
-_.player.info.textColor = playerInfoTextColor
-_.player.info.rect = {}
-// _.player.info.rect.w = _.player.rect.w - _.player.rect.paddingX * 2
-// _.player.info.rect.h = 10 * vh
-_.player.info.font = playerInfoFont
-_.player.info.paddingX = playerInfoPaddingX
-
-_.player.info.nowPlaying = {}
-_.player.info.nowPlaying.rect = {}
-// _.player.info.nowPlaying.rect.w = 20 * vw
-// _.player.info.nowPlaying.rect.h = _.player.info.rect.h
-
-_.player.info.content = {}
-_.player.info.content.rect = {}
-// _.player.info.content.rect.w =
-//   _.player.info.rect.w - _.player.info.nowPlaying.rect.w
-// _.player.info.content.rect.h = _.player.info.rect.h
-
-/* _.player.info.nowPlaying = {}
-_.player.info.nowPlaying.rect = {}
-_.player.info.nowPlaying.rect.w = 80 * dpr
-_.player.info.nowPlaying.rect.h = _.player.info.rect.h */
-
 _.card = {}
 _.card.rect = {}
 _.card.rect.w = cardRectW
@@ -203,46 +169,50 @@ _.hands.back = {}
 _.hands.back.bgColor = handsBackBgColor
 _.hands.back.textColor = handsBackTextColor
 
-// _.player.hands = {}
-// _.player.hands.front = _.card.front
-// _.player.hands.back = _.card.back
-// _.player.hands.rect = {}
-// _.player.hands.rect.w = _.card.rect.w
-// _.player.hands.rect.h = _.card.rect.h
-// _.player.hands.spacing = handsSpacing
-// _.player.hands.font = handsFont
-
 /* 主机玩家 */
 _.host = {}
 
 _.host.bgColor = hostRectBgColor
 
-_.host.rect = {}
+_.host.rect = {} //玩家区域
 _.host.rect.x = windowPaddingX
 _.host.rect.y = windowPaddingY
 _.host.rect.w = playerRectW
 _.host.rect.h = playerRectH
 
 _.host.info = {}
-_.host.info.rect = {}
+_.host.info.rect = {} //玩家信息区域
 _.host.info.rect.x = _.host.rect.x + playerRectPaddingX
 _.host.info.rect.y = _.host.rect.y + playerRectPaddingY
 _.host.info.rect.w = playerInfoRectW
 _.host.info.rect.h = playerInfoRectH
+_.host.info.bgColor = playerInfoBgColor
 
 _.host.info.content = {}
-_.host.info.content.rect = {}
+_.host.info.content.rect = {} //玩家信息中名称区域
 _.host.info.content.rect.w = playerInfoContentRectW
 _.host.info.content.rect.h = playerInfoContentRectH
 _.host.info.content.rect.x = _.host.info.rect.x
 _.host.info.content.rect.y = _.host.info.rect.y
+_.host.info.content.text = {} //玩家信息中名称区域内 文字设置
+_.host.info.content.text.font = playerInfoFont
+_.host.info.content.text.color = playerInfoTextColor
+_.host.info.content.text.align = playerInfoTextAlign
+_.host.info.content.text.baseline = playerInfoTextBaseline
+_.host.info.content.paddingX = playerInfoPaddingX
 
 _.host.info.nowPlaying = {}
-_.host.info.nowPlaying.rect = {}
+_.host.info.nowPlaying.rect = {} //玩家信息中心"当前回合"区域
 _.host.info.nowPlaying.rect.w = playerInfoNowPlayingRectW
 _.host.info.nowPlaying.rect.h = playerInfoNowPlayingRectH
 _.host.info.nowPlaying.rect.x = _.host.info.rect.x + _.host.info.content.rect.w
 _.host.info.nowPlaying.rect.y = _.host.info.rect.y
+_.host.info.nowPlaying.text = {} //玩家信息中心"当前回合"区域内 文字设置
+_.host.info.nowPlaying.text.font = playerInfoFont
+_.host.info.nowPlaying.text.color = playerInfoTextColor
+_.host.info.nowPlaying.text.align = playerInfoTextAlign
+_.host.info.nowPlaying.text.baseline = playerInfoTextBaseline
+_.host.info.nowPlaying.paddingX = playerInfoPaddingX
 
 _.host.hands = {}
 _.host.hands.rects = []
@@ -254,11 +224,6 @@ for (let i = 0; i < 5; i++) {
   rect.h = handsRectH
   _.host.hands.rects.push(rect)
 }
-/* _.host.button = {}
-_.host.button.x = _.host.rect.x + _.player.rect.padding
-_.host.button.y = _.host.rect.y + _.player.rect.h - _.player.rect.padding - _.player.button.h
-_.host.button.w = _.player.button.w
-_.host.button.h = _.player.button.h */
 
 /* 桌面区域 */
 _.table = {}
@@ -340,6 +305,7 @@ _.guest.info.rect.x = _.guest.rect.x + playerRectPaddingX
 _.guest.info.rect.y = _.guest.rect.y + playerRectPaddingY
 _.guest.info.rect.w = playerInfoRectW
 _.guest.info.rect.h = playerInfoRectH
+_.guest.info.bgColor = playerInfoBgColor
 
 _.guest.info.content = {}
 _.guest.info.content.rect = {}
@@ -347,6 +313,12 @@ _.guest.info.content.rect.w = playerInfoContentRectW
 _.guest.info.content.rect.h = playerInfoContentRectH
 _.guest.info.content.rect.x = _.guest.info.rect.x
 _.guest.info.content.rect.y = _.guest.info.rect.y
+_.guest.info.content.text = {} //玩家信息中名称区域内 文字设置
+_.guest.info.content.text.font = playerInfoFont
+_.guest.info.content.text.color = playerInfoTextColor
+_.guest.info.content.text.align = playerInfoTextAlign
+_.guest.info.content.text.baseline = playerInfoTextBaseline
+_.guest.info.content.paddingX = playerInfoPaddingX
 
 _.guest.info.nowPlaying = {}
 _.guest.info.nowPlaying.rect = {}
@@ -355,6 +327,12 @@ _.guest.info.nowPlaying.rect.h = playerInfoNowPlayingRectH
 _.guest.info.nowPlaying.rect.x =
   _.guest.info.rect.x + _.guest.info.content.rect.w
 _.guest.info.nowPlaying.rect.y = _.guest.info.rect.y
+_.guest.info.nowPlaying.text = {} //玩家信息中心"当前回合"区域内 文字设置
+_.guest.info.nowPlaying.text.font = playerInfoFont
+_.guest.info.nowPlaying.text.color = playerInfoTextColor
+_.guest.info.nowPlaying.text.align = playerInfoTextAlign
+_.guest.info.nowPlaying.text.baseline = playerInfoTextBaseline
+_.guest.info.nowPlaying.paddingX = playerInfoPaddingX
 
 _.guest.hands = {}
 _.guest.hands.rects = []
@@ -430,13 +408,6 @@ _.modal.tip.cue = {
     content: modalTipCueTextContent
   }
 }
-
-// _.modal.tip.rect = {}
-// _.modal.tip.rect.w = _.modal.rect.w
-// _.modal.tip.rect.h = 10 * vh
-// _.modal.tip.rect.x = _.modal.tip.rect.y = _.modal.rect.y + modalRectPaddingY
-
-// _.modal.tip.text.font = px2Rem(20) + "px " + fontFamily
 
 _.modal.btn = {} // 对话框下部操作区域
 

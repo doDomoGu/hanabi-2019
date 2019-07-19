@@ -59,7 +59,6 @@ _.background = (ctx, imgSrc, type) => {
 } */
 
 // 函数：绘制圆角矩形
-// export function fillRoundedRect(ctx, rect, radius) {
 _.fillRoundedRect = (ctx, rect, radius) => {
   const point = (x, y) => {
     return { x: x, y: y }
@@ -83,7 +82,6 @@ _.fillRoundedRect = (ctx, rect, radius) => {
   ctx.fill()
 }
 
-// export function fillRect(ctx, config) {
 _.fillRect = (ctx, config) => {
   const rect = config.rect
   ctx.clearRect(rect.x, rect.y, rect.w, rect.h)
@@ -91,9 +89,9 @@ _.fillRect = (ctx, config) => {
   ctx.fillRect(rect.x, rect.y, rect.w, rect.h)
 }
 
-// export function fillText(ctx, config) {
-_.fillText = (ctx, config) => {
-  ctx.clearRect(config.rect.x, config.rect.y, config.rect.w, config.rect.h)
+_.fillText = (ctx, config, clearFlag = true) => {
+  if (clearFlag)
+    ctx.clearRect(config.rect.x, config.rect.y, config.rect.w, config.rect.h)
 
   ctx.font = config.text.font
   ctx.fillStyle = config.text.color ? config.text.color : "#333333"
