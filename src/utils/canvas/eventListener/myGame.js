@@ -57,18 +57,18 @@ const main = (t, evt) => {
     t.selectCardIndex = hostHandsIndex
     t.selectCardIsHost = true
     if (t.isHost) {
-      MyGameDraw.topConfirmPlay(ctxModal)
+      MyGameDraw.playModal(ctxModal)
     } else {
-      MyGameDraw.topConfirmCue(ctxModal)
+      MyGameDraw.cueModal(ctxModal)
     }
   } else if (t.gameInfo.roundPlayerIsHost == t.isHost && guestHandsIndex > -1) {
     t.modalShow = true
     t.selectCardIndex = guestHandsIndex
     t.selectCardIsHost = false
     if (t.isHost) {
-      MyGameDraw.topConfirmCue(ctxModal)
+      MyGameDraw.cueModal(ctxModal)
     } else {
-      MyGameDraw.topConfirmPlay(ctxModal)
+      MyGameDraw.playModal(ctxModal)
     }
   } else if (isPath(point, "endBtn")) {
     t.$store.dispatch("myGame/End")

@@ -261,7 +261,8 @@ _.nowPlaying = (ctx, isHost) => {
   })
 }
 
-_.topConfirmPlay = ctx => {
+// "出牌"的弹出对话框
+_.playModal = ctx => {
   DrawLib.clear(ctx)
   _.topRect(ctx)
 
@@ -271,7 +272,8 @@ _.topConfirmPlay = ctx => {
   DrawLib.btn(ctx, MyGameConfig.modal.btn.play.cancel)
 }
 
-_.topConfirmCue = ctx => {
+// "提示卡牌"的弹出对话框
+_.cueModal = ctx => {
   DrawLib.clear(ctx)
   _.topRect(ctx)
 

@@ -6,8 +6,8 @@ import bgImg from "@/assets/hanabi_bg2.jpg"
 const windowPaddingX = 2 * vw //视窗内左右留白
 const windowPaddingY = 3 * vh //视窗内上下留白
 
-const endBtnRectW = 100 * vw
-const endBtnRectH = 8 * vh
+const endBtnRectW = 100 * vw //"结束游戏"按钮尺寸宽度
+const endBtnRectH = 8 * vh //"结束游戏"按钮尺寸高度
 
 const hostRectBgColor = "#cccccc" //主机玩家区域背景颜色
 const guestRectBgColor = "#dcdcdc" //客机玩家区域背景颜色
@@ -23,19 +23,20 @@ const playerInfoRectH = 10 * vh //玩家信息区域高度
 const playerInfoFont = px2Rem(16) + "px " + fontFamily //玩家信息区域字体样式
 const playerInfoPaddingX = 1 * vw
 
-const playerInfoBgColor = "#fee9d6"
-const playerInfoTextColor = "#4b4b4b"
+const playerInfoBgColor = "#fee9d6" //玩家信息区域背景色
+const playerInfoTextColor = "#4b4b4b" //玩家信息区域文本颜色
 
-const playerInfoNowPlayingRectW = 20 * vw
-const playerInfoNowPlayingRectH = playerInfoRectH
+const playerInfoNowPlayingRectW = 20 * vw //玩家信息区域中显示"当前回合"区域的宽度
+const playerInfoNowPlayingRectH = playerInfoRectH //玩家信息区域中显示"当前回合"区域的高度
 
-const playerInfoContentRectW = playerInfoRectW - playerInfoNowPlayingRectW
-const playerInfoContentRectH = playerInfoRectH
+const playerInfoContentRectW = playerInfoRectW - playerInfoNowPlayingRectW //玩家信息区域中显示"玩家名称"区域的宽度
+const playerInfoContentRectH = playerInfoRectH //玩家信息区域中显示"玩家名称"区域的高度
 
-const cardRectW = 4 * vw
-const cardRectH = 12 * vh
-const cardFont = px2Rem(8) + "px " + fontFamily
+const cardRectW = 4 * vw //卡牌尺寸宽度
+const cardRectH = 12 * vh //卡牌尺寸高度
+const cardFont = px2Rem(8) + "px " + fontFamily //卡牌上字体样式
 
+// 卡牌正面（数字）五种颜色的背景色
 const cardFrontBgColor = {
   white: "#ffffff",
   blue: "#2222ff",
@@ -43,6 +44,8 @@ const cardFrontBgColor = {
   red: "#ff2222",
   green: "#22ff22"
 }
+
+// 卡牌正面（数字）五种颜色的文本颜色
 const cardFrontTextColor = {
   white: "#333333",
   blue: "#eeeeee",
@@ -51,11 +54,11 @@ const cardFrontTextColor = {
   green: "#333333"
 }
 
-const cardBackBgColor = "#999999"
-const cardBackTextColor = "#ffffff"
+const cardBackBgColor = "#999999" // 卡牌背面 背景色
+const cardBackTextColor = "#ffffff" // 卡牌背面 文本颜色
 
-const handsRectW = cardRectW
-const handsRectH = cardRectH
+const handsRectW = cardRectW // 手牌尺寸宽度
+const handsRectH = cardRectH // 手牌尺寸高度
 const handsFrontBgColor = cardFrontBgColor
 const handsFrontTextColor = cardFrontTextColor
 const handsBackBgColor = cardBackBgColor
