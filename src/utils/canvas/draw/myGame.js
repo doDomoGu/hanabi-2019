@@ -139,28 +139,28 @@ const backHands = (ctx, rects, hands) => {
   })
 }
 
-//绘制卡牌带数字
-const cardsNum = (ctx, config, num) => {
-  const rect = config.rect
+//绘制卡牌 一行文字 一行数字
+const drawCardByTextAndNum = (ctx, config, num) => {
   ctx.fillStyle = config.bgColor
-  DrawLib.fillRoundedRect(ctx, rect, 4)
+  DrawLib.fillRoundedRect(ctx, config.rect, 4)
 
-  ctx.font = MyGameConfig.card.font
-  ctx.fillStyle = config.textColor
-  ctx.textAlign = "center"
-  ctx.textBaseline = "bottom"
-  ctx.fillText(config.title, rect.x + rect.w / 2, rect.y + rect.h / 2)
-  ctx.textBaseline = "top"
-  ctx.fillText(num + "张", rect.x + rect.w / 2, rect.y + rect.h / 2)
+  const cfg1 = { ...config }
+  cfg1.text.baseline = "bottom"
+  DrawLib.fillText(ctx, cfg1, false)
+
+  const cfg2 = { ...config }
+  cfg2.text.baseline = "top"
+  cfg2.text.content = num + "张"
+  DrawLib.fillText(ctx, cfg2, false)
 }
 
 //绘制牌库
 _.libraryCards = (ctx, num) => {
-  cardsNum(ctx, MyGameConfig.table.libraryCards, num)
+  drawCardByTextAndNum(ctx, MyGameConfig.table.library, num)
 }
 //绘制弃牌堆
 _.discardCards = (ctx, num) => {
-  cardsNum(ctx, MyGameConfig.table.discardCards, num)
+  drawCardByTextAndNum(ctx, MyGameConfig.table.discardPile, num)
 }
 
 //绘制数字

@@ -235,34 +235,44 @@ _.table.rect.x = tableRectX
 _.table.rect.y = tableRectY
 
 /* 牌库 */
-_.table.libraryCards = {}
-_.table.libraryCards.bgColor = libraryBgColor
-_.table.libraryCards.textColor = libraryTextColor
-_.table.libraryCards.title = libraryTextContent
-_.table.libraryCards.rect = {}
-_.table.libraryCards.rect.x = _.table.rect.x + tableRectPaddingX
-_.table.libraryCards.rect.y = _.table.rect.y + tableRectPaddingY
-_.table.libraryCards.rect.w = cardRectW
-_.table.libraryCards.rect.h = cardRectH
+_.table.library = {}
+_.table.library.bgColor = libraryBgColor
+_.table.library.text = {
+  color: libraryTextColor,
+  content: libraryTextContent,
+  font: cardFont,
+  align: "center"
+}
+_.table.library.rect = {
+  x: _.table.rect.x + tableRectPaddingX,
+  y: _.table.rect.y + tableRectPaddingY,
+  w: cardRectW,
+  h: cardRectH
+}
 
 /* 弃牌堆 */
-_.table.discardCards = {}
-_.table.discardCards.bgColor = discardPileBgColor
-_.table.discardCards.textColor = discardPileTextColor
-_.table.discardCards.title = discardPileTextContent
-_.table.discardCards.rect = {}
-_.table.discardCards.rect.w = cardRectW
-_.table.discardCards.rect.h = cardRectH
-_.table.discardCards.rect.x = _.table.rect.x + tableRectPaddingX
-_.table.discardCards.rect.y =
-  _.table.libraryCards.rect.y + _.table.libraryCards.rect.h + tableRectPaddingY
+_.table.discardPile = {}
+_.table.discardPile.bgColor = discardPileBgColor
+
+_.table.discardPile.text = {
+  color: discardPileTextColor,
+  content: discardPileTextContent,
+  font: cardFont,
+  align: "center"
+}
+_.table.discardPile.rect = {
+  x: _.table.rect.x + tableRectPaddingX,
+  y: _.table.library.rect.y + _.table.library.rect.h + tableRectPaddingY,
+  w: cardRectW,
+  h: cardRectH
+}
 
 _.table.num = {}
 _.table.num.textColor = tableNumTextColor
 _.table.num.font = tableNumFont
 _.table.num.rect = {}
 _.table.num.rect.x =
-  _.table.libraryCards.rect.x + _.table.libraryCards.rect.w + windowPaddingX
+  _.table.library.rect.x + _.table.library.rect.w + windowPaddingX
 _.table.num.rect.y = _.table.rect.y + windowPaddingY
 _.table.num.rect.w = tableNumRectW
 _.table.num.rect.h = tableNumRectH
