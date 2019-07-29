@@ -94,6 +94,8 @@ const discardPileBgColor = "#ccaaee"
 const discardPileTextColor = "#333333"
 const discardPileTextContent = "弃牌堆"
 
+const historyBgColor = "#eeccaa"
+
 const endBtnBgColor = "#e90200"
 const endBtnTextColor = "#ffffff"
 const endBtnTextFont = px2Rem(18) + "px " + fontFamily
@@ -176,46 +178,60 @@ _.host = {}
 
 _.host.bgColor = hostRectBgColor
 
-_.host.rect = {} //玩家区域
-_.host.rect.x = windowPaddingX
-_.host.rect.y = windowPaddingY
-_.host.rect.w = playerRectW
-_.host.rect.h = playerRectH
+// 主机玩家 玩家区域
+_.host.rect = {
+  w: playerRectW,
+  h: playerRectH,
+  x: windowPaddingX,
+  y: windowPaddingY
+}
 
-_.host.info = {}
-_.host.info.rect = {} //玩家信息区域
-_.host.info.rect.x = _.host.rect.x + playerRectPaddingX
-_.host.info.rect.y = _.host.rect.y + playerRectPaddingY
-_.host.info.rect.w = playerInfoRectW
-_.host.info.rect.h = playerInfoRectH
-_.host.info.bgColor = playerInfoBgColor
+// 主机玩家 玩家信息区域
+_.host.info = {
+  rect: {
+    w: playerInfoRectW,
+    h: playerInfoRectH,
+    x: _.host.rect.x + playerRectPaddingX,
+    y: _.host.rect.y + playerRectPaddingY
+  },
+  bgColor: playerInfoBgColor
+}
 
-_.host.info.content = {}
-_.host.info.content.rect = {} //玩家信息中名称区域
-_.host.info.content.rect.w = playerInfoContentRectW
-_.host.info.content.rect.h = playerInfoContentRectH
-_.host.info.content.rect.x = _.host.info.rect.x
-_.host.info.content.rect.y = _.host.info.rect.y
-_.host.info.content.text = {} //玩家信息中名称区域内 文字设置
-_.host.info.content.text.font = playerInfoFont
-_.host.info.content.text.color = playerInfoTextColor
-_.host.info.content.text.align = playerInfoTextAlign
-_.host.info.content.text.baseline = playerInfoTextBaseline
-_.host.info.content.paddingX = playerInfoPaddingX
+// 主机玩家 信息中"名称"区域
+_.host.info.content = {
+  rect: {
+    w: playerInfoContentRectW,
+    h: playerInfoContentRectH,
+    x: _.host.info.rect.x,
+    y: _.host.info.rect.y
+  },
+  text: {
+    font: playerInfoFont,
+    color: playerInfoTextColor,
+    align: playerInfoTextAlign,
+    baseline: playerInfoTextBaseline
+  },
+  paddingX: playerInfoPaddingX
+}
 
-_.host.info.nowPlaying = {}
-_.host.info.nowPlaying.rect = {} //玩家信息中心"当前回合"区域
-_.host.info.nowPlaying.rect.w = playerInfoNowPlayingRectW
-_.host.info.nowPlaying.rect.h = playerInfoNowPlayingRectH
-_.host.info.nowPlaying.rect.x = _.host.info.rect.x + _.host.info.content.rect.w
-_.host.info.nowPlaying.rect.y = _.host.info.rect.y
-_.host.info.nowPlaying.text = {} //玩家信息中心"当前回合"区域内 文字设置
-_.host.info.nowPlaying.text.font = playerInfoFont
-_.host.info.nowPlaying.text.color = playerInfoTextColor
-_.host.info.nowPlaying.text.align = playerInfoTextAlign
-_.host.info.nowPlaying.text.baseline = playerInfoTextBaseline
-_.host.info.nowPlaying.paddingX = playerInfoPaddingX
+// 主机玩家 信息中"当前回合"区域
+_.host.info.nowPlaying = {
+  rect: {
+    w: playerInfoNowPlayingRectW,
+    h: playerInfoNowPlayingRectH,
+    x: _.host.info.rect.x + _.host.info.content.rect.w,
+    y: _.host.info.rect.y
+  },
+  text: {
+    font: playerInfoFont,
+    color: playerInfoTextColor,
+    align: playerInfoTextAlign,
+    baseline: playerInfoTextBaseline
+  },
+  paddingX: playerInfoPaddingX
+}
 
+// 主机玩家 手牌区域
 _.host.hands = {}
 _.host.hands.rects = []
 for (let i = 0; i < 5; i++) {
@@ -230,43 +246,45 @@ for (let i = 0; i < 5; i++) {
 /* 桌面区域 */
 _.table = {}
 _.table.bgColor = tableBgColor
-_.table.rect = {}
-_.table.rect.w = tableRectW
-_.table.rect.h = tableRectH
-_.table.rect.x = tableRectX
-_.table.rect.y = tableRectY
+_.table.rect = {
+  w: tableRectW,
+  h: tableRectH,
+  x: tableRectX,
+  y: tableRectY
+}
 
 /* 牌库 */
-_.table.library = {}
-_.table.library.bgColor = libraryBgColor
-_.table.library.text = {
-  color: libraryTextColor,
-  content: libraryTextContent,
-  font: cardFont,
-  align: "center"
-}
-_.table.library.rect = {
-  x: _.table.rect.x + tableRectPaddingX,
-  y: _.table.rect.y + tableRectPaddingY,
-  w: cardRectW,
-  h: cardRectH
+_.table.library = {
+  rect: {
+    x: _.table.rect.x + tableRectPaddingX,
+    y: _.table.rect.y + tableRectPaddingY,
+    w: cardRectW,
+    h: cardRectH
+  },
+  text: {
+    color: libraryTextColor,
+    content: libraryTextContent,
+    font: cardFont,
+    align: "center"
+  },
+  bgColor: libraryBgColor
 }
 
 /* 弃牌堆 */
-_.table.discardPile = {}
-_.table.discardPile.bgColor = discardPileBgColor
-
-_.table.discardPile.text = {
-  color: discardPileTextColor,
-  content: discardPileTextContent,
-  font: cardFont,
-  align: "center"
-}
-_.table.discardPile.rect = {
-  x: _.table.rect.x + tableRectPaddingX,
-  y: _.table.library.rect.y + _.table.library.rect.h + tableRectPaddingY,
-  w: cardRectW,
-  h: cardRectH
+_.table.discardPile = {
+  rect: {
+    x: _.table.rect.x + tableRectPaddingX,
+    y: _.table.library.rect.y + _.table.library.rect.h + tableRectPaddingY,
+    w: cardRectW,
+    h: cardRectH
+  },
+  text: {
+    color: discardPileTextColor,
+    content: discardPileTextContent,
+    font: cardFont,
+    align: "center"
+  },
+  bgColor: discardPileBgColor
 }
 
 _.table.num = {}
@@ -281,35 +299,38 @@ _.table.num.rect.h = tableNumRectH
 
 _.table.num.spacing = tableNumSpacing
 
-_.table.successCards = {}
-_.table.successCards.rect = {}
-_.table.successCards.rect.x =
-  _.table.num.rect.x + _.table.num.rect.w + tableRectPaddingX
-_.table.successCards.rect.y = _.table.rect.y + tableRectPaddingY
-_.table.successCards.rect.w = cardRectW
-_.table.successCards.rect.h = cardRectH
-_.table.successCards.spacing = 1 * vw
+_.table.successCards = {
+  rect: {
+    w: cardRectW,
+    h: cardRectH,
+    x: _.table.num.rect.x + _.table.num.rect.w + tableRectPaddingX,
+    y: _.table.rect.y + tableRectPaddingY
+  },
+  spacing: 1 * vw
+}
 
 /* 游戏记录区域 */
-_.table.history = {}
-_.table.history.bgColor = "#eeccaa"
-_.table.history.rect = {}
-_.table.history.rect.w = tableHistoryRectW
-_.table.history.rect.h = tableHistoryRectH
-_.table.history.rect.x = _.table.rect.x + tableRectPaddingX
-_.table.history.rect.y =
-  _.table.rect.y + _.table.rect.h - _.table.history.rect.h - tableRectPaddingY
+_.table.history = {
+  rect: {
+    w: tableHistoryRectW,
+    h: tableHistoryRectH,
+    x: _.table.rect.x + tableRectPaddingX,
+    y: _.table.rect.y + _.table.rect.h - tableHistoryRectH - tableRectPaddingY
+  },
+  bgColor: historyBgColor
+}
 
 /* 客机玩家 */
 _.guest = {}
 
 _.guest.bgColor = guestRectBgColor
 
-_.guest.rect = {}
-_.guest.rect.x = windowPaddingX
-_.guest.rect.y = _.host.rect.y + _.host.rect.h
-_.guest.rect.w = playerRectW
-_.guest.rect.h = playerRectH
+_.guest.rect = {
+  w: playerRectW,
+  h: playerRectH,
+  x: windowPaddingX,
+  y: _.host.rect.y + _.host.rect.h
+}
 
 _.guest.info = {}
 _.guest.info.rect = {}
