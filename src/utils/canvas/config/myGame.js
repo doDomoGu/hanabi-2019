@@ -4,7 +4,7 @@ import { vw, vh, px2Rem, fontFamily } from "../lib"
 import bgImg from "@/assets/hanabi_bg2.jpg"
 
 const windowPaddingX = 2 * vw //视窗内左右留白
-const windowPaddingY = 3 * vh //视窗内上下留白
+const windowPaddingY = windowPaddingX //视窗内上下留白
 
 const endBtnRectW = 100 * vw //"结束游戏"按钮尺寸宽度
 const endBtnRectH = 8 * vh //"结束游戏"按钮尺寸高度
@@ -16,7 +16,7 @@ const playerRectW = 50 * vw - windowPaddingX //玩家区域宽度
 const playerRectH = (100 * vh - endBtnRectH) / 2 - windowPaddingY //玩家区域高度
 
 const playerRectPaddingX = 2 * vw //玩家区域内左右留白
-const playerRectPaddingY = 3 * vh //玩家区域内上下留白
+const playerRectPaddingY = playerRectPaddingX //玩家区域内上下留白
 
 const playerInfoRectW = playerRectW - playerRectPaddingX * 2 //玩家信息区域宽度
 const playerInfoRectH = 10 * vh //玩家信息区域高度
@@ -35,7 +35,7 @@ const playerInfoContentRectW = playerInfoRectW - playerInfoNowPlayingRectW //玩
 const playerInfoContentRectH = playerInfoRectH //玩家信息区域中显示"玩家名称"区域的高度
 
 const cardRectW = 4 * vw //卡牌尺寸宽度
-const cardRectH = 12 * vh //卡牌尺寸高度
+const cardRectH = 1.618 * cardRectW //卡牌尺寸高度
 const cardFont = px2Rem(8) + "px " + fontFamily //卡牌上字体样式
 
 // 卡牌正面（数字）五种颜色的背景色
@@ -75,7 +75,7 @@ const tableRectX = 50 * vw
 const tableRectY = windowPaddingY
 
 const tableRectPaddingX = 2 * vw
-const tableRectPaddingY = 3 * vh
+const tableRectPaddingY = tableRectPaddingX
 
 const tableHistoryRectW = tableRectW - tableRectPaddingX * 2
 const tableHistoryRectH = 48 * vh
@@ -99,11 +99,12 @@ const endBtnTextColor = "#ffffff"
 const endBtnTextFont = px2Rem(18) + "px " + fontFamily
 const endBtnTextContent = "结束游戏"
 
-const modalBgColor = "rgba(222,222,222,0.2)"
-const modalRectBgColor = "#ffffff"
+/* 对话框 */
+const modalBgColor = "rgba(222,222,222,0.2)" //整个对话框的背景颜色（遮罩）
+const modalRectBgColor = "#ffffff" //对话框中间主要区域的背景颜色
 
-const modalRectW = 50 * vw
-const modalRectH = 50 * vh
+const modalRectW = 50 * vw //对话框区域宽度
+const modalRectH = 50 * vh //对话框区域高度
 
 // const modalRectPaddingX = 1 * vw
 const modalRectPaddingY = 5 * vh

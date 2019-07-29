@@ -3,9 +3,13 @@
 // 设备像素比
 // const dpr = window.devicePixelRatio
 const dpr = 3
+
+// 画布(视窗)宽高比
+const aspectRatio = 16 / 9
+
 // 固定高宽
 const width = 736 * dpr
-const height = (width / 16) * 9
+const height = width / aspectRatio
 
 const vw = width / 100
 const vh = height / 100
@@ -99,6 +103,7 @@ export {
   dpr,
   width,
   height,
+  aspectRatio,
   vw,
   vh,
   fontFamily,
