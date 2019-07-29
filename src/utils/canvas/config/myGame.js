@@ -105,42 +105,43 @@ const modalRectBgColor = "#ffffff" //对话框中间主要区域的背景颜色
 
 const modalRectW = 50 * vw //对话框区域宽度
 const modalRectH = 50 * vh //对话框区域高度
+const modalRectX = (100 * vw - modalRectW) / 2 //对话框区域 水平位置偏移量
+const modalRectY = (100 * vh - modalRectH) / 2 //对话框区域 垂直位置偏移量
 
-// const modalRectPaddingX = 1 * vw
-const modalRectPaddingY = 5 * vh
+const modalRectPaddingY = 5 * vh //区域内上下留白
 
-const modalTipRectW = modalRectW
-const modalTipRectH = modalRectH / 5
-const modalTipTextFont = px2Rem(20) + "px " + fontFamily
-const modalTipTextAlign = "center"
-const modalTipTextBaseline = "middle"
+const modalTipRectW = modalRectW //上部提示语句区域宽度
+const modalTipRectH = modalRectH / 3 //上部提示语句区域高度
+const modalTipTextFont = px2Rem(20) + "px " + fontFamily //上部提示语句区域内容文字字体
+const modalTipTextAlign = "center" //上部提示语句区域内容文字 水平对齐方式
+const modalTipTextBaseline = "middle" //上部提示语句区域内容文字 垂直对齐方式
 
-const modalTipPlayTextContent = "确定要打出这张牌么"
-const modalTipCueTextContent = "确定要提示这张牌么"
+const modalTipPlayTextContent = "确定要打出这张牌么" //上部提示语句区域内容文字内容 "打出开牌"
+const modalTipCueTextContent = "确定要提示这张牌么" //上部提示语句区域内容文字内容 "提示卡牌"
 
-const modalBtnSpacing = 6 * vw
+const modalBtnSpacing = 6 * vw //对话框下方按钮 左右留白
 
-const modalBtnRectW = 8 * vw
-const modalBtnRectH = 4 * vh
-const modalBtnTextFont = px2Rem(12) + "px " + fontFamily
-const modalBtnTextAlign = "center"
-const modalBtnTextBaseline = "middle"
+const modalBtnRectW = 10 * vw //对话框下方按钮尺寸宽度
+const modalBtnRectH = modalBtnRectW / 3 //对话框下方按钮尺寸高度
+const modalBtnTextFont = px2Rem(12) + "px " + fontFamily //对话框下方按钮文字字体
+const modalBtnTextAlign = "center" //对话框下方按钮文字 水平对齐方式
+const modalBtnTextBaseline = "middle" //对话框下方按钮文字 垂直对齐方式
 
-const modalBtnOkBgColor = "#44ff44"
-const modalBtnOkTextColor = "#ff44ff"
-const modalBtnOkTextContent = "确定"
+const modalBtnOkBgColor = "#44ff44" //对话框下方按钮  "确定"按钮背景色
+const modalBtnOkTextColor = "#ff44ff" //对话框下方按钮  "确定"按钮文字颜色
+const modalBtnOkTextContent = "确定" //对话框下方按钮  "确定"按钮文字内容
 
-const modalBtnCancelBgColor = "#ff4444"
-const modalBtnCancelTextColor = "#44ffff"
-const modalBtnCancelTextContent = "取消"
+const modalBtnCancelBgColor = "#ff4444" //对话框下方按钮  "取消"按钮背景色
+const modalBtnCancelTextColor = "#44ffff" //对话框下方按钮  "取消"按钮文字颜色
+const modalBtnCancelTextContent = "取消" //对话框下方按钮  "取消"按钮文字内容
 
-const modalBtnCueNumBgColor = "#ffff44"
-const modalBtnCueNumTextColor = "#4444ff"
-const modalBtnCueNumTextContent = "提示数字"
+const modalBtnCueNumBgColor = "#ffff44" //对话框下方按钮  "提示数字"按钮背景色
+const modalBtnCueNumTextColor = "#4444ff" //对话框下方按钮  "提示数字"按钮文字颜色
+const modalBtnCueNumTextContent = "提示数字" //对话框下方按钮  "提示数字"按钮文字内容
 
-const modalBtnCueColorBgColor = "#44ffff"
-const modalBtnCueColorTextColor = "#ff4444"
-const modalBtnCueColorTextContent = "提示颜色"
+const modalBtnCueColorBgColor = "#44ffff" //对话框下方按钮  "提示颜色"按钮背景色
+const modalBtnCueColorTextColor = "#ff4444" //对话框下方按钮  "提示颜色"按钮文字颜色
+const modalBtnCueColorTextContent = "提示颜色" //对话框下方按钮  "提示颜色"按钮文字内容
 
 let _ = {}
 
@@ -218,12 +219,12 @@ _.host.info.nowPlaying.paddingX = playerInfoPaddingX
 _.host.hands = {}
 _.host.hands.rects = []
 for (let i = 0; i < 5; i++) {
-  let rect = {}
-  rect.x = _.host.rect.x + playerRectPaddingX + (handsRectW + handsSpacing) * i
-  rect.y = _.host.info.rect.y + _.host.info.rect.h + playerRectPaddingY
-  rect.w = handsRectW
-  rect.h = handsRectH
-  _.host.hands.rects.push(rect)
+  _.host.hands.rects.push({
+    w: handsRectW,
+    h: handsRectH,
+    x: _.host.rect.x + playerRectPaddingX + (handsRectW + handsSpacing) * i,
+    y: _.host.info.rect.y + _.host.info.rect.h + playerRectPaddingY
+  })
 }
 
 /* 桌面区域 */
@@ -348,12 +349,12 @@ _.guest.info.nowPlaying.paddingX = playerInfoPaddingX
 _.guest.hands = {}
 _.guest.hands.rects = []
 for (let i = 0; i < 5; i++) {
-  let rect = {}
-  rect.x = _.guest.rect.x + playerRectPaddingX + (handsRectW + handsSpacing) * i
-  rect.y = _.guest.info.rect.y + _.guest.info.rect.h + playerRectPaddingY
-  rect.w = handsRectW
-  rect.h = handsRectH
-  _.guest.hands.rects.push(rect)
+  _.guest.hands.rects.push({
+    w: handsRectW,
+    h: handsRectH,
+    x: _.guest.rect.x + playerRectPaddingX + (handsRectW + handsSpacing) * i,
+    y: _.guest.info.rect.y + _.guest.info.rect.h + playerRectPaddingY
+  })
 }
 
 /* 结束按钮 */
@@ -376,13 +377,13 @@ _.modal = {}
 
 _.modal.bgColor = modalBgColor
 
-_.modal.rect = {}
-_.modal.rect.w = modalRectW
-_.modal.rect.h = modalRectH
-_.modal.rect.x = (100 * vw - _.modal.rect.w) / 2
-_.modal.rect.y = (100 * vh - _.modal.rect.h) / 2
-
-_.modal.rect.bgColor = modalRectBgColor
+_.modal.rect = {
+  w: modalRectW,
+  h: modalRectH,
+  x: modalRectX,
+  y: modalRectY,
+  bgColor: modalRectBgColor
+}
 
 _.modal.tip = {} // 对话框上部文字区域
 
