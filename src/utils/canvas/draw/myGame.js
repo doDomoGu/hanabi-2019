@@ -1,6 +1,7 @@
 /* 游戏绘制方法库 */
 import { DrawLib } from "../draw"
 import { MyGameConfig } from "../config"
+import lodash from "lodash"
 
 const colors = ["white", "blue", "yellow", "red", "green"]
 const numbers = [1, 1, 1, 2, 2, 3, 3, 4, 4, 5]
@@ -96,7 +97,7 @@ _.guestPlayer = (ctx, isPlayerHost, info) => {
 
 //绘制主机玩家手牌
 _.hostHands = (ctx, isPlayerHost, hands) => {
-  const rects = JSON.parse(JSON.stringify(MyGameConfig.host.hands.rects))
+  const rects = lodash.cloneDeep(MyGameConfig.host.hands.rects)
 
   if (isPlayerHost) {
     backHands(ctx, rects, hands)
@@ -106,7 +107,7 @@ _.hostHands = (ctx, isPlayerHost, hands) => {
 }
 //绘制客机玩家手牌
 _.guestHands = (ctx, isPlayerHost, hands) => {
-  const rects = JSON.parse(JSON.stringify(MyGameConfig.guest.hands.rects))
+  const rects = lodash.cloneDeep(MyGameConfig.guest.hands.rects)
   if (isPlayerHost) {
     frontHands(ctx, rects, hands)
   } else {
@@ -144,11 +145,11 @@ const drawCardByTextAndNum = (ctx, config, num) => {
   ctx.fillStyle = config.bgColor
   DrawLib.fillRoundedRect(ctx, config.rect, 4)
 
-  const cfg1 = { ...config }
+  const cfg1 = lodash.cloneDeep(config)
   cfg1.text.baseline = "bottom"
   DrawLib.fillText(ctx, cfg1, false)
 
-  const cfg2 = { ...config }
+  const cfg2 = lodash.cloneDeep(config)
   cfg2.text.baseline = "top"
   cfg2.text.content = num + "张"
   DrawLib.fillText(ctx, cfg2, false)
@@ -176,18 +177,18 @@ const _num = (ctx, rect, text) => {
 
 //剩余提示数
 _.cueNum = (ctx, num) => {
-  const rect = JSON.parse(JSON.stringify(MyGameConfig.table.num.rect))
+  const rect = lodash.cloneDeep(MyGameConfig.table.num.rect)
   _num(ctx, rect, "提示数:" + num)
 }
 //剩余机会数
 _.chanceNum = (ctx, num) => {
-  const rect = JSON.parse(JSON.stringify(MyGameConfig.table.num.rect))
+  const rect = lodash.cloneDeep(MyGameConfig.table.num.rect)
   rect.y += MyGameConfig.table.num.rect.h + MyGameConfig.table.num.spacing
   _num(ctx, rect, "机会数:" + num)
 }
 //分数
 _.score = (ctx, num) => {
-  const rect = JSON.parse(JSON.stringify(MyGameConfig.table.num.rect))
+  const rect = lodash.cloneDeep(MyGameConfig.table.num.rect)
   rect.y += (MyGameConfig.table.num.rect.h + MyGameConfig.table.num.spacing) * 2
   _num(ctx, rect, "分数:" + num)
 }
@@ -195,7 +196,7 @@ _.score = (ctx, num) => {
 //绘制成功打出的卡牌
 _.successCards = (ctx, successCards) => {
   //TODO
-  let rect = JSON.parse(JSON.stringify(MyGameConfig.table.successCards.rect))
+  let rect = lodash.cloneDeep(MyGameConfig.table.successCards.rect)
 
   ctx.clearRect(
     rect.x,

@@ -332,13 +332,15 @@ _.guest.rect = {
   y: _.host.rect.y + _.host.rect.h
 }
 
-_.guest.info = {}
-_.guest.info.rect = {}
-_.guest.info.rect.x = _.guest.rect.x + playerRectPaddingX
-_.guest.info.rect.y = _.guest.rect.y + playerRectPaddingY
-_.guest.info.rect.w = playerInfoRectW
-_.guest.info.rect.h = playerInfoRectH
-_.guest.info.bgColor = playerInfoBgColor
+_.guest.info = {
+  rect: {
+    w: playerInfoRectW,
+    h: playerInfoRectH,
+    x: _.guest.rect.x + playerRectPaddingX,
+    y: _.guest.rect.y + playerRectPaddingY
+  },
+  bgColor: playerInfoBgColor
+}
 
 _.guest.info.content = {}
 _.guest.info.content.rect = {}
