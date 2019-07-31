@@ -164,33 +164,25 @@ _.discardCards = (ctx, num) => {
   drawCardByTextAndNum(ctx, MyGameConfig.table.discardPile, num)
 }
 
-//绘制数字
-const _num = (ctx, rect, text) => {
-  ctx.clearRect(rect.x, rect.y, rect.w, rect.h)
-
-  ctx.font = MyGameConfig.table.num.font
-  ctx.fillStyle = MyGameConfig.table.num.textColor
-  ctx.textAlign = "center"
-  ctx.textBaseline = "middle"
-  ctx.fillText(text, rect.x + rect.w / 2, rect.y + rect.h / 2)
-}
-
 //剩余提示数
 _.cueNum = (ctx, num) => {
-  const rect = lodash.cloneDeep(MyGameConfig.table.num.rect)
-  _num(ctx, rect, "提示数:" + num)
+  const cfg = lodash.cloneDeep(MyGameConfig.table.num)
+  cfg.text.content = "提示数: " + num
+  DrawLib.fillText(ctx, cfg)
 }
 //剩余机会数
 _.chanceNum = (ctx, num) => {
-  const rect = lodash.cloneDeep(MyGameConfig.table.num.rect)
-  rect.y += MyGameConfig.table.num.rect.h + MyGameConfig.table.num.spacing
-  _num(ctx, rect, "机会数:" + num)
+  const cfg = lodash.cloneDeep(MyGameConfig.table.num)
+  cfg.text.content = "机会数: " + num
+  cfg.rect.y += cfg.rect.h + cfg.spacing
+  DrawLib.fillText(ctx, cfg)
 }
 //分数
 _.score = (ctx, num) => {
-  const rect = lodash.cloneDeep(MyGameConfig.table.num.rect)
-  rect.y += (MyGameConfig.table.num.rect.h + MyGameConfig.table.num.spacing) * 2
-  _num(ctx, rect, "分数:" + num)
+  const cfg = lodash.cloneDeep(MyGameConfig.table.num)
+  cfg.text.content = "分数: " + num
+  cfg.rect.y += (cfg.rect.h + cfg.spacing) * 2
+  DrawLib.fillText(ctx, cfg)
 }
 
 //绘制成功打出的卡牌

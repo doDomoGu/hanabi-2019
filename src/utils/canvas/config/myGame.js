@@ -82,9 +82,11 @@ const tableHistoryRectH = 48 * vh
 
 const tableNumTextColor = "#333333"
 const tableNumFont = px2Rem(12) + "px " + fontFamily
-const tableNumRectW = 6 * vw
+const tableNumRectW = 8 * vw
 const tableNumRectH = 6 * vh
 const tableNumSpacing = 1 * vh
+const tableNumTextAlign = "center"
+const tableNumTextBaseline = "middle"
 
 const libraryBgColor = "#eeaacc"
 const libraryTextColor = "#333333"
@@ -102,7 +104,7 @@ const endBtnTextFont = px2Rem(18) + "px " + fontFamily
 const endBtnTextContent = "结束游戏"
 
 /* 对话框 */
-const modalBgColor = "rgba(222,222,222,0.2)" //整个对话框的背景颜色（遮罩）
+const modalBgColor = "rgba(222,222,222,0.5)" //整个对话框的背景颜色（遮罩）
 const modalRectBgColor = "#ffffff" //对话框中间主要区域的背景颜色
 
 const modalRectW = 50 * vw //对话框区域宽度
@@ -273,17 +275,21 @@ _.table.discardPile = {
   bgColor: discardPileBgColor
 }
 
-_.table.num = {}
-_.table.num.textColor = tableNumTextColor
-_.table.num.font = tableNumFont
-_.table.num.rect = {}
-_.table.num.rect.x =
-  _.table.library.rect.x + _.table.library.rect.w + windowPaddingX
-_.table.num.rect.y = _.table.rect.y + windowPaddingY
-_.table.num.rect.w = tableNumRectW
-_.table.num.rect.h = tableNumRectH
-
-_.table.num.spacing = tableNumSpacing
+_.table.num = {
+  rect: {
+    w: tableNumRectW,
+    h: tableNumRectH,
+    x: _.table.library.rect.x + _.table.library.rect.w + windowPaddingX,
+    y: _.table.rect.y + windowPaddingY
+  },
+  text: {
+    font: tableNumFont,
+    color: tableNumTextColor,
+    align: tableNumTextAlign,
+    baseline: tableNumTextBaseline
+  },
+  spacing: tableNumSpacing
+}
 
 _.table.successCards = {
   rect: {
