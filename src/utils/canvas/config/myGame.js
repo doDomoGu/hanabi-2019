@@ -147,20 +147,6 @@ const modalBtnCueColorTextContent = "提示颜色" //对话框下方按钮  "提
 
 let _ = {}
 
-_.card = {}
-_.card.rect = {}
-_.card.rect.w = cardRectW
-_.card.rect.h = cardRectH
-_.card.font = cardFont
-
-_.card.front = {}
-_.card.front.bgColor = cardFrontBgColor
-_.card.front.textColor = cardFrontTextColor
-
-_.card.back = {}
-_.card.back.bgColor = cardBackBgColor
-_.card.back.textColor = cardBackTextColor
-
 _.hands = {}
 _.hands.rect = {}
 _.hands.rect.w = handsRectW
@@ -306,7 +292,18 @@ _.table.successCards = {
     x: _.table.num.rect.x + _.table.num.rect.w + tableRectPaddingX,
     y: _.table.rect.y + tableRectPaddingY
   },
-  spacing: 1 * vw
+  spacing: 1 * vw,
+  text: {
+    font: cardFont,
+    color: {
+      front: cardFrontTextColor,
+      back: cardBackTextColor
+    }
+  },
+  bgColor: {
+    front: cardFrontBgColor,
+    back: cardBackBgColor
+  }
 }
 
 /* 游戏记录区域 */

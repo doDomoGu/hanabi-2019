@@ -206,11 +206,11 @@ _.successCards = (ctx, successCards) => {
   )
 
   colors.forEach((c, i) => {
-    ctx.fillStyle = MyGameConfig.card.front.bgColor[c]
+    ctx.fillStyle = MyGameConfig.table.successCards.bgColor.front[c]
     DrawLib.fillRoundedRect(ctx, rect, 4)
 
-    ctx.font = MyGameConfig.card.font
-    ctx.fillStyle = MyGameConfig.card.front.textColor[c]
+    ctx.font = MyGameConfig.table.successCards.text.font
+    ctx.fillStyle = MyGameConfig.table.successCards.text.color.front[c]
     ctx.textAlign = "center"
     ctx.textBaseline = "middle"
     ctx.fillText(successCards[i], rect.x + rect.w / 2, rect.y + rect.h / 2)
