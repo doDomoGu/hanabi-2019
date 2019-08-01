@@ -140,14 +140,17 @@ const backHands = (ctx, rects, hands) => {
   })
 }
 
-//绘制卡牌 一行文字 一行数字
+//绘制卡牌 两行文字 居中 第一行取 text.content / 第二行 参数num + ”张“
 const drawCardByTextAndNum = (ctx, config, num) => {
+  // 卡牌背景色
   ctx.fillStyle = config.bgColor
   DrawLib.fillRoundedRect(ctx, config.rect, 4)
 
+  //第一行字
   config.text.baseline = "bottom"
   DrawLib.fillText(ctx, config, false)
 
+  //第一行字
   config.text.baseline = "top"
   config.text.content = num + "张"
   DrawLib.fillText(ctx, config, false)
@@ -159,7 +162,11 @@ _.libraryCards = (ctx, num) => {
 }
 //绘制弃牌堆
 _.discardCards = (ctx, num) => {
-  drawCardByTextAndNum(ctx, lodash.cloneDeep(MyGameConfig.table.discardPile), num)
+  drawCardByTextAndNum(
+    ctx,
+    lodash.cloneDeep(MyGameConfig.table.discardPile),
+    num
+  )
 }
 
 //剩余提示数
