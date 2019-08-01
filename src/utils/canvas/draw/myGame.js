@@ -145,23 +145,21 @@ const drawCardByTextAndNum = (ctx, config, num) => {
   ctx.fillStyle = config.bgColor
   DrawLib.fillRoundedRect(ctx, config.rect, 4)
 
-  const cfg1 = lodash.cloneDeep(config)
-  cfg1.text.baseline = "bottom"
-  DrawLib.fillText(ctx, cfg1, false)
+  config.text.baseline = "bottom"
+  DrawLib.fillText(ctx, config, false)
 
-  const cfg2 = lodash.cloneDeep(config)
-  cfg2.text.baseline = "top"
-  cfg2.text.content = num + "张"
-  DrawLib.fillText(ctx, cfg2, false)
+  config.text.baseline = "top"
+  config.text.content = num + "张"
+  DrawLib.fillText(ctx, config, false)
 }
 
 //绘制牌库
 _.libraryCards = (ctx, num) => {
-  drawCardByTextAndNum(ctx, MyGameConfig.table.library, num)
+  drawCardByTextAndNum(ctx, lodash.cloneDeep(MyGameConfig.table.library), num)
 }
 //绘制弃牌堆
 _.discardCards = (ctx, num) => {
-  drawCardByTextAndNum(ctx, MyGameConfig.table.discardPile, num)
+  drawCardByTextAndNum(ctx, lodash.cloneDeep(MyGameConfig.table.discardPile), num)
 }
 
 //剩余提示数
@@ -187,46 +185,49 @@ _.score = (ctx, num) => {
 
 //绘制成功打出的卡牌
 _.successCards = (ctx, successCards) => {
-  const rect = MyGameConfig.table.successCards.rect
+  // 拷贝配置
+  const cfg = lodash.cloneDeep(MyGameConfig.table.successCards)
+
+  // 清空区域
   ctx.clearRect(
-    rect.x,
-    rect.y,
-    (rect.w + MyGameConfig.table.successCards.spacing) * 5,
-    rect.h
+    cfg.rect.x,
+    cfg.rect.y,
+    (cfg.rect.w + cfg.spacing) * 5,
+    cfg.rect.h
   )
 
+  // 循环卡牌颜色 绘制
   colors.forEach((c, i) => {
-    let cfg = lodash.cloneDeep(MyGameConfig.table.successCards)
-
-    cfg.rect.x += (cfg.rect.w + cfg.spacing) * i
-
-    ctx.fillStyle = cfg.bgColor.front[c]
+    // 计算水平偏移量
+    cfg.rect.x += cfg.rect.w + cfg.spacing
+    // 卡牌背景色
+    ctx.fillStyle = cfg.bgColors.front[c]
     DrawLib.fillRoundedRect(ctx, cfg.rect, 4)
-
-    cfg.text.color = cfg.text.color.front[c]
+    // 文字颜色和内容
+    cfg.text.color = cfg.text.colors.front[c]
     cfg.text.content = successCards[i]
     DrawLib.fillText(ctx, cfg, false)
   })
 }
 
+// 绘制 ”当前“
 _.nowPlaying = (ctx, isHost) => {
-  const rectHost = MyGameConfig.host.info.nowPlaying.rect
-  const rectGuest = MyGameConfig.guest.info.nowPlaying.rect
+  const cfgHost = MyGameConfig.host.info.nowPlaying
+  const cfgGuest = MyGameConfig.guest.info.nowPlaying
 
-  ctx.clearRect(rectHost.x, rectHost.y, rectHost.w, rectHost.h)
-  ctx.clearRect(rectGuest.x, rectGuest.y, rectGuest.w, rectGuest.h)
+  ctx.clearRect(cfgHost.rect.x, cfgHost.rect.y, cfgHost.rect.w, cfgHost.rect.h)
+  ctx.clearRect(
+    cfgGuest.rect.x,
+    cfgGuest.rect.y,
+    cfgGuest.rect.w,
+    cfgGuest.rect.h
+  )
 
-  const rect = isHost ? rectHost : rectGuest
-
-  DrawLib.fillText(ctx, {
-    rect: rect,
-    text: {
-      font: MyGameConfig.host.info.font,
-      color: "#333333",
-      align: "left",
-      content: "当前回合"
-    }
-  })
+  if (isHost) {
+    DrawLib.fillText(ctx, cfgHost)
+  } else {
+    DrawLib.fillText(ctx, cfgGuest)
+  }
 }
 
 // "出牌"的弹出对话框

@@ -214,7 +214,8 @@ _.host.info.nowPlaying = {
     font: playerInfoFont,
     color: playerInfoTextColor,
     align: playerInfoTextAlign,
-    baseline: playerInfoTextBaseline
+    baseline: playerInfoTextBaseline,
+    content: "当前回合"
   },
   paddingX: playerInfoPaddingX
 }
@@ -303,12 +304,12 @@ _.table.successCards = {
     font: cardFont,
     align: "center",
     baseline: "middle",
-    color: {
+    colors: {
       front: cardFrontTextColor,
       back: cardBackTextColor
     }
   },
-  bgColor: {
+  bgColors: {
     front: cardFrontBgColor,
     back: cardBackBgColor
   }
@@ -360,19 +361,23 @@ _.guest.info.content.text.align = playerInfoTextAlign
 _.guest.info.content.text.baseline = playerInfoTextBaseline
 _.guest.info.content.paddingX = playerInfoPaddingX
 
-_.guest.info.nowPlaying = {}
-_.guest.info.nowPlaying.rect = {}
-_.guest.info.nowPlaying.rect.w = playerInfoNowPlayingRectW
-_.guest.info.nowPlaying.rect.h = playerInfoNowPlayingRectH
-_.guest.info.nowPlaying.rect.x =
-  _.guest.info.rect.x + _.guest.info.content.rect.w
-_.guest.info.nowPlaying.rect.y = _.guest.info.rect.y
-_.guest.info.nowPlaying.text = {} //玩家信息中心"当前回合"区域内 文字设置
-_.guest.info.nowPlaying.text.font = playerInfoFont
-_.guest.info.nowPlaying.text.color = playerInfoTextColor
-_.guest.info.nowPlaying.text.align = playerInfoTextAlign
-_.guest.info.nowPlaying.text.baseline = playerInfoTextBaseline
-_.guest.info.nowPlaying.paddingX = playerInfoPaddingX
+// 客机玩家 信息中"当前回合"区域
+_.guest.info.nowPlaying = {
+  rect: {
+    w: playerInfoNowPlayingRectW,
+    h: playerInfoNowPlayingRectH,
+    x: _.guest.info.rect.x + _.guest.info.content.rect.w,
+    y: _.guest.info.rect.y
+  },
+  text: {
+    font: playerInfoFont,
+    color: playerInfoTextColor,
+    align: playerInfoTextAlign,
+    baseline: playerInfoTextBaseline,
+    content: "当前回合"
+  },
+  paddingX: playerInfoPaddingX
+}
 
 _.guest.hands = {}
 _.guest.hands.rects = []
