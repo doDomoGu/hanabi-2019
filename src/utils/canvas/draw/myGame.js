@@ -64,21 +64,7 @@ const initModal = ctx => {
 
 // 绘制结束按钮
 _.endBtn = ctx => {
-  const btn = MyGameConfig.endBtn
-
-  ctx.fillStyle = btn.bgColor
-  ctx.fillRect(btn.rect.x, btn.rect.y, btn.rect.w, btn.rect.h)
-
-  ctx.font = btn.text.font
-  ctx.fillStyle = btn.text.color
-  ctx.textAlign = "center"
-  ctx.textBaseline = "middle"
-
-  ctx.fillText(
-    btn.text.content,
-    btn.rect.x + btn.rect.w / 2,
-    btn.rect.y + btn.rect.h / 2
-  )
+  DrawLib.btn(ctx, MyGameConfig.endBtn)
 }
 
 //绘制主机玩家信息
@@ -97,45 +83,48 @@ _.guestPlayer = (ctx, isPlayerHost, info) => {
 
 //绘制主机玩家手牌
 _.hostHands = (ctx, isPlayerHost, hands) => {
-  const rects = lodash.cloneDeep(MyGameConfig.host.hands.rects)
-
+  const cfg = lodash.cloneDeep(MyGameConfig.host.hands)
   if (isPlayerHost) {
-    backHands(ctx, rects, hands)
+    backHands(ctx, cfg, hands)
   } else {
-    frontHands(ctx, rects, hands)
+    frontHands(ctx, cfg, hands)
   }
 }
 //绘制客机玩家手牌
 _.guestHands = (ctx, isPlayerHost, hands) => {
-  const rects = lodash.cloneDeep(MyGameConfig.guest.hands.rects)
+  const cfg = lodash.cloneDeep(MyGameConfig.guest.hands)
   if (isPlayerHost) {
-    frontHands(ctx, rects, hands)
+    frontHands(ctx, cfg, hands)
   } else {
-    backHands(ctx, rects, hands)
+    backHands(ctx, cfg, hands)
   }
 }
 
 //对手手牌 显示正面
-const frontHands = (ctx, rects, hands) => {
+const frontHands = (ctx, cfg, hands) => {
   hands.forEach((c, i) => {
-    let color = colors[c.color]
-    let rect = rects[i]
-    ctx.fillStyle = MyGameConfig.hands.front.bgColor[color]
-    DrawLib.fillRoundedRect(ctx, rect, 4)
+    //  c:单张手牌信息;  i:index
+    const color = colors[c.color]
+    const num = numbers[c.num]
+    // 取出rect信息
+    cfg.rect = cfg.rects[i]
 
-    ctx.font = MyGameConfig.hands.font
-    ctx.fillStyle = MyGameConfig.hands.front.textColor[color]
-    ctx.textAlign = "center"
-    ctx.textBaseline = "middle"
-    ctx.fillText(numbers[c.num], rect.x + rect.w / 2, rect.y + rect.h / 2)
+    // 背景色
+    ctx.fillStyle = cfg.bgColors.front[color]
+    DrawLib.fillRoundedRect(ctx, cfg.rect, 4)
+
+    // 文字颜色和内容设置
+    cfg.text.color = cfg.text.colors.front[color]
+    cfg.text.content = num
+    DrawLib.fillText(ctx, cfg, false)
   })
 }
 
 //自己手牌 显示背面
-const backHands = (ctx, rects, hands) => {
+const backHands = (ctx, cfg, hands) => {
   hands.forEach((c, i) => {
-    let rect = rects[i]
-    ctx.fillStyle = MyGameConfig.hands.back.bgColor
+    const rect = cfg.rects[i]
+    ctx.fillStyle = cfg.bgColors.back
     DrawLib.fillRoundedRect(ctx, rect, 4)
   })
 }

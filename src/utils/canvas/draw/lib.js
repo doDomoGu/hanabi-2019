@@ -115,21 +115,6 @@ _.btn = (ctx, config) => {
   ctx.fillStyle = config.bgColor ? config.bgColor : "#ffffff"
   ctx.fillRect(config.rect.x, config.rect.y, config.rect.w, config.rect.h)
 
-  ctx.font = config.text.font
-  ctx.fillStyle = config.text.color ? config.text.color : "#333333"
-  ctx.textAlign = config.text.align ? config.text.align : "left"
-  ctx.textBaseline = config.text.baseline ? config.text.baseline : "middle"
-
-  let _x = 0
-  let _y = 0
-  if (ctx.textAlign == "left") {
-    _x = config.rect.x + (config.paddingX ? config.paddingX : 0)
-    _y = config.rect.y + config.rect.h / 2
-  } else if (ctx.textAlign == "center") {
-    _x = config.rect.x + config.rect.w / 2
-    _y = config.rect.y + config.rect.h / 2
-  }
-
-  ctx.fillText(config.text.content, _x, _y)
+  _.fillText(ctx, config, false)
 }
 export default _

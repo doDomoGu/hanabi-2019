@@ -149,18 +149,6 @@ const modalBtnCueColorTextContent = "提示颜色" //对话框下方按钮  "提
 
 let _ = {}
 
-_.hands = {}
-_.hands.rect = {}
-_.hands.rect.w = handsRectW
-_.hands.rect.h = handsRectH
-_.hands.font = handsFont
-_.hands.front = {}
-_.hands.front.bgColor = handsFrontBgColor
-_.hands.front.textColor = handsFrontTextColor
-_.hands.back = {}
-_.hands.back.bgColor = handsBackBgColor
-_.hands.back.textColor = handsBackTextColor
-
 /* 主机玩家 */
 _.host = {}
 
@@ -221,8 +209,23 @@ _.host.info.nowPlaying = {
 }
 
 // 主机玩家 手牌区域
-_.host.hands = {}
-_.host.hands.rects = []
+_.host.hands = {
+  rects: [],
+  text: {
+    font: handsFont,
+    align: "center",
+    baseline: "middle",
+    colors: {
+      front: handsFrontTextColor,
+      back: handsBackTextColor
+    }
+  },
+  bgColors: {
+    front: handsFrontBgColor,
+    back: handsBackBgColor
+  }
+}
+
 for (let i = 0; i < 5; i++) {
   _.host.hands.rects.push({
     w: handsRectW,
@@ -348,18 +351,21 @@ _.guest.info = {
   bgColor: playerInfoBgColor
 }
 
-_.guest.info.content = {}
-_.guest.info.content.rect = {}
-_.guest.info.content.rect.w = playerInfoContentRectW
-_.guest.info.content.rect.h = playerInfoContentRectH
-_.guest.info.content.rect.x = _.guest.info.rect.x
-_.guest.info.content.rect.y = _.guest.info.rect.y
-_.guest.info.content.text = {} //玩家信息中名称区域内 文字设置
-_.guest.info.content.text.font = playerInfoFont
-_.guest.info.content.text.color = playerInfoTextColor
-_.guest.info.content.text.align = playerInfoTextAlign
-_.guest.info.content.text.baseline = playerInfoTextBaseline
-_.guest.info.content.paddingX = playerInfoPaddingX
+_.guest.info.content = {
+  rect: {
+    w: playerInfoContentRectW,
+    h: playerInfoContentRectH,
+    x: _.guest.info.rect.x,
+    y: _.guest.info.rect.y
+  },
+  text: {
+    font: playerInfoFont,
+    color: playerInfoTextColor,
+    align: playerInfoTextAlign,
+    baseline: playerInfoTextBaseline
+  },
+  paddingX: playerInfoPaddingX
+}
 
 // 客机玩家 信息中"当前回合"区域
 _.guest.info.nowPlaying = {
@@ -379,8 +385,24 @@ _.guest.info.nowPlaying = {
   paddingX: playerInfoPaddingX
 }
 
-_.guest.hands = {}
-_.guest.hands.rects = []
+// 主机玩家 手牌区域
+_.guest.hands = {
+  rects: [],
+  text: {
+    font: handsFont,
+    align: "center",
+    baseline: "middle",
+    colors: {
+      front: handsFrontTextColor,
+      back: handsBackTextColor
+    }
+  },
+  bgColors: {
+    front: handsFrontBgColor,
+    back: handsBackBgColor
+  }
+}
+
 for (let i = 0; i < 5; i++) {
   _.guest.hands.rects.push({
     w: handsRectW,
@@ -391,19 +413,22 @@ for (let i = 0; i < 5; i++) {
 }
 
 /* 结束按钮 */
-_.endBtn = {}
-_.endBtn.rect = {}
-_.endBtn.rect.w = endBtnRectW
-_.endBtn.rect.h = endBtnRectH
-_.endBtn.rect.x = (100 * vw - _.endBtn.rect.w) / 2
-_.endBtn.rect.y = 100 * vh - _.endBtn.rect.h
-
-_.endBtn.bgColor = endBtnBgColor
-
-_.endBtn.text = {}
-_.endBtn.text.color = endBtnTextColor
-_.endBtn.text.font = endBtnTextFont
-_.endBtn.text.content = endBtnTextContent
+_.endBtn = {
+  rect: {
+    w: endBtnRectW,
+    h: endBtnRectH,
+    x: (100 * vw - endBtnRectW) / 2,
+    y: 100 * vh - endBtnRectH
+  },
+  text: {
+    font: endBtnTextFont,
+    color: endBtnTextColor,
+    align: "center",
+    baseline: "middle",
+    content: endBtnTextContent
+  },
+  bgColor: endBtnBgColor
+}
 
 /* 对话框 */
 _.modal = {}
