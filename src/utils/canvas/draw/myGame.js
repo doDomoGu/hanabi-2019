@@ -187,9 +187,7 @@ _.score = (ctx, num) => {
 
 //绘制成功打出的卡牌
 _.successCards = (ctx, successCards) => {
-  //TODO
-  let rect = lodash.cloneDeep(MyGameConfig.table.successCards.rect)
-
+  const rect = MyGameConfig.table.successCards.rect
   ctx.clearRect(
     rect.x,
     rect.y,
@@ -198,16 +196,16 @@ _.successCards = (ctx, successCards) => {
   )
 
   colors.forEach((c, i) => {
-    ctx.fillStyle = MyGameConfig.table.successCards.bgColor.front[c]
-    DrawLib.fillRoundedRect(ctx, rect, 4)
+    let cfg = lodash.cloneDeep(MyGameConfig.table.successCards)
 
-    ctx.font = MyGameConfig.table.successCards.text.font
-    ctx.fillStyle = MyGameConfig.table.successCards.text.color.front[c]
-    ctx.textAlign = "center"
-    ctx.textBaseline = "middle"
-    ctx.fillText(successCards[i], rect.x + rect.w / 2, rect.y + rect.h / 2)
+    cfg.rect.x += (cfg.rect.w + cfg.spacing) * i
 
-    rect.x += rect.w + MyGameConfig.table.successCards.spacing
+    ctx.fillStyle = cfg.bgColor.front[c]
+    DrawLib.fillRoundedRect(ctx, cfg.rect, 4)
+
+    cfg.text.color = cfg.text.color.front[c]
+    cfg.text.content = successCards[i]
+    DrawLib.fillText(ctx, cfg, false)
   })
 }
 

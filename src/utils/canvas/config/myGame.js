@@ -301,6 +301,8 @@ _.table.successCards = {
   spacing: 1 * vw,
   text: {
     font: cardFont,
+    align: "center",
+    baseline: "middle",
     color: {
       front: cardFrontTextColor,
       back: cardBackTextColor
