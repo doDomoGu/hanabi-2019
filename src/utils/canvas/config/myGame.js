@@ -82,7 +82,7 @@ const tableHistoryRectH = 48 * vh
 
 const tableNumTextColor = "#333333"
 const tableNumFont = px2Rem(12) + "px " + fontFamily
-const tableNumRectW = 8 * vw
+const tableNumRectW = 7 * vw
 const tableNumRectH = 6 * vh
 const tableNumSpacing = 1 * vh
 const tableNumTextAlign = "center"
@@ -105,17 +105,17 @@ const endBtnTextContent = "结束游戏"
 
 /* 对话框 */
 const modalBgColor = "rgba(222,222,222,0.5)" //整个对话框的背景颜色（遮罩）
-const modalRectBgColor = "#ffffff" //对话框中间主要区域的背景颜色
+const modalDialogBgColor = "#ffffff" //对话框中间主要区域的背景颜色
 
-const modalRectW = 50 * vw //对话框区域宽度
-const modalRectH = 50 * vh //对话框区域高度
-const modalRectX = (100 * vw - modalRectW) / 2 //对话框区域 水平位置偏移量
-const modalRectY = (100 * vh - modalRectH) / 2 //对话框区域 垂直位置偏移量
+const modalDialogRectW = 50 * vw //对话框区域宽度
+const modalDialogRectH = 50 * vh //对话框区域高度
+const modalDialogRectX = (100 * vw - modalDialogRectW) / 2 //对话框区域 水平位置偏移量
+const modalDialogRectY = (100 * vh - modalDialogRectH) / 2 //对话框区域 垂直位置偏移量
 
 const modalRectPaddingY = 5 * vh //区域内上下留白
 
-const modalTipRectW = modalRectW //上部提示语句区域宽度
-const modalTipRectH = modalRectH / 3 //上部提示语句区域高度
+const modalTipRectW = modalDialogRectW //上部提示语句区域宽度
+const modalTipRectH = modalDialogRectH / 3 //上部提示语句区域高度
 const modalTipTextFont = px2Rem(20) + "px " + fontFamily //上部提示语句区域内容文字字体
 const modalTipTextAlign = "center" //上部提示语句区域内容文字 水平对齐方式
 const modalTipTextBaseline = "middle" //上部提示语句区域内容文字 垂直对齐方式
@@ -431,16 +431,24 @@ _.endBtn = {
 }
 
 /* 对话框 */
-_.modal = {}
+_.modal = {
+  rect: {
+    w: 100 * vw,
+    h: 100 * vh,
+    x: 0,
+    y: 0
+  },
+  bgColor: modalBgColor
+}
 
-_.modal.bgColor = modalBgColor
-
-_.modal.rect = {
-  w: modalRectW,
-  h: modalRectH,
-  x: modalRectX,
-  y: modalRectY,
-  bgColor: modalRectBgColor
+_.modal.dialog = {
+  rect: {
+    w: modalDialogRectW,
+    h: modalDialogRectH,
+    x: modalDialogRectX,
+    y: modalDialogRectY
+  },
+  bgColor: modalDialogBgColor
 }
 
 _.modal.tip = {} // 对话框上部文字区域
@@ -448,8 +456,8 @@ _.modal.tip = {} // 对话框上部文字区域
 // 出牌时的文字
 _.modal.tip.play = {
   rect: {
-    x: _.modal.rect.x,
-    y: _.modal.rect.y + modalRectPaddingY,
+    x: _.modal.dialog.rect.x,
+    y: _.modal.dialog.rect.y + modalRectPaddingY,
     w: modalTipRectW,
     h: modalTipRectH
   },
@@ -465,8 +473,8 @@ _.modal.tip.play = {
 // 提示时的文字
 _.modal.tip.cue = {
   rect: {
-    x: _.modal.rect.x,
-    y: _.modal.rect.y + modalRectPaddingY,
+    x: _.modal.dialog.rect.x,
+    y: _.modal.dialog.rect.y + modalRectPaddingY,
     w: modalTipRectW,
     h: modalTipRectH
   },
@@ -489,7 +497,10 @@ _.modal.btn.play = {} // 操作区域(出牌play)
 _.modal.btn.play.ok = {
   rect: {
     x:
-      _.modal.rect.x + _.modal.rect.w / 2 - modalBtnRectW - modalBtnSpacing / 2,
+      _.modal.dialog.rect.x +
+      _.modal.dialog.rect.w / 2 -
+      modalBtnRectW -
+      modalBtnSpacing / 2,
     y: _.modal.tip.play.rect.y + _.modal.tip.play.rect.h + modalRectPaddingY,
     w: modalBtnRectW,
     h: modalBtnRectH
@@ -528,8 +539,8 @@ _.modal.btn.cue = {} // 操作区域(提示cue)
 _.modal.btn.cue.num = {
   rect: {
     x:
-      _.modal.rect.x +
-      _.modal.rect.w / 2 -
+      _.modal.dialog.rect.x +
+      _.modal.dialog.rect.w / 2 -
       modalBtnRectW / 2 -
       modalBtnSpacing -
       modalBtnRectW,
@@ -550,7 +561,7 @@ _.modal.btn.cue.num = {
 // 确认提示颜色的按钮
 _.modal.btn.cue.color = {
   rect: {
-    x: _.modal.rect.x + _.modal.rect.w / 2 - modalBtnRectW / 2,
+    x: _.modal.dialog.rect.x + _.modal.dialog.rect.w / 2 - modalBtnRectW / 2,
     y: _.modal.tip.cue.rect.y + _.modal.tip.cue.rect.h + modalRectPaddingY,
     w: modalBtnRectW,
     h: modalBtnRectH
@@ -569,7 +580,10 @@ _.modal.btn.cue.color = {
 _.modal.btn.cue.cancel = {
   rect: {
     x:
-      _.modal.rect.x + _.modal.rect.w / 2 + modalBtnRectW / 2 + modalBtnSpacing,
+      _.modal.dialog.rect.x +
+      _.modal.dialog.rect.w / 2 +
+      modalBtnRectW / 2 +
+      modalBtnSpacing,
     y: _.modal.tip.cue.rect.y + _.modal.tip.cue.rect.h + modalRectPaddingY,
     w: modalBtnRectW,
     h: modalBtnRectH

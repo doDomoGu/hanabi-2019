@@ -12,54 +12,25 @@ let _ = {}
 _.bottomRect = ctx => {
   DrawLib.background(ctx, MyGameConfig.bgImgSrc, "tile").then(() => {
     //主机玩家区域背景
-    DrawLib.fillRect(ctx, {
-      rect: MyGameConfig.host.rect,
-      color: MyGameConfig.host.bgColor
-    })
+    DrawLib.fillRect(ctx, MyGameConfig.host)
     //主机玩家信息区域背景
-    DrawLib.fillRect(ctx, {
-      rect: MyGameConfig.host.info.rect,
-      color: MyGameConfig.host.info.bgColor
-    })
+    DrawLib.fillRect(ctx, MyGameConfig.host.info)
     //客机玩家区域背景
-    DrawLib.fillRect(ctx, {
-      rect: MyGameConfig.guest.rect,
-      color: MyGameConfig.guest.bgColor
-    })
+    DrawLib.fillRect(ctx, MyGameConfig.guest)
     //客机玩家信息区域背景
-    DrawLib.fillRect(ctx, {
-      rect: MyGameConfig.guest.info.rect,
-      color: MyGameConfig.guest.info.bgColor
-    })
+    DrawLib.fillRect(ctx, MyGameConfig.guest.info)
     //桌面区域背景
-    DrawLib.fillRect(ctx, {
-      rect: MyGameConfig.table.rect,
-      color: MyGameConfig.table.bgColor
-    })
+    DrawLib.fillRect(ctx, MyGameConfig.table)
     //游戏记录区域背景
-    DrawLib.fillRect(ctx, {
-      rect: MyGameConfig.table.history.rect,
-      color: MyGameConfig.table.history.bgColor
-    })
+    DrawLib.fillRect(ctx, MyGameConfig.table.history)
   })
 }
 
 //canvas_modal 对话框画布初始化   绘制遮罩及对话框区域背景
 const initModal = ctx => {
-  DrawLib.fillRect(ctx, {
-    rect: {
-      x: 0,
-      y: 0,
-      w: ctx.canvas.width,
-      h: ctx.canvas.height
-    },
-    color: MyGameConfig.modal.bgColor
-  })
+  DrawLib.fillRect(ctx, MyGameConfig.modal)
 
-  DrawLib.fillRect(ctx, {
-    rect: MyGameConfig.modal.rect,
-    color: MyGameConfig.modal.rect.bgColor
-  })
+  DrawLib.fillRect(ctx, MyGameConfig.modal.dialog)
 }
 
 // 绘制结束按钮

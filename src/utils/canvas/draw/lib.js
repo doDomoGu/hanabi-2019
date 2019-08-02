@@ -85,7 +85,7 @@ _.fillRoundedRect = (ctx, rect, radius) => {
 _.fillRect = (ctx, config) => {
   const rect = config.rect
   ctx.clearRect(rect.x, rect.y, rect.w, rect.h)
-  ctx.fillStyle = config.color
+  ctx.fillStyle = config.bgColor
   ctx.fillRect(rect.x, rect.y, rect.w, rect.h)
 }
 
