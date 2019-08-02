@@ -40,16 +40,16 @@ _.endBtn = ctx => {
 
 //绘制主机玩家信息
 _.hostPlayer = (ctx, isPlayerHost, info) => {
-  const config = { ...MyGameConfig.host.info.content }
-  config.text.content = info.name + (isPlayerHost ? "*" : "")
-  DrawLib.fillText(ctx, config)
+  const cfg = lodash.cloneDeep(MyGameConfig.host.info.content)
+  cfg.text.content = info.name + (isPlayerHost ? "*" : "")
+  DrawLib.fillText(ctx, cfg)
 }
 
 //绘制客机玩家信息
 _.guestPlayer = (ctx, isPlayerHost, info) => {
-  const config = { ...MyGameConfig.guest.info.content }
-  config.text.content = info.name + (!isPlayerHost ? "*" : "")
-  DrawLib.fillText(ctx, config)
+  const cfg = lodash.cloneDeep(MyGameConfig.guest.info.content)
+  cfg.text.content = info.name + (!isPlayerHost ? "*" : "")
+  DrawLib.fillText(ctx, cfg)
 }
 
 //绘制主机玩家手牌
@@ -118,15 +118,13 @@ const drawCardByTextAndNum = (ctx, config, num) => {
 
 //绘制牌库
 _.libraryCards = (ctx, num) => {
-  drawCardByTextAndNum(ctx, lodash.cloneDeep(MyGameConfig.table.library), num)
+  const cfg = lodash.cloneDeep(MyGameConfig.table.library)
+  drawCardByTextAndNum(ctx, cfg, num)
 }
 //绘制弃牌堆
 _.discardCards = (ctx, num) => {
-  drawCardByTextAndNum(
-    ctx,
-    lodash.cloneDeep(MyGameConfig.table.discardPile),
-    num
-  )
+  const cfg = lodash.cloneDeep(MyGameConfig.table.discardPile)
+  drawCardByTextAndNum(ctx, cfg, num)
 }
 
 //剩余提示数
