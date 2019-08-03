@@ -28,6 +28,7 @@ const playerInfoTextColor = "#4b4b4b" //玩家信息区域文本颜色
 const playerInfoTextAlign = "left" //玩家信息区域文本颜色
 const playerInfoTextBaseline = "middle" //玩家信息区域文本颜色
 
+const playerInfoNowPlayingFont = px2Rem(12) + "px " + fontFamily //玩家信息区域字体样式
 const playerInfoNowPlayingRectW = 20 * vw //玩家信息区域中显示"当前回合"区域的宽度
 const playerInfoNowPlayingRectH = playerInfoRectH //玩家信息区域中显示"当前回合"区域的高度
 
@@ -36,7 +37,7 @@ const playerInfoContentRectH = playerInfoRectH //玩家信息区域中显示"玩
 
 const cardRectW = 4 * vw //卡牌尺寸宽度
 const cardRectH = 1.618 * cardRectW //卡牌尺寸高度
-const cardFont = px2Rem(8) + "px " + fontFamily //卡牌上字体样式
+const cardFont = px2Rem(14) + "px " + fontFamily //卡牌上字体样式
 
 // 卡牌正面（数字）五种颜色的背景色
 const cardFrontBgColor = {
@@ -88,10 +89,12 @@ const tableNumSpacing = 1 * vh
 const tableNumTextAlign = "center"
 const tableNumTextBaseline = "middle"
 
+const libraryFont = px2Rem(9) + "px " + fontFamily
 const libraryBgColor = "#eeaacc"
 const libraryTextColor = "#333333"
 const libraryTextContent = "牌库"
 
+const discardPileFont = px2Rem(9) + "px " + fontFamily
 const discardPileBgColor = "#ccaaee"
 const discardPileTextColor = "#333333"
 const discardPileTextContent = "弃牌堆"
@@ -199,7 +202,7 @@ _.host.info.nowPlaying = {
     y: _.host.info.rect.y
   },
   text: {
-    font: playerInfoFont,
+    font: playerInfoNowPlayingFont,
     color: playerInfoTextColor,
     align: playerInfoTextAlign,
     baseline: playerInfoTextBaseline,
@@ -256,7 +259,7 @@ _.table.library = {
   text: {
     color: libraryTextColor,
     content: libraryTextContent,
-    font: cardFont,
+    font: libraryFont,
     align: "center"
   },
   bgColor: libraryBgColor
@@ -273,7 +276,7 @@ _.table.discardPile = {
   text: {
     color: discardPileTextColor,
     content: discardPileTextContent,
-    font: cardFont,
+    font: discardPileFont,
     align: "center"
   },
   bgColor: discardPileBgColor
@@ -376,7 +379,7 @@ _.guest.info.nowPlaying = {
     y: _.guest.info.rect.y
   },
   text: {
-    font: playerInfoFont,
+    font: playerInfoNowPlayingFont,
     color: playerInfoTextColor,
     align: playerInfoTextAlign,
     baseline: playerInfoTextBaseline,
