@@ -7,9 +7,8 @@
 
 <script>
 import { getCtx } from "@/utils/canvas/lib"
-import { DrawLib, MyRoomDraw } from "@/utils/canvas/draw"
+import { MyRoomDraw } from "@/utils/canvas/draw"
 import { MyRoomEventListener } from "@/utils/canvas/eventListener"
-import bgImg from "@/assets/hanabi_bg.jpg"
 
 export default {
   name: "my-room",
