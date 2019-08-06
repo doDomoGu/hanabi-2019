@@ -1,6 +1,6 @@
 <template>
   <div id="app" ref="app">
-    <audio autoplay loop ref="bgm"><source :src="bgm" /></audio>
+    <!-- <audio autoplay loop ref="bgm"><source :src="bgm" /></audio> -->
     <div v-if="isLoading" id="loading">
       Loading...
     </div>
@@ -16,15 +16,15 @@ import Login from "./components/Login"
 import RoomList from "./components/RoomList"
 import MyRoom from "./components/MyRoom"
 import MyGame from "./components/MyGame"
-import bgm from "@/assets/Falcom.mp3"
+// import bgm from "@/assets/Falcom.mp3"
 
 export default {
   name: "app",
   components: { Login, RoomList, MyRoom, MyGame },
   data() {
     return {
-      isLoading: true,
-      bgm: bgm
+      isLoading: true
+      // bgm: bgm
     }
   },
   created() {

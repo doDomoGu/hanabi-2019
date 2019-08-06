@@ -1,5 +1,5 @@
 /* 房间列表事件监听库 */
-import { getEventPoint, isInRect, getCtx } from "../lib"
+import { getEventPoint, isInRect } from "../lib"
 // import DrawLib from "../draw/lib"
 import { RoomListDraw } from "../draw"
 import { RoomListConfig } from "../config"
@@ -24,7 +24,7 @@ function getListItemIndex(point, itemConfig, listCount) {
     // rect.y 根据序号i的增加而增加
     rect.y += parseInt(rect.h + itemConfig.spacing)
   }
-  
+
   return index
 }
 export default function eventListener(t, evt) {
@@ -58,4 +58,3 @@ export default function eventListener(t, evt) {
     }
   }
 }
-

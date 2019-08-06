@@ -8,8 +8,9 @@ module.exports = {
     "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
     "prettier/prettier": [
-      "warn", {
-        "semi": false
+      "warn",
+      {
+        semi: false
       }
     ],
     "no-empty-pattern": 0
@@ -17,4 +18,4 @@ module.exports = {
   parserOptions: {
     parser: "babel-eslint"
   }
-};
+}
