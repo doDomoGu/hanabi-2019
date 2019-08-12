@@ -97,8 +97,8 @@ _.host.button.rect = {}
 _.host.button.rect.x = _.host.rect.x + playerPaddingX
 _.host.button.rect.y =
   _.host.rect.y + playerRectH - playerPaddingY - playerButtonRectH
-_.host.button.w = playerButtonRectW
-_.host.button.h = playerButtonRectH
+_.host.button.rect.w = playerButtonRectW
+_.host.button.rect.h = playerButtonRectH
 
 /* 客机玩家 */
 _.guest = {}
