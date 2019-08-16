@@ -229,14 +229,34 @@ _.host.hands = {
   }
 }
 
-for (let i = 0; i < 5; i++) {
+/* for (let i = 0; i < 5; i++) {
   _.host.hands.rects.push({
     w: handsRectW,
     h: handsRectH,
     x: _.host.rect.x + playerRectPaddingX + (handsRectW + handsSpacing) * i,
     y: _.host.info.rect.y + _.host.info.rect.h + playerRectPaddingY
   })
-}
+} */
+
+_.host.hands.rects = (() => {
+  const cfg = {
+    w: handsRectW,
+    h: handsRectH,
+    x: _.host.rect.x + playerRectPaddingX,
+    y: _.host.info.rect.y + _.host.info.rect.h + playerRectPaddingY,
+    xOffset: handsRectW + handsSpacing
+  }
+  let arr = []
+  for (let i = 0; i < 5; i++) {
+    arr.push({
+      w: cfg.w,
+      h: cfg.h,
+      x: cfg.x + cfg.xOffset * i,
+      y: cfg.y
+    })
+  }
+  return arr
+})()
 
 /* 桌面区域 */
 _.table = {}
