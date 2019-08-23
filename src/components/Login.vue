@@ -1,24 +1,29 @@
 <template>
-  <section id="login">
-    <mt-field
-      label="用户名"
-      placeholder="请输入用户名"
-      @keydown.enter.native="login"
-      v-model="form.username"
-    ></mt-field>
+  <div>
+    <section id="logo">
+      烟花 Hanabi
+    </section>
+    <section id="login">
+      <mt-field
+        label="用户名"
+        placeholder="请输入用户名"
+        @keydown.enter.native="login"
+        v-model="form.username"
+      ></mt-field>
 
-    <mt-field
-      label="密码"
-      placeholder="请输入密码"
-      type="password"
-      v-model="form.password"
-      @keydown.enter.native="login"
-    ></mt-field>
+      <mt-field
+        label="密码"
+        placeholder="请输入密码"
+        type="password"
+        v-model="form.password"
+        @keydown.enter.native="login"
+      ></mt-field>
 
-    <mt-button type="default" size="large" @click.native="login"
-      >登录</mt-button
-    >
-  </section>
+      <mt-button type="default" size="large" @click.native="login"
+        >登录</mt-button
+      >
+    </section>
+  </div>
 </template>
 <script>
 import { MessageBox } from "mint-ui"
@@ -58,14 +63,28 @@ export default {
 }
 </script>
 <style lang="scss">
+#logo {
+  color: #fff;
+  position: absolute;
+  width: 40vw;
+  top: 50%;
+  height: 20vh;
+  margin-top: (-20vh/ 2);
+  left: 25%;
+  margin-left: (-40vw / 2);
+  z-index: 100;
+  line-height: 20vh;
+  font-size: 40px;
+  text-align: center;
+}
 #login {
   position: absolute;
-  width: 100vw;
+  width: 40vw;
   top: 50%;
-  height: 300px;
-  margin-top: (-200px / 2);
-  left: 50%;
-  margin-left: (-100vw / 2);
+  height: 20vh;
+  margin-top: (-20vh/ 2);
+  left: 75%;
+  margin-left: (-40vw / 2);
   z-index: 100;
 }
 </style>
