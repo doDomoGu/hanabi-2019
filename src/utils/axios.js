@@ -8,6 +8,8 @@ axios.defaults.headers.post["Content-Type"] =
 
 //api接口地址前缀
 axios.defaults.baseURL = process.env.VUE_APP_API_PREFIX
+  ? process.env.VUE_APP_API_PREFIX
+  : "http://" + document.domain + ":8889/v1"
 
 axios.interceptors.request.use(
   config => {
