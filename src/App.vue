@@ -4,10 +4,21 @@
     <div v-if="isLoading" id="loading">
       Loading...
     </div>
-    <login v-if="!isLoading && isLogin === false" />
-    <room-list v-if="!isLoading && isRoomList === true" />
-    <my-room v-if="!isLoading && isInRoom === true" />
-    <my-game v-if="!isLoading && isInGame === true" />
+    <!-- <button v-on:click="isLoading = !show"> -->
+    <!-- Toggle -->
+    <!-- </button> -->
+    <transition name="fade">
+      <login v-if="!isLoading && isLogin === false" />
+    </transition>
+    <transition name="fade">
+      <room-list v-if="!isLoading && isRoomList === true" />
+    </transition>
+    <transition name="fade">
+      <my-room v-if="!isLoading && isInRoom === true" />
+    </transition>
+    <transition name="fade">
+      <my-game v-if="!isLoading && isInGame === true" />
+    </transition>
   </div>
 </template>
 <script>
@@ -51,7 +62,10 @@ export default {
     } else {
       //没有token 将loginState置为false
       this.$store.commit("auth/setLoginState", false)
-      this.isLoading = false
+      setTimeout(() => {
+        this.isLoading = false
+      }, 1500)
+      // this.isLoading = false
     }
   },
   computed: {
@@ -81,3 +95,12 @@ export default {
   }
 }
 </script>
+<style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+</style>
