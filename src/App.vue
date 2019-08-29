@@ -4,20 +4,13 @@
     <div v-if="isLoading" id="loading">
       Loading...
     </div>
-    <!-- <button v-on:click="isLoading = !show"> -->
-    <!-- Toggle -->
-    <!-- </button> -->
     <transition name="fade">
-      <login v-if="!isLoading && isLogin === false" />
-    </transition>
-    <transition name="fade">
-      <room-list v-if="!isLoading && isRoomList === true" />
-    </transition>
-    <transition name="fade">
-      <my-room v-if="!isLoading && isInRoom === true" />
-    </transition>
-    <transition name="fade">
-      <my-game v-if="!isLoading && isInGame === true" />
+      <template v-if="!isLoading">
+        <login v-if="isLogin === false" />
+        <room-list v-if="isRoomList === true" />
+        <my-room v-if="isInRoom === true" />
+        <my-game v-if="isInGame === true" />
+      </template>
     </transition>
   </div>
 </template>
@@ -96,11 +89,14 @@ export default {
 }
 </script>
 <style>
-.fade-enter-active,
-.fade-leave-active {
+.fade-enter-active {
   transition: opacity 1s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.fade-leave-active {
+  transition: opacity 0.2s;
+}
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 </style>
