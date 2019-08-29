@@ -27,7 +27,7 @@ export default {
   components: { Login, RoomList, MyRoom, MyGame },
   data() {
     return {
-      isLoading: true
+      isLoading: true // 加载资源标志
       // bgm: bgm
     }
   },
@@ -36,24 +36,23 @@ export default {
       //本地(localstorage)有token 验证token
       this.$store.dispatch("auth/CheckToken").then(() => {
         if (this.isLogin) {
-          //验证成功 获取用户信息/房间信息/游戏信息
-          this.$store
-            .dispatch("auth/GetInfo")
-            .then(() => {
-              return this.$store.dispatch("myRoom/GetInfo", { force: true })
-            })
-            .then(() => {
-              return this.$store.dispatch("myGame/GetInfo", { force: true })
-            })
-            .then(() => {
-              this.isLoading = false
-            })
+          // 用户Token验证成功 获取用户信息/房间信息/游戏信息
+          ;(async () => {
+            // 并发异步请求
+            await Promise.all([
+              this.$store.dispatch("auth/GetInfo"),
+              this.$store.dispatch("myRoom/GetInfo", { force: true }),
+              this.$store.dispatch("myGame/GetInfo", { force: true })
+            ])
+          })().then(() => {
+            this.isLoading = false
+          })
         } else {
           this.isLoading = false
         }
       })
     } else {
-      //没有token 将loginState置为false
+      // 没有token 将loginState置为false
       this.$store.commit("auth/setLoginState", false)
       setTimeout(() => {
         this.isLoading = false
@@ -88,15 +87,3 @@ export default {
   }
 }
 </script>
-<style>
-.fade-enter-active {
-  transition: opacity 1s;
-}
-.fade-leave-active {
-  transition: opacity 0.2s;
-}
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
-</style>
